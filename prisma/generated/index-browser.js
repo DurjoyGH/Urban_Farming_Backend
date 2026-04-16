@@ -158,6 +158,15 @@ exports.Prisma.OrderScalarFieldEnum = {
   orderDate: 'orderDate'
 };
 
+exports.Prisma.RentalSpaceScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  location: 'location',
+  size: 'size',
+  price: 'price',
+  availability: 'availability'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -177,7 +186,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   VendorProfile: 'VendorProfile',
   Produce: 'Produce',
-  Order: 'Order'
+  Order: 'Order',
+  RentalSpace: 'RentalSpace'
 };
 
 /**

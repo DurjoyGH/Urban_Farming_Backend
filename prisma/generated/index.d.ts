@@ -33,6 +33,11 @@ export type Produce = $Result.DefaultSelection<Prisma.$ProducePayload>
  * 
  */
 export type Order = $Result.DefaultSelection<Prisma.$OrderPayload>
+/**
+ * Model RentalSpace
+ * 
+ */
+export type RentalSpace = $Result.DefaultSelection<Prisma.$RentalSpacePayload>
 
 /**
  * Enums
@@ -212,6 +217,16 @@ export class PrismaClient<
     * ```
     */
   get order(): Prisma.OrderDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.rentalSpace`: Exposes CRUD operations for the **RentalSpace** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RentalSpaces
+    * const rentalSpaces = await prisma.rentalSpace.findMany()
+    * ```
+    */
+  get rentalSpace(): Prisma.RentalSpaceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -649,7 +664,8 @@ export namespace Prisma {
     User: 'User',
     VendorProfile: 'VendorProfile',
     Produce: 'Produce',
-    Order: 'Order'
+    Order: 'Order',
+    RentalSpace: 'RentalSpace'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -665,7 +681,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "vendorProfile" | "produce" | "order"
+      modelProps: "user" | "vendorProfile" | "produce" | "order" | "rentalSpace"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -965,6 +981,80 @@ export namespace Prisma {
           }
         }
       }
+      RentalSpace: {
+        payload: Prisma.$RentalSpacePayload<ExtArgs>
+        fields: Prisma.RentalSpaceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RentalSpaceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RentalSpaceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>
+          }
+          findFirst: {
+            args: Prisma.RentalSpaceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RentalSpaceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>
+          }
+          findMany: {
+            args: Prisma.RentalSpaceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>[]
+          }
+          create: {
+            args: Prisma.RentalSpaceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>
+          }
+          createMany: {
+            args: Prisma.RentalSpaceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RentalSpaceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>[]
+          }
+          delete: {
+            args: Prisma.RentalSpaceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>
+          }
+          update: {
+            args: Prisma.RentalSpaceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>
+          }
+          deleteMany: {
+            args: Prisma.RentalSpaceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RentalSpaceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RentalSpaceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>[]
+          }
+          upsert: {
+            args: Prisma.RentalSpaceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RentalSpacePayload>
+          }
+          aggregate: {
+            args: Prisma.RentalSpaceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRentalSpace>
+          }
+          groupBy: {
+            args: Prisma.RentalSpaceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RentalSpaceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RentalSpaceCountArgs<ExtArgs>
+            result: $Utils.Optional<RentalSpaceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1077,6 +1167,7 @@ export namespace Prisma {
     vendorProfile?: VendorProfileOmit
     produce?: ProduceOmit
     order?: OrderOmit
+    rentalSpace?: RentalSpaceOmit
   }
 
   /* Types for Logging */
@@ -1189,10 +1280,14 @@ export namespace Prisma {
 
   export type VendorProfileCountOutputType = {
     produce: number
+    orders: number
+    rentalSpaces: number
   }
 
   export type VendorProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     produce?: boolean | VendorProfileCountOutputTypeCountProduceArgs
+    orders?: boolean | VendorProfileCountOutputTypeCountOrdersArgs
+    rentalSpaces?: boolean | VendorProfileCountOutputTypeCountRentalSpacesArgs
   }
 
   // Custom InputTypes
@@ -1211,6 +1306,20 @@ export namespace Prisma {
    */
   export type VendorProfileCountOutputTypeCountProduceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProduceWhereInput
+  }
+
+  /**
+   * VendorProfileCountOutputType without action
+   */
+  export type VendorProfileCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OrderWhereInput
+  }
+
+  /**
+   * VendorProfileCountOutputType without action
+   */
+  export type VendorProfileCountOutputTypeCountRentalSpacesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RentalSpaceWhereInput
   }
 
 
@@ -2580,6 +2689,8 @@ export namespace Prisma {
     farmLocation?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     produce?: boolean | VendorProfile$produceArgs<ExtArgs>
+    orders?: boolean | VendorProfile$ordersArgs<ExtArgs>
+    rentalSpaces?: boolean | VendorProfile$rentalSpacesArgs<ExtArgs>
     _count?: boolean | VendorProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["vendorProfile"]>
 
@@ -2613,6 +2724,8 @@ export namespace Prisma {
   export type VendorProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     produce?: boolean | VendorProfile$produceArgs<ExtArgs>
+    orders?: boolean | VendorProfile$ordersArgs<ExtArgs>
+    rentalSpaces?: boolean | VendorProfile$rentalSpacesArgs<ExtArgs>
     _count?: boolean | VendorProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type VendorProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2627,6 +2740,8 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       produce: Prisma.$ProducePayload<ExtArgs>[]
+      orders: Prisma.$OrderPayload<ExtArgs>[]
+      rentalSpaces: Prisma.$RentalSpacePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3030,6 +3145,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     produce<T extends VendorProfile$produceArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfile$produceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    orders<T extends VendorProfile$ordersArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfile$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    rentalSpaces<T extends VendorProfile$rentalSpacesArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfile$rentalSpacesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3486,6 +3603,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProduceScalarFieldEnum | ProduceScalarFieldEnum[]
+  }
+
+  /**
+   * VendorProfile.orders
+   */
+  export type VendorProfile$ordersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Order
+     */
+    omit?: OrderOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    cursor?: OrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+  /**
+   * VendorProfile.rentalSpaces
+   */
+  export type VendorProfile$rentalSpacesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    where?: RentalSpaceWhereInput
+    orderBy?: RentalSpaceOrderByWithRelationInput | RentalSpaceOrderByWithRelationInput[]
+    cursor?: RentalSpaceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RentalSpaceScalarFieldEnum | RentalSpaceScalarFieldEnum[]
   }
 
   /**
@@ -4874,6 +5039,7 @@ export namespace Prisma {
     status?: boolean
     orderDate?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4884,6 +5050,7 @@ export namespace Prisma {
     status?: boolean
     orderDate?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4894,6 +5061,7 @@ export namespace Prisma {
     status?: boolean
     orderDate?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectScalar = {
@@ -4908,18 +5076,22 @@ export namespace Prisma {
   export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "produceId" | "vendorId" | "status" | "orderDate", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
   }
   export type OrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
   }
 
   export type $OrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Order"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      vendor: Prisma.$VendorProfilePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5323,6 +5495,7 @@ export namespace Prisma {
   export interface Prisma__OrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    vendor<T extends VendorProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfileDefaultArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5778,6 +5951,1124 @@ export namespace Prisma {
 
 
   /**
+   * Model RentalSpace
+   */
+
+  export type AggregateRentalSpace = {
+    _count: RentalSpaceCountAggregateOutputType | null
+    _avg: RentalSpaceAvgAggregateOutputType | null
+    _sum: RentalSpaceSumAggregateOutputType | null
+    _min: RentalSpaceMinAggregateOutputType | null
+    _max: RentalSpaceMaxAggregateOutputType | null
+  }
+
+  export type RentalSpaceAvgAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    price: number | null
+  }
+
+  export type RentalSpaceSumAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    price: number | null
+  }
+
+  export type RentalSpaceMinAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    location: string | null
+    size: string | null
+    price: number | null
+    availability: boolean | null
+  }
+
+  export type RentalSpaceMaxAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    location: string | null
+    size: string | null
+    price: number | null
+    availability: boolean | null
+  }
+
+  export type RentalSpaceCountAggregateOutputType = {
+    id: number
+    vendorId: number
+    location: number
+    size: number
+    price: number
+    availability: number
+    _all: number
+  }
+
+
+  export type RentalSpaceAvgAggregateInputType = {
+    id?: true
+    vendorId?: true
+    price?: true
+  }
+
+  export type RentalSpaceSumAggregateInputType = {
+    id?: true
+    vendorId?: true
+    price?: true
+  }
+
+  export type RentalSpaceMinAggregateInputType = {
+    id?: true
+    vendorId?: true
+    location?: true
+    size?: true
+    price?: true
+    availability?: true
+  }
+
+  export type RentalSpaceMaxAggregateInputType = {
+    id?: true
+    vendorId?: true
+    location?: true
+    size?: true
+    price?: true
+    availability?: true
+  }
+
+  export type RentalSpaceCountAggregateInputType = {
+    id?: true
+    vendorId?: true
+    location?: true
+    size?: true
+    price?: true
+    availability?: true
+    _all?: true
+  }
+
+  export type RentalSpaceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RentalSpace to aggregate.
+     */
+    where?: RentalSpaceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RentalSpaces to fetch.
+     */
+    orderBy?: RentalSpaceOrderByWithRelationInput | RentalSpaceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RentalSpaceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RentalSpaces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RentalSpaces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RentalSpaces
+    **/
+    _count?: true | RentalSpaceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RentalSpaceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RentalSpaceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RentalSpaceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RentalSpaceMaxAggregateInputType
+  }
+
+  export type GetRentalSpaceAggregateType<T extends RentalSpaceAggregateArgs> = {
+        [P in keyof T & keyof AggregateRentalSpace]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRentalSpace[P]>
+      : GetScalarType<T[P], AggregateRentalSpace[P]>
+  }
+
+
+
+
+  export type RentalSpaceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RentalSpaceWhereInput
+    orderBy?: RentalSpaceOrderByWithAggregationInput | RentalSpaceOrderByWithAggregationInput[]
+    by: RentalSpaceScalarFieldEnum[] | RentalSpaceScalarFieldEnum
+    having?: RentalSpaceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RentalSpaceCountAggregateInputType | true
+    _avg?: RentalSpaceAvgAggregateInputType
+    _sum?: RentalSpaceSumAggregateInputType
+    _min?: RentalSpaceMinAggregateInputType
+    _max?: RentalSpaceMaxAggregateInputType
+  }
+
+  export type RentalSpaceGroupByOutputType = {
+    id: number
+    vendorId: number
+    location: string
+    size: string
+    price: number
+    availability: boolean
+    _count: RentalSpaceCountAggregateOutputType | null
+    _avg: RentalSpaceAvgAggregateOutputType | null
+    _sum: RentalSpaceSumAggregateOutputType | null
+    _min: RentalSpaceMinAggregateOutputType | null
+    _max: RentalSpaceMaxAggregateOutputType | null
+  }
+
+  type GetRentalSpaceGroupByPayload<T extends RentalSpaceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RentalSpaceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RentalSpaceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RentalSpaceGroupByOutputType[P]>
+            : GetScalarType<T[P], RentalSpaceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RentalSpaceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    location?: boolean
+    size?: boolean
+    price?: boolean
+    availability?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rentalSpace"]>
+
+  export type RentalSpaceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    location?: boolean
+    size?: boolean
+    price?: boolean
+    availability?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rentalSpace"]>
+
+  export type RentalSpaceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    location?: boolean
+    size?: boolean
+    price?: boolean
+    availability?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["rentalSpace"]>
+
+  export type RentalSpaceSelectScalar = {
+    id?: boolean
+    vendorId?: boolean
+    location?: boolean
+    size?: boolean
+    price?: boolean
+    availability?: boolean
+  }
+
+  export type RentalSpaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vendorId" | "location" | "size" | "price" | "availability", ExtArgs["result"]["rentalSpace"]>
+  export type RentalSpaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+  export type RentalSpaceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+  export type RentalSpaceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+
+  export type $RentalSpacePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RentalSpace"
+    objects: {
+      vendor: Prisma.$VendorProfilePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      vendorId: number
+      location: string
+      size: string
+      price: number
+      availability: boolean
+    }, ExtArgs["result"]["rentalSpace"]>
+    composites: {}
+  }
+
+  type RentalSpaceGetPayload<S extends boolean | null | undefined | RentalSpaceDefaultArgs> = $Result.GetResult<Prisma.$RentalSpacePayload, S>
+
+  type RentalSpaceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RentalSpaceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RentalSpaceCountAggregateInputType | true
+    }
+
+  export interface RentalSpaceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RentalSpace'], meta: { name: 'RentalSpace' } }
+    /**
+     * Find zero or one RentalSpace that matches the filter.
+     * @param {RentalSpaceFindUniqueArgs} args - Arguments to find a RentalSpace
+     * @example
+     * // Get one RentalSpace
+     * const rentalSpace = await prisma.rentalSpace.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RentalSpaceFindUniqueArgs>(args: SelectSubset<T, RentalSpaceFindUniqueArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RentalSpace that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RentalSpaceFindUniqueOrThrowArgs} args - Arguments to find a RentalSpace
+     * @example
+     * // Get one RentalSpace
+     * const rentalSpace = await prisma.rentalSpace.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RentalSpaceFindUniqueOrThrowArgs>(args: SelectSubset<T, RentalSpaceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RentalSpace that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RentalSpaceFindFirstArgs} args - Arguments to find a RentalSpace
+     * @example
+     * // Get one RentalSpace
+     * const rentalSpace = await prisma.rentalSpace.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RentalSpaceFindFirstArgs>(args?: SelectSubset<T, RentalSpaceFindFirstArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RentalSpace that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RentalSpaceFindFirstOrThrowArgs} args - Arguments to find a RentalSpace
+     * @example
+     * // Get one RentalSpace
+     * const rentalSpace = await prisma.rentalSpace.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RentalSpaceFindFirstOrThrowArgs>(args?: SelectSubset<T, RentalSpaceFindFirstOrThrowArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RentalSpaces that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RentalSpaceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RentalSpaces
+     * const rentalSpaces = await prisma.rentalSpace.findMany()
+     * 
+     * // Get first 10 RentalSpaces
+     * const rentalSpaces = await prisma.rentalSpace.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const rentalSpaceWithIdOnly = await prisma.rentalSpace.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RentalSpaceFindManyArgs>(args?: SelectSubset<T, RentalSpaceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RentalSpace.
+     * @param {RentalSpaceCreateArgs} args - Arguments to create a RentalSpace.
+     * @example
+     * // Create one RentalSpace
+     * const RentalSpace = await prisma.rentalSpace.create({
+     *   data: {
+     *     // ... data to create a RentalSpace
+     *   }
+     * })
+     * 
+     */
+    create<T extends RentalSpaceCreateArgs>(args: SelectSubset<T, RentalSpaceCreateArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RentalSpaces.
+     * @param {RentalSpaceCreateManyArgs} args - Arguments to create many RentalSpaces.
+     * @example
+     * // Create many RentalSpaces
+     * const rentalSpace = await prisma.rentalSpace.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RentalSpaceCreateManyArgs>(args?: SelectSubset<T, RentalSpaceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RentalSpaces and returns the data saved in the database.
+     * @param {RentalSpaceCreateManyAndReturnArgs} args - Arguments to create many RentalSpaces.
+     * @example
+     * // Create many RentalSpaces
+     * const rentalSpace = await prisma.rentalSpace.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RentalSpaces and only return the `id`
+     * const rentalSpaceWithIdOnly = await prisma.rentalSpace.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RentalSpaceCreateManyAndReturnArgs>(args?: SelectSubset<T, RentalSpaceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RentalSpace.
+     * @param {RentalSpaceDeleteArgs} args - Arguments to delete one RentalSpace.
+     * @example
+     * // Delete one RentalSpace
+     * const RentalSpace = await prisma.rentalSpace.delete({
+     *   where: {
+     *     // ... filter to delete one RentalSpace
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RentalSpaceDeleteArgs>(args: SelectSubset<T, RentalSpaceDeleteArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RentalSpace.
+     * @param {RentalSpaceUpdateArgs} args - Arguments to update one RentalSpace.
+     * @example
+     * // Update one RentalSpace
+     * const rentalSpace = await prisma.rentalSpace.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RentalSpaceUpdateArgs>(args: SelectSubset<T, RentalSpaceUpdateArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RentalSpaces.
+     * @param {RentalSpaceDeleteManyArgs} args - Arguments to filter RentalSpaces to delete.
+     * @example
+     * // Delete a few RentalSpaces
+     * const { count } = await prisma.rentalSpace.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RentalSpaceDeleteManyArgs>(args?: SelectSubset<T, RentalSpaceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RentalSpaces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RentalSpaceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RentalSpaces
+     * const rentalSpace = await prisma.rentalSpace.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RentalSpaceUpdateManyArgs>(args: SelectSubset<T, RentalSpaceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RentalSpaces and returns the data updated in the database.
+     * @param {RentalSpaceUpdateManyAndReturnArgs} args - Arguments to update many RentalSpaces.
+     * @example
+     * // Update many RentalSpaces
+     * const rentalSpace = await prisma.rentalSpace.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RentalSpaces and only return the `id`
+     * const rentalSpaceWithIdOnly = await prisma.rentalSpace.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RentalSpaceUpdateManyAndReturnArgs>(args: SelectSubset<T, RentalSpaceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RentalSpace.
+     * @param {RentalSpaceUpsertArgs} args - Arguments to update or create a RentalSpace.
+     * @example
+     * // Update or create a RentalSpace
+     * const rentalSpace = await prisma.rentalSpace.upsert({
+     *   create: {
+     *     // ... data to create a RentalSpace
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RentalSpace we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RentalSpaceUpsertArgs>(args: SelectSubset<T, RentalSpaceUpsertArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RentalSpaces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RentalSpaceCountArgs} args - Arguments to filter RentalSpaces to count.
+     * @example
+     * // Count the number of RentalSpaces
+     * const count = await prisma.rentalSpace.count({
+     *   where: {
+     *     // ... the filter for the RentalSpaces we want to count
+     *   }
+     * })
+    **/
+    count<T extends RentalSpaceCountArgs>(
+      args?: Subset<T, RentalSpaceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RentalSpaceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RentalSpace.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RentalSpaceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RentalSpaceAggregateArgs>(args: Subset<T, RentalSpaceAggregateArgs>): Prisma.PrismaPromise<GetRentalSpaceAggregateType<T>>
+
+    /**
+     * Group by RentalSpace.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RentalSpaceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RentalSpaceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RentalSpaceGroupByArgs['orderBy'] }
+        : { orderBy?: RentalSpaceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RentalSpaceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRentalSpaceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RentalSpace model
+   */
+  readonly fields: RentalSpaceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RentalSpace.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RentalSpaceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vendor<T extends VendorProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfileDefaultArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RentalSpace model
+   */
+  interface RentalSpaceFieldRefs {
+    readonly id: FieldRef<"RentalSpace", 'Int'>
+    readonly vendorId: FieldRef<"RentalSpace", 'Int'>
+    readonly location: FieldRef<"RentalSpace", 'String'>
+    readonly size: FieldRef<"RentalSpace", 'String'>
+    readonly price: FieldRef<"RentalSpace", 'Float'>
+    readonly availability: FieldRef<"RentalSpace", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RentalSpace findUnique
+   */
+  export type RentalSpaceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * Filter, which RentalSpace to fetch.
+     */
+    where: RentalSpaceWhereUniqueInput
+  }
+
+  /**
+   * RentalSpace findUniqueOrThrow
+   */
+  export type RentalSpaceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * Filter, which RentalSpace to fetch.
+     */
+    where: RentalSpaceWhereUniqueInput
+  }
+
+  /**
+   * RentalSpace findFirst
+   */
+  export type RentalSpaceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * Filter, which RentalSpace to fetch.
+     */
+    where?: RentalSpaceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RentalSpaces to fetch.
+     */
+    orderBy?: RentalSpaceOrderByWithRelationInput | RentalSpaceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RentalSpaces.
+     */
+    cursor?: RentalSpaceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RentalSpaces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RentalSpaces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RentalSpaces.
+     */
+    distinct?: RentalSpaceScalarFieldEnum | RentalSpaceScalarFieldEnum[]
+  }
+
+  /**
+   * RentalSpace findFirstOrThrow
+   */
+  export type RentalSpaceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * Filter, which RentalSpace to fetch.
+     */
+    where?: RentalSpaceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RentalSpaces to fetch.
+     */
+    orderBy?: RentalSpaceOrderByWithRelationInput | RentalSpaceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RentalSpaces.
+     */
+    cursor?: RentalSpaceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RentalSpaces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RentalSpaces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RentalSpaces.
+     */
+    distinct?: RentalSpaceScalarFieldEnum | RentalSpaceScalarFieldEnum[]
+  }
+
+  /**
+   * RentalSpace findMany
+   */
+  export type RentalSpaceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * Filter, which RentalSpaces to fetch.
+     */
+    where?: RentalSpaceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RentalSpaces to fetch.
+     */
+    orderBy?: RentalSpaceOrderByWithRelationInput | RentalSpaceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RentalSpaces.
+     */
+    cursor?: RentalSpaceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RentalSpaces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RentalSpaces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RentalSpaces.
+     */
+    distinct?: RentalSpaceScalarFieldEnum | RentalSpaceScalarFieldEnum[]
+  }
+
+  /**
+   * RentalSpace create
+   */
+  export type RentalSpaceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RentalSpace.
+     */
+    data: XOR<RentalSpaceCreateInput, RentalSpaceUncheckedCreateInput>
+  }
+
+  /**
+   * RentalSpace createMany
+   */
+  export type RentalSpaceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RentalSpaces.
+     */
+    data: RentalSpaceCreateManyInput | RentalSpaceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RentalSpace createManyAndReturn
+   */
+  export type RentalSpaceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * The data used to create many RentalSpaces.
+     */
+    data: RentalSpaceCreateManyInput | RentalSpaceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RentalSpace update
+   */
+  export type RentalSpaceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RentalSpace.
+     */
+    data: XOR<RentalSpaceUpdateInput, RentalSpaceUncheckedUpdateInput>
+    /**
+     * Choose, which RentalSpace to update.
+     */
+    where: RentalSpaceWhereUniqueInput
+  }
+
+  /**
+   * RentalSpace updateMany
+   */
+  export type RentalSpaceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RentalSpaces.
+     */
+    data: XOR<RentalSpaceUpdateManyMutationInput, RentalSpaceUncheckedUpdateManyInput>
+    /**
+     * Filter which RentalSpaces to update
+     */
+    where?: RentalSpaceWhereInput
+    /**
+     * Limit how many RentalSpaces to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RentalSpace updateManyAndReturn
+   */
+  export type RentalSpaceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * The data used to update RentalSpaces.
+     */
+    data: XOR<RentalSpaceUpdateManyMutationInput, RentalSpaceUncheckedUpdateManyInput>
+    /**
+     * Filter which RentalSpaces to update
+     */
+    where?: RentalSpaceWhereInput
+    /**
+     * Limit how many RentalSpaces to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RentalSpace upsert
+   */
+  export type RentalSpaceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RentalSpace to update in case it exists.
+     */
+    where: RentalSpaceWhereUniqueInput
+    /**
+     * In case the RentalSpace found by the `where` argument doesn't exist, create a new RentalSpace with this data.
+     */
+    create: XOR<RentalSpaceCreateInput, RentalSpaceUncheckedCreateInput>
+    /**
+     * In case the RentalSpace was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RentalSpaceUpdateInput, RentalSpaceUncheckedUpdateInput>
+  }
+
+  /**
+   * RentalSpace delete
+   */
+  export type RentalSpaceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+    /**
+     * Filter which RentalSpace to delete.
+     */
+    where: RentalSpaceWhereUniqueInput
+  }
+
+  /**
+   * RentalSpace deleteMany
+   */
+  export type RentalSpaceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RentalSpaces to delete
+     */
+    where?: RentalSpaceWhereInput
+    /**
+     * Limit how many RentalSpaces to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RentalSpace without action
+   */
+  export type RentalSpaceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpace
+     */
+    select?: RentalSpaceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RentalSpace
+     */
+    omit?: RentalSpaceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RentalSpaceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5839,6 +7130,18 @@ export namespace Prisma {
   };
 
   export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+  export const RentalSpaceScalarFieldEnum: {
+    id: 'id',
+    vendorId: 'vendorId',
+    location: 'location',
+    size: 'size',
+    price: 'price',
+    availability: 'availability'
+  };
+
+  export type RentalSpaceScalarFieldEnum = (typeof RentalSpaceScalarFieldEnum)[keyof typeof RentalSpaceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5930,6 +7233,13 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
   /**
    * Deep Input Types
    */
@@ -6016,6 +7326,8 @@ export namespace Prisma {
     farmLocation?: StringFilter<"VendorProfile"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     produce?: ProduceListRelationFilter
+    orders?: OrderListRelationFilter
+    rentalSpaces?: RentalSpaceListRelationFilter
   }
 
   export type VendorProfileOrderByWithRelationInput = {
@@ -6026,6 +7338,8 @@ export namespace Prisma {
     farmLocation?: SortOrder
     user?: UserOrderByWithRelationInput
     produce?: ProduceOrderByRelationAggregateInput
+    orders?: OrderOrderByRelationAggregateInput
+    rentalSpaces?: RentalSpaceOrderByRelationAggregateInput
   }
 
   export type VendorProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -6039,6 +7353,8 @@ export namespace Prisma {
     farmLocation?: StringFilter<"VendorProfile"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     produce?: ProduceListRelationFilter
+    orders?: OrderListRelationFilter
+    rentalSpaces?: RentalSpaceListRelationFilter
   }, "id" | "userId">
 
   export type VendorProfileOrderByWithAggregationInput = {
@@ -6148,6 +7464,7 @@ export namespace Prisma {
     status?: StringFilter<"Order"> | string
     orderDate?: DateTimeFilter<"Order"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -6158,6 +7475,7 @@ export namespace Prisma {
     status?: SortOrder
     orderDate?: SortOrder
     user?: UserOrderByWithRelationInput
+    vendor?: VendorProfileOrderByWithRelationInput
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -6171,6 +7489,7 @@ export namespace Prisma {
     status?: StringFilter<"Order"> | string
     orderDate?: DateTimeFilter<"Order"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
   }, "id">
 
   export type OrderOrderByWithAggregationInput = {
@@ -6197,6 +7516,68 @@ export namespace Prisma {
     vendorId?: IntWithAggregatesFilter<"Order"> | number
     status?: StringWithAggregatesFilter<"Order"> | string
     orderDate?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+  }
+
+  export type RentalSpaceWhereInput = {
+    AND?: RentalSpaceWhereInput | RentalSpaceWhereInput[]
+    OR?: RentalSpaceWhereInput[]
+    NOT?: RentalSpaceWhereInput | RentalSpaceWhereInput[]
+    id?: IntFilter<"RentalSpace"> | number
+    vendorId?: IntFilter<"RentalSpace"> | number
+    location?: StringFilter<"RentalSpace"> | string
+    size?: StringFilter<"RentalSpace"> | string
+    price?: FloatFilter<"RentalSpace"> | number
+    availability?: BoolFilter<"RentalSpace"> | boolean
+    vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
+  }
+
+  export type RentalSpaceOrderByWithRelationInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    location?: SortOrder
+    size?: SortOrder
+    price?: SortOrder
+    availability?: SortOrder
+    vendor?: VendorProfileOrderByWithRelationInput
+  }
+
+  export type RentalSpaceWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: RentalSpaceWhereInput | RentalSpaceWhereInput[]
+    OR?: RentalSpaceWhereInput[]
+    NOT?: RentalSpaceWhereInput | RentalSpaceWhereInput[]
+    vendorId?: IntFilter<"RentalSpace"> | number
+    location?: StringFilter<"RentalSpace"> | string
+    size?: StringFilter<"RentalSpace"> | string
+    price?: FloatFilter<"RentalSpace"> | number
+    availability?: BoolFilter<"RentalSpace"> | boolean
+    vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
+  }, "id">
+
+  export type RentalSpaceOrderByWithAggregationInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    location?: SortOrder
+    size?: SortOrder
+    price?: SortOrder
+    availability?: SortOrder
+    _count?: RentalSpaceCountOrderByAggregateInput
+    _avg?: RentalSpaceAvgOrderByAggregateInput
+    _max?: RentalSpaceMaxOrderByAggregateInput
+    _min?: RentalSpaceMinOrderByAggregateInput
+    _sum?: RentalSpaceSumOrderByAggregateInput
+  }
+
+  export type RentalSpaceScalarWhereWithAggregatesInput = {
+    AND?: RentalSpaceScalarWhereWithAggregatesInput | RentalSpaceScalarWhereWithAggregatesInput[]
+    OR?: RentalSpaceScalarWhereWithAggregatesInput[]
+    NOT?: RentalSpaceScalarWhereWithAggregatesInput | RentalSpaceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"RentalSpace"> | number
+    vendorId?: IntWithAggregatesFilter<"RentalSpace"> | number
+    location?: StringWithAggregatesFilter<"RentalSpace"> | string
+    size?: StringWithAggregatesFilter<"RentalSpace"> | string
+    price?: FloatWithAggregatesFilter<"RentalSpace"> | number
+    availability?: BoolWithAggregatesFilter<"RentalSpace"> | boolean
   }
 
   export type UserCreateInput = {
@@ -6280,6 +7661,8 @@ export namespace Prisma {
     farmLocation: string
     user: UserCreateNestedOneWithoutVendorProfileInput
     produce?: ProduceCreateNestedManyWithoutVendorInput
+    orders?: OrderCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUncheckedCreateInput = {
@@ -6289,6 +7672,8 @@ export namespace Prisma {
     certificationStatus: string
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUpdateInput = {
@@ -6297,6 +7682,8 @@ export namespace Prisma {
     farmLocation?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     produce?: ProduceUpdateManyWithoutVendorNestedInput
+    orders?: OrderUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileUncheckedUpdateInput = {
@@ -6306,6 +7693,8 @@ export namespace Prisma {
     certificationStatus?: StringFieldUpdateOperationsInput | string
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileCreateManyInput = {
@@ -6405,10 +7794,10 @@ export namespace Prisma {
 
   export type OrderCreateInput = {
     produceId: number
-    vendorId: number
     status: string
     orderDate?: Date | string
     user: UserCreateNestedOneWithoutOrdersInput
+    vendor: VendorProfileCreateNestedOneWithoutOrdersInput
   }
 
   export type OrderUncheckedCreateInput = {
@@ -6422,10 +7811,10 @@ export namespace Prisma {
 
   export type OrderUpdateInput = {
     produceId?: IntFieldUpdateOperationsInput | number
-    vendorId?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    vendor?: VendorProfileUpdateOneRequiredWithoutOrdersNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -6448,7 +7837,6 @@ export namespace Prisma {
 
   export type OrderUpdateManyMutationInput = {
     produceId?: IntFieldUpdateOperationsInput | number
-    vendorId?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6460,6 +7848,65 @@ export namespace Prisma {
     vendorId?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RentalSpaceCreateInput = {
+    location: string
+    size: string
+    price: number
+    availability: boolean
+    vendor: VendorProfileCreateNestedOneWithoutRentalSpacesInput
+  }
+
+  export type RentalSpaceUncheckedCreateInput = {
+    id?: number
+    vendorId: number
+    location: string
+    size: string
+    price: number
+    availability: boolean
+  }
+
+  export type RentalSpaceUpdateInput = {
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
+    vendor?: VendorProfileUpdateOneRequiredWithoutRentalSpacesNestedInput
+  }
+
+  export type RentalSpaceUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vendorId?: IntFieldUpdateOperationsInput | number
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type RentalSpaceCreateManyInput = {
+    id?: number
+    vendorId: number
+    location: string
+    size: string
+    price: number
+    availability: boolean
+  }
+
+  export type RentalSpaceUpdateManyMutationInput = {
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type RentalSpaceUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vendorId?: IntFieldUpdateOperationsInput | number
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6628,7 +8075,17 @@ export namespace Prisma {
     none?: ProduceWhereInput
   }
 
+  export type RentalSpaceListRelationFilter = {
+    every?: RentalSpaceWhereInput
+    some?: RentalSpaceWhereInput
+    none?: RentalSpaceWhereInput
+  }
+
   export type ProduceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RentalSpaceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -6786,6 +8243,58 @@ export namespace Prisma {
     vendorId?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type RentalSpaceCountOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    location?: SortOrder
+    size?: SortOrder
+    price?: SortOrder
+    availability?: SortOrder
+  }
+
+  export type RentalSpaceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    price?: SortOrder
+  }
+
+  export type RentalSpaceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    location?: SortOrder
+    size?: SortOrder
+    price?: SortOrder
+    availability?: SortOrder
+  }
+
+  export type RentalSpaceMinOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    location?: SortOrder
+    size?: SortOrder
+    price?: SortOrder
+    availability?: SortOrder
+  }
+
+  export type RentalSpaceSumOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    price?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type VendorProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: VendorProfileCreateOrConnectWithoutUserInput
@@ -6893,11 +8402,39 @@ export namespace Prisma {
     connect?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
   }
 
+  export type OrderCreateNestedManyWithoutVendorInput = {
+    create?: XOR<OrderCreateWithoutVendorInput, OrderUncheckedCreateWithoutVendorInput> | OrderCreateWithoutVendorInput[] | OrderUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutVendorInput | OrderCreateOrConnectWithoutVendorInput[]
+    createMany?: OrderCreateManyVendorInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type RentalSpaceCreateNestedManyWithoutVendorInput = {
+    create?: XOR<RentalSpaceCreateWithoutVendorInput, RentalSpaceUncheckedCreateWithoutVendorInput> | RentalSpaceCreateWithoutVendorInput[] | RentalSpaceUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: RentalSpaceCreateOrConnectWithoutVendorInput | RentalSpaceCreateOrConnectWithoutVendorInput[]
+    createMany?: RentalSpaceCreateManyVendorInputEnvelope
+    connect?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+  }
+
   export type ProduceUncheckedCreateNestedManyWithoutVendorInput = {
     create?: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput> | ProduceCreateWithoutVendorInput[] | ProduceUncheckedCreateWithoutVendorInput[]
     connectOrCreate?: ProduceCreateOrConnectWithoutVendorInput | ProduceCreateOrConnectWithoutVendorInput[]
     createMany?: ProduceCreateManyVendorInputEnvelope
     connect?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+  }
+
+  export type OrderUncheckedCreateNestedManyWithoutVendorInput = {
+    create?: XOR<OrderCreateWithoutVendorInput, OrderUncheckedCreateWithoutVendorInput> | OrderCreateWithoutVendorInput[] | OrderUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutVendorInput | OrderCreateOrConnectWithoutVendorInput[]
+    createMany?: OrderCreateManyVendorInputEnvelope
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type RentalSpaceUncheckedCreateNestedManyWithoutVendorInput = {
+    create?: XOR<RentalSpaceCreateWithoutVendorInput, RentalSpaceUncheckedCreateWithoutVendorInput> | RentalSpaceCreateWithoutVendorInput[] | RentalSpaceUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: RentalSpaceCreateOrConnectWithoutVendorInput | RentalSpaceCreateOrConnectWithoutVendorInput[]
+    createMany?: RentalSpaceCreateManyVendorInputEnvelope
+    connect?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutVendorProfileNestedInput = {
@@ -6922,6 +8459,34 @@ export namespace Prisma {
     deleteMany?: ProduceScalarWhereInput | ProduceScalarWhereInput[]
   }
 
+  export type OrderUpdateManyWithoutVendorNestedInput = {
+    create?: XOR<OrderCreateWithoutVendorInput, OrderUncheckedCreateWithoutVendorInput> | OrderCreateWithoutVendorInput[] | OrderUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutVendorInput | OrderCreateOrConnectWithoutVendorInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutVendorInput | OrderUpsertWithWhereUniqueWithoutVendorInput[]
+    createMany?: OrderCreateManyVendorInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutVendorInput | OrderUpdateWithWhereUniqueWithoutVendorInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutVendorInput | OrderUpdateManyWithWhereWithoutVendorInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type RentalSpaceUpdateManyWithoutVendorNestedInput = {
+    create?: XOR<RentalSpaceCreateWithoutVendorInput, RentalSpaceUncheckedCreateWithoutVendorInput> | RentalSpaceCreateWithoutVendorInput[] | RentalSpaceUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: RentalSpaceCreateOrConnectWithoutVendorInput | RentalSpaceCreateOrConnectWithoutVendorInput[]
+    upsert?: RentalSpaceUpsertWithWhereUniqueWithoutVendorInput | RentalSpaceUpsertWithWhereUniqueWithoutVendorInput[]
+    createMany?: RentalSpaceCreateManyVendorInputEnvelope
+    set?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+    disconnect?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+    delete?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+    connect?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+    update?: RentalSpaceUpdateWithWhereUniqueWithoutVendorInput | RentalSpaceUpdateWithWhereUniqueWithoutVendorInput[]
+    updateMany?: RentalSpaceUpdateManyWithWhereWithoutVendorInput | RentalSpaceUpdateManyWithWhereWithoutVendorInput[]
+    deleteMany?: RentalSpaceScalarWhereInput | RentalSpaceScalarWhereInput[]
+  }
+
   export type ProduceUncheckedUpdateManyWithoutVendorNestedInput = {
     create?: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput> | ProduceCreateWithoutVendorInput[] | ProduceUncheckedCreateWithoutVendorInput[]
     connectOrCreate?: ProduceCreateOrConnectWithoutVendorInput | ProduceCreateOrConnectWithoutVendorInput[]
@@ -6934,6 +8499,34 @@ export namespace Prisma {
     update?: ProduceUpdateWithWhereUniqueWithoutVendorInput | ProduceUpdateWithWhereUniqueWithoutVendorInput[]
     updateMany?: ProduceUpdateManyWithWhereWithoutVendorInput | ProduceUpdateManyWithWhereWithoutVendorInput[]
     deleteMany?: ProduceScalarWhereInput | ProduceScalarWhereInput[]
+  }
+
+  export type OrderUncheckedUpdateManyWithoutVendorNestedInput = {
+    create?: XOR<OrderCreateWithoutVendorInput, OrderUncheckedCreateWithoutVendorInput> | OrderCreateWithoutVendorInput[] | OrderUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutVendorInput | OrderCreateOrConnectWithoutVendorInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutVendorInput | OrderUpsertWithWhereUniqueWithoutVendorInput[]
+    createMany?: OrderCreateManyVendorInputEnvelope
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutVendorInput | OrderUpdateWithWhereUniqueWithoutVendorInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutVendorInput | OrderUpdateManyWithWhereWithoutVendorInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput = {
+    create?: XOR<RentalSpaceCreateWithoutVendorInput, RentalSpaceUncheckedCreateWithoutVendorInput> | RentalSpaceCreateWithoutVendorInput[] | RentalSpaceUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: RentalSpaceCreateOrConnectWithoutVendorInput | RentalSpaceCreateOrConnectWithoutVendorInput[]
+    upsert?: RentalSpaceUpsertWithWhereUniqueWithoutVendorInput | RentalSpaceUpsertWithWhereUniqueWithoutVendorInput[]
+    createMany?: RentalSpaceCreateManyVendorInputEnvelope
+    set?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+    disconnect?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+    delete?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+    connect?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+    update?: RentalSpaceUpdateWithWhereUniqueWithoutVendorInput | RentalSpaceUpdateWithWhereUniqueWithoutVendorInput[]
+    updateMany?: RentalSpaceUpdateManyWithWhereWithoutVendorInput | RentalSpaceUpdateManyWithWhereWithoutVendorInput[]
+    deleteMany?: RentalSpaceScalarWhereInput | RentalSpaceScalarWhereInput[]
   }
 
   export type VendorProfileCreateNestedOneWithoutProduceInput = {
@@ -6964,12 +8557,44 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type VendorProfileCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<VendorProfileCreateWithoutOrdersInput, VendorProfileUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutOrdersInput
+    connect?: VendorProfileWhereUniqueInput
+  }
+
   export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
     create?: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
     connectOrCreate?: UserCreateOrConnectWithoutOrdersInput
     upsert?: UserUpsertWithoutOrdersInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrdersInput, UserUpdateWithoutOrdersInput>, UserUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type VendorProfileUpdateOneRequiredWithoutOrdersNestedInput = {
+    create?: XOR<VendorProfileCreateWithoutOrdersInput, VendorProfileUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutOrdersInput
+    upsert?: VendorProfileUpsertWithoutOrdersInput
+    connect?: VendorProfileWhereUniqueInput
+    update?: XOR<XOR<VendorProfileUpdateToOneWithWhereWithoutOrdersInput, VendorProfileUpdateWithoutOrdersInput>, VendorProfileUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type VendorProfileCreateNestedOneWithoutRentalSpacesInput = {
+    create?: XOR<VendorProfileCreateWithoutRentalSpacesInput, VendorProfileUncheckedCreateWithoutRentalSpacesInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutRentalSpacesInput
+    connect?: VendorProfileWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type VendorProfileUpdateOneRequiredWithoutRentalSpacesNestedInput = {
+    create?: XOR<VendorProfileCreateWithoutRentalSpacesInput, VendorProfileUncheckedCreateWithoutRentalSpacesInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutRentalSpacesInput
+    upsert?: VendorProfileUpsertWithoutRentalSpacesInput
+    connect?: VendorProfileWhereUniqueInput
+    update?: XOR<XOR<VendorProfileUpdateToOneWithWhereWithoutRentalSpacesInput, VendorProfileUpdateWithoutRentalSpacesInput>, VendorProfileUncheckedUpdateWithoutRentalSpacesInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -7099,11 +8724,26 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type VendorProfileCreateWithoutUserInput = {
     farmName: string
     certificationStatus: string
     farmLocation: string
     produce?: ProduceCreateNestedManyWithoutVendorInput
+    orders?: OrderCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUncheckedCreateWithoutUserInput = {
@@ -7112,6 +8752,8 @@ export namespace Prisma {
     certificationStatus: string
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileCreateOrConnectWithoutUserInput = {
@@ -7121,9 +8763,9 @@ export namespace Prisma {
 
   export type OrderCreateWithoutUserInput = {
     produceId: number
-    vendorId: number
     status: string
     orderDate?: Date | string
+    vendor: VendorProfileCreateNestedOneWithoutOrdersInput
   }
 
   export type OrderUncheckedCreateWithoutUserInput = {
@@ -7160,6 +8802,8 @@ export namespace Prisma {
     certificationStatus?: StringFieldUpdateOperationsInput | string
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUpdateManyWithoutVendorNestedInput
+    orders?: OrderUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileUncheckedUpdateWithoutUserInput = {
@@ -7168,6 +8812,8 @@ export namespace Prisma {
     certificationStatus?: StringFieldUpdateOperationsInput | string
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutUserInput = {
@@ -7253,6 +8899,56 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type OrderCreateWithoutVendorInput = {
+    produceId: number
+    status: string
+    orderDate?: Date | string
+    user: UserCreateNestedOneWithoutOrdersInput
+  }
+
+  export type OrderUncheckedCreateWithoutVendorInput = {
+    id?: number
+    userId: number
+    produceId: number
+    status: string
+    orderDate?: Date | string
+  }
+
+  export type OrderCreateOrConnectWithoutVendorInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutVendorInput, OrderUncheckedCreateWithoutVendorInput>
+  }
+
+  export type OrderCreateManyVendorInputEnvelope = {
+    data: OrderCreateManyVendorInput | OrderCreateManyVendorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type RentalSpaceCreateWithoutVendorInput = {
+    location: string
+    size: string
+    price: number
+    availability: boolean
+  }
+
+  export type RentalSpaceUncheckedCreateWithoutVendorInput = {
+    id?: number
+    location: string
+    size: string
+    price: number
+    availability: boolean
+  }
+
+  export type RentalSpaceCreateOrConnectWithoutVendorInput = {
+    where: RentalSpaceWhereUniqueInput
+    create: XOR<RentalSpaceCreateWithoutVendorInput, RentalSpaceUncheckedCreateWithoutVendorInput>
+  }
+
+  export type RentalSpaceCreateManyVendorInputEnvelope = {
+    data: RentalSpaceCreateManyVendorInput | RentalSpaceCreateManyVendorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutVendorProfileInput = {
     update: XOR<UserUpdateWithoutVendorProfileInput, UserUncheckedUpdateWithoutVendorProfileInput>
     create: XOR<UserCreateWithoutVendorProfileInput, UserUncheckedCreateWithoutVendorProfileInput>
@@ -7315,11 +9011,57 @@ export namespace Prisma {
     availableQuantity?: IntFilter<"Produce"> | number
   }
 
+  export type OrderUpsertWithWhereUniqueWithoutVendorInput = {
+    where: OrderWhereUniqueInput
+    update: XOR<OrderUpdateWithoutVendorInput, OrderUncheckedUpdateWithoutVendorInput>
+    create: XOR<OrderCreateWithoutVendorInput, OrderUncheckedCreateWithoutVendorInput>
+  }
+
+  export type OrderUpdateWithWhereUniqueWithoutVendorInput = {
+    where: OrderWhereUniqueInput
+    data: XOR<OrderUpdateWithoutVendorInput, OrderUncheckedUpdateWithoutVendorInput>
+  }
+
+  export type OrderUpdateManyWithWhereWithoutVendorInput = {
+    where: OrderScalarWhereInput
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutVendorInput>
+  }
+
+  export type RentalSpaceUpsertWithWhereUniqueWithoutVendorInput = {
+    where: RentalSpaceWhereUniqueInput
+    update: XOR<RentalSpaceUpdateWithoutVendorInput, RentalSpaceUncheckedUpdateWithoutVendorInput>
+    create: XOR<RentalSpaceCreateWithoutVendorInput, RentalSpaceUncheckedCreateWithoutVendorInput>
+  }
+
+  export type RentalSpaceUpdateWithWhereUniqueWithoutVendorInput = {
+    where: RentalSpaceWhereUniqueInput
+    data: XOR<RentalSpaceUpdateWithoutVendorInput, RentalSpaceUncheckedUpdateWithoutVendorInput>
+  }
+
+  export type RentalSpaceUpdateManyWithWhereWithoutVendorInput = {
+    where: RentalSpaceScalarWhereInput
+    data: XOR<RentalSpaceUpdateManyMutationInput, RentalSpaceUncheckedUpdateManyWithoutVendorInput>
+  }
+
+  export type RentalSpaceScalarWhereInput = {
+    AND?: RentalSpaceScalarWhereInput | RentalSpaceScalarWhereInput[]
+    OR?: RentalSpaceScalarWhereInput[]
+    NOT?: RentalSpaceScalarWhereInput | RentalSpaceScalarWhereInput[]
+    id?: IntFilter<"RentalSpace"> | number
+    vendorId?: IntFilter<"RentalSpace"> | number
+    location?: StringFilter<"RentalSpace"> | string
+    size?: StringFilter<"RentalSpace"> | string
+    price?: FloatFilter<"RentalSpace"> | number
+    availability?: BoolFilter<"RentalSpace"> | boolean
+  }
+
   export type VendorProfileCreateWithoutProduceInput = {
     farmName: string
     certificationStatus: string
     farmLocation: string
     user: UserCreateNestedOneWithoutVendorProfileInput
+    orders?: OrderCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUncheckedCreateWithoutProduceInput = {
@@ -7328,6 +9070,8 @@ export namespace Prisma {
     farmName: string
     certificationStatus: string
     farmLocation: string
+    orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileCreateOrConnectWithoutProduceInput = {
@@ -7351,6 +9095,8 @@ export namespace Prisma {
     certificationStatus?: StringFieldUpdateOperationsInput | string
     farmLocation?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
+    orders?: OrderUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileUncheckedUpdateWithoutProduceInput = {
@@ -7359,6 +9105,8 @@ export namespace Prisma {
     farmName?: StringFieldUpdateOperationsInput | string
     certificationStatus?: StringFieldUpdateOperationsInput | string
     farmLocation?: StringFieldUpdateOperationsInput | string
+    orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -7385,6 +9133,30 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutOrdersInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type VendorProfileCreateWithoutOrdersInput = {
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    user: UserCreateNestedOneWithoutVendorProfileInput
+    produce?: ProduceCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileUncheckedCreateWithoutOrdersInput = {
+    id?: number
+    userId: number
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileCreateOrConnectWithoutOrdersInput = {
+    where: VendorProfileWhereUniqueInput
+    create: XOR<VendorProfileCreateWithoutOrdersInput, VendorProfileUncheckedCreateWithoutOrdersInput>
   }
 
   export type UserUpsertWithoutOrdersInput = {
@@ -7419,6 +9191,90 @@ export namespace Prisma {
     vendorProfile?: VendorProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
+  export type VendorProfileUpsertWithoutOrdersInput = {
+    update: XOR<VendorProfileUpdateWithoutOrdersInput, VendorProfileUncheckedUpdateWithoutOrdersInput>
+    create: XOR<VendorProfileCreateWithoutOrdersInput, VendorProfileUncheckedCreateWithoutOrdersInput>
+    where?: VendorProfileWhereInput
+  }
+
+  export type VendorProfileUpdateToOneWithWhereWithoutOrdersInput = {
+    where?: VendorProfileWhereInput
+    data: XOR<VendorProfileUpdateWithoutOrdersInput, VendorProfileUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type VendorProfileUpdateWithoutOrdersInput = {
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
+    produce?: ProduceUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
+  }
+
+  export type VendorProfileUncheckedUpdateWithoutOrdersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
+  }
+
+  export type VendorProfileCreateWithoutRentalSpacesInput = {
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    user: UserCreateNestedOneWithoutVendorProfileInput
+    produce?: ProduceCreateNestedManyWithoutVendorInput
+    orders?: OrderCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileUncheckedCreateWithoutRentalSpacesInput = {
+    id?: number
+    userId: number
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileCreateOrConnectWithoutRentalSpacesInput = {
+    where: VendorProfileWhereUniqueInput
+    create: XOR<VendorProfileCreateWithoutRentalSpacesInput, VendorProfileUncheckedCreateWithoutRentalSpacesInput>
+  }
+
+  export type VendorProfileUpsertWithoutRentalSpacesInput = {
+    update: XOR<VendorProfileUpdateWithoutRentalSpacesInput, VendorProfileUncheckedUpdateWithoutRentalSpacesInput>
+    create: XOR<VendorProfileCreateWithoutRentalSpacesInput, VendorProfileUncheckedCreateWithoutRentalSpacesInput>
+    where?: VendorProfileWhereInput
+  }
+
+  export type VendorProfileUpdateToOneWithWhereWithoutRentalSpacesInput = {
+    where?: VendorProfileWhereInput
+    data: XOR<VendorProfileUpdateWithoutRentalSpacesInput, VendorProfileUncheckedUpdateWithoutRentalSpacesInput>
+  }
+
+  export type VendorProfileUpdateWithoutRentalSpacesInput = {
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
+    produce?: ProduceUpdateManyWithoutVendorNestedInput
+    orders?: OrderUpdateManyWithoutVendorNestedInput
+  }
+
+  export type VendorProfileUncheckedUpdateWithoutRentalSpacesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
+  }
+
   export type OrderCreateManyUserInput = {
     id?: number
     produceId: number
@@ -7429,9 +9285,9 @@ export namespace Prisma {
 
   export type OrderUpdateWithoutUserInput = {
     produceId?: IntFieldUpdateOperationsInput | number
-    vendorId?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
     orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendor?: VendorProfileUpdateOneRequiredWithoutOrdersNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutUserInput = {
@@ -7458,6 +9314,22 @@ export namespace Prisma {
     category: string
     certificationStatus: string
     availableQuantity: number
+  }
+
+  export type OrderCreateManyVendorInput = {
+    id?: number
+    userId: number
+    produceId: number
+    status: string
+    orderDate?: Date | string
+  }
+
+  export type RentalSpaceCreateManyVendorInput = {
+    id?: number
+    location: string
+    size: string
+    price: number
+    availability: boolean
   }
 
   export type ProduceUpdateWithoutVendorInput = {
@@ -7487,6 +9359,52 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     certificationStatus?: StringFieldUpdateOperationsInput | string
     availableQuantity?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type OrderUpdateWithoutVendorInput = {
+    produceId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutVendorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    produceId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderUncheckedUpdateManyWithoutVendorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    produceId?: IntFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    orderDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RentalSpaceUpdateWithoutVendorInput = {
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type RentalSpaceUncheckedUpdateWithoutVendorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type RentalSpaceUncheckedUpdateManyWithoutVendorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
   }
 
 
