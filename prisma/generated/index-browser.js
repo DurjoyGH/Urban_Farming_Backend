@@ -167,6 +167,13 @@ exports.Prisma.RentalSpaceScalarFieldEnum = {
   availability: 'availability'
 };
 
+exports.Prisma.CommunityPostScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  postContent: 'postContent',
+  postDate: 'postDate'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -187,7 +194,8 @@ exports.Prisma.ModelName = {
   VendorProfile: 'VendorProfile',
   Produce: 'Produce',
   Order: 'Order',
-  RentalSpace: 'RentalSpace'
+  RentalSpace: 'RentalSpace',
+  CommunityPost: 'CommunityPost'
 };
 
 /**

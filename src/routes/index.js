@@ -7,5 +7,6 @@ router.use("/vendors", require("../modules/vendor/vendor.routes"));
 router.use("/products", require("../modules/produce/produce.routes"));
 router.use("/orders", require("../modules/order/order.routes"));
 router.use("/rentals", require("../modules/rental/rental.routes"));
+router.use("/posts", require("../modules/community/post.routes"));
 
 module.exports = router;
