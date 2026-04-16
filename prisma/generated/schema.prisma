@@ -15,6 +15,32 @@ model User {
   role      Role
   status    String
   createdAt DateTime @default(now())
+
+  vendorProfile VendorProfile?
+}
+
+model VendorProfile {
+  id                  Int    @id @default(autoincrement())
+  userId              Int    @unique
+  farmName            String
+  certificationStatus String
+  farmLocation        String
+
+  user    User      @relation(fields: [userId], references: [id])
+  produce Produce[]
+}
+
+model Produce {
+  id                  Int    @id @default(autoincrement())
+  vendorId            Int
+  name                String
+  description         String
+  price               Float
+  category            String
+  certificationStatus String
+  availableQuantity   Int
+
+  vendor VendorProfile @relation(fields: [vendorId], references: [id])
 }
 
 enum Role {

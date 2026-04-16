@@ -130,6 +130,25 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.VendorProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  farmName: 'farmName',
+  certificationStatus: 'certificationStatus',
+  farmLocation: 'farmLocation'
+};
+
+exports.Prisma.ProduceScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  name: 'name',
+  description: 'description',
+  price: 'price',
+  category: 'category',
+  certificationStatus: 'certificationStatus',
+  availableQuantity: 'availableQuantity'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -146,7 +165,9 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  VendorProfile: 'VendorProfile',
+  Produce: 'Produce'
 };
 
 /**

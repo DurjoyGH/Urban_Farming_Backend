@@ -18,6 +18,16 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model VendorProfile
+ * 
+ */
+export type VendorProfile = $Result.DefaultSelection<Prisma.$VendorProfilePayload>
+/**
+ * Model Produce
+ * 
+ */
+export type Produce = $Result.DefaultSelection<Prisma.$ProducePayload>
 
 /**
  * Enums
@@ -167,6 +177,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.vendorProfile`: Exposes CRUD operations for the **VendorProfile** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VendorProfiles
+    * const vendorProfiles = await prisma.vendorProfile.findMany()
+    * ```
+    */
+  get vendorProfile(): Prisma.VendorProfileDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.produce`: Exposes CRUD operations for the **Produce** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Produces
+    * const produces = await prisma.produce.findMany()
+    * ```
+    */
+  get produce(): Prisma.ProduceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -601,7 +631,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    VendorProfile: 'VendorProfile',
+    Produce: 'Produce'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -617,7 +649,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "vendorProfile" | "produce"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -692,6 +724,154 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      VendorProfile: {
+        payload: Prisma.$VendorProfilePayload<ExtArgs>
+        fields: Prisma.VendorProfileFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VendorProfileFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VendorProfileFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>
+          }
+          findFirst: {
+            args: Prisma.VendorProfileFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VendorProfileFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>
+          }
+          findMany: {
+            args: Prisma.VendorProfileFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>[]
+          }
+          create: {
+            args: Prisma.VendorProfileCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>
+          }
+          createMany: {
+            args: Prisma.VendorProfileCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VendorProfileCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>[]
+          }
+          delete: {
+            args: Prisma.VendorProfileDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>
+          }
+          update: {
+            args: Prisma.VendorProfileUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>
+          }
+          deleteMany: {
+            args: Prisma.VendorProfileDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VendorProfileUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VendorProfileUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>[]
+          }
+          upsert: {
+            args: Prisma.VendorProfileUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VendorProfilePayload>
+          }
+          aggregate: {
+            args: Prisma.VendorProfileAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVendorProfile>
+          }
+          groupBy: {
+            args: Prisma.VendorProfileGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VendorProfileGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VendorProfileCountArgs<ExtArgs>
+            result: $Utils.Optional<VendorProfileCountAggregateOutputType> | number
+          }
+        }
+      }
+      Produce: {
+        payload: Prisma.$ProducePayload<ExtArgs>
+        fields: Prisma.ProduceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProduceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProduceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>
+          }
+          findFirst: {
+            args: Prisma.ProduceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProduceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>
+          }
+          findMany: {
+            args: Prisma.ProduceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>[]
+          }
+          create: {
+            args: Prisma.ProduceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>
+          }
+          createMany: {
+            args: Prisma.ProduceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProduceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>[]
+          }
+          delete: {
+            args: Prisma.ProduceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>
+          }
+          update: {
+            args: Prisma.ProduceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>
+          }
+          deleteMany: {
+            args: Prisma.ProduceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProduceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProduceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>[]
+          }
+          upsert: {
+            args: Prisma.ProduceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProducePayload>
+          }
+          aggregate: {
+            args: Prisma.ProduceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProduce>
+          }
+          groupBy: {
+            args: Prisma.ProduceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProduceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProduceCountArgs<ExtArgs>
+            result: $Utils.Optional<ProduceCountAggregateOutputType> | number
           }
         }
       }
@@ -804,6 +984,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    vendorProfile?: VendorProfileOmit
+    produce?: ProduceOmit
   }
 
   /* Types for Logging */
@@ -878,6 +1060,36 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type VendorProfileCountOutputType
+   */
+
+  export type VendorProfileCountOutputType = {
+    produce: number
+  }
+
+  export type VendorProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produce?: boolean | VendorProfileCountOutputTypeCountProduceArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VendorProfileCountOutputType without action
+   */
+  export type VendorProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfileCountOutputType
+     */
+    select?: VendorProfileCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VendorProfileCountOutputType without action
+   */
+  export type VendorProfileCountOutputTypeCountProduceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProduceWhereInput
+  }
 
 
   /**
@@ -1098,6 +1310,7 @@ export namespace Prisma {
     role?: boolean
     status?: boolean
     createdAt?: boolean
+    vendorProfile?: boolean | User$vendorProfileArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1131,10 +1344,17 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "status" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendorProfile?: boolean | User$vendorProfileArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      vendorProfile: Prisma.$VendorProfilePayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
@@ -1537,6 +1757,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    vendorProfile<T extends User$vendorProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$vendorProfileArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1590,6 +1811,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1608,6 +1833,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1625,6 +1854,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1674,6 +1907,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1721,6 +1958,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which Users to fetch.
      */
@@ -1770,6 +2011,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -1817,6 +2062,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1884,6 +2133,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1910,6 +2163,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1930,6 +2187,25 @@ export namespace Prisma {
   }
 
   /**
+   * User.vendorProfile
+   */
+  export type User$vendorProfileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    where?: VendorProfileWhereInput
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1941,6 +2217,2289 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model VendorProfile
+   */
+
+  export type AggregateVendorProfile = {
+    _count: VendorProfileCountAggregateOutputType | null
+    _avg: VendorProfileAvgAggregateOutputType | null
+    _sum: VendorProfileSumAggregateOutputType | null
+    _min: VendorProfileMinAggregateOutputType | null
+    _max: VendorProfileMaxAggregateOutputType | null
+  }
+
+  export type VendorProfileAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type VendorProfileSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type VendorProfileMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    farmName: string | null
+    certificationStatus: string | null
+    farmLocation: string | null
+  }
+
+  export type VendorProfileMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    farmName: string | null
+    certificationStatus: string | null
+    farmLocation: string | null
+  }
+
+  export type VendorProfileCountAggregateOutputType = {
+    id: number
+    userId: number
+    farmName: number
+    certificationStatus: number
+    farmLocation: number
+    _all: number
+  }
+
+
+  export type VendorProfileAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type VendorProfileSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type VendorProfileMinAggregateInputType = {
+    id?: true
+    userId?: true
+    farmName?: true
+    certificationStatus?: true
+    farmLocation?: true
+  }
+
+  export type VendorProfileMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    farmName?: true
+    certificationStatus?: true
+    farmLocation?: true
+  }
+
+  export type VendorProfileCountAggregateInputType = {
+    id?: true
+    userId?: true
+    farmName?: true
+    certificationStatus?: true
+    farmLocation?: true
+    _all?: true
+  }
+
+  export type VendorProfileAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VendorProfile to aggregate.
+     */
+    where?: VendorProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VendorProfiles to fetch.
+     */
+    orderBy?: VendorProfileOrderByWithRelationInput | VendorProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VendorProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VendorProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VendorProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VendorProfiles
+    **/
+    _count?: true | VendorProfileCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VendorProfileAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VendorProfileSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VendorProfileMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VendorProfileMaxAggregateInputType
+  }
+
+  export type GetVendorProfileAggregateType<T extends VendorProfileAggregateArgs> = {
+        [P in keyof T & keyof AggregateVendorProfile]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVendorProfile[P]>
+      : GetScalarType<T[P], AggregateVendorProfile[P]>
+  }
+
+
+
+
+  export type VendorProfileGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VendorProfileWhereInput
+    orderBy?: VendorProfileOrderByWithAggregationInput | VendorProfileOrderByWithAggregationInput[]
+    by: VendorProfileScalarFieldEnum[] | VendorProfileScalarFieldEnum
+    having?: VendorProfileScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VendorProfileCountAggregateInputType | true
+    _avg?: VendorProfileAvgAggregateInputType
+    _sum?: VendorProfileSumAggregateInputType
+    _min?: VendorProfileMinAggregateInputType
+    _max?: VendorProfileMaxAggregateInputType
+  }
+
+  export type VendorProfileGroupByOutputType = {
+    id: number
+    userId: number
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    _count: VendorProfileCountAggregateOutputType | null
+    _avg: VendorProfileAvgAggregateOutputType | null
+    _sum: VendorProfileSumAggregateOutputType | null
+    _min: VendorProfileMinAggregateOutputType | null
+    _max: VendorProfileMaxAggregateOutputType | null
+  }
+
+  type GetVendorProfileGroupByPayload<T extends VendorProfileGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VendorProfileGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VendorProfileGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VendorProfileGroupByOutputType[P]>
+            : GetScalarType<T[P], VendorProfileGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VendorProfileSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    farmName?: boolean
+    certificationStatus?: boolean
+    farmLocation?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    produce?: boolean | VendorProfile$produceArgs<ExtArgs>
+    _count?: boolean | VendorProfileCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vendorProfile"]>
+
+  export type VendorProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    farmName?: boolean
+    certificationStatus?: boolean
+    farmLocation?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vendorProfile"]>
+
+  export type VendorProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    farmName?: boolean
+    certificationStatus?: boolean
+    farmLocation?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vendorProfile"]>
+
+  export type VendorProfileSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    farmName?: boolean
+    certificationStatus?: boolean
+    farmLocation?: boolean
+  }
+
+  export type VendorProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "farmName" | "certificationStatus" | "farmLocation", ExtArgs["result"]["vendorProfile"]>
+  export type VendorProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    produce?: boolean | VendorProfile$produceArgs<ExtArgs>
+    _count?: boolean | VendorProfileCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type VendorProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type VendorProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $VendorProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VendorProfile"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      produce: Prisma.$ProducePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      farmName: string
+      certificationStatus: string
+      farmLocation: string
+    }, ExtArgs["result"]["vendorProfile"]>
+    composites: {}
+  }
+
+  type VendorProfileGetPayload<S extends boolean | null | undefined | VendorProfileDefaultArgs> = $Result.GetResult<Prisma.$VendorProfilePayload, S>
+
+  type VendorProfileCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VendorProfileFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VendorProfileCountAggregateInputType | true
+    }
+
+  export interface VendorProfileDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VendorProfile'], meta: { name: 'VendorProfile' } }
+    /**
+     * Find zero or one VendorProfile that matches the filter.
+     * @param {VendorProfileFindUniqueArgs} args - Arguments to find a VendorProfile
+     * @example
+     * // Get one VendorProfile
+     * const vendorProfile = await prisma.vendorProfile.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VendorProfileFindUniqueArgs>(args: SelectSubset<T, VendorProfileFindUniqueArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VendorProfile that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VendorProfileFindUniqueOrThrowArgs} args - Arguments to find a VendorProfile
+     * @example
+     * // Get one VendorProfile
+     * const vendorProfile = await prisma.vendorProfile.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VendorProfileFindUniqueOrThrowArgs>(args: SelectSubset<T, VendorProfileFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VendorProfile that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VendorProfileFindFirstArgs} args - Arguments to find a VendorProfile
+     * @example
+     * // Get one VendorProfile
+     * const vendorProfile = await prisma.vendorProfile.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VendorProfileFindFirstArgs>(args?: SelectSubset<T, VendorProfileFindFirstArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VendorProfile that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VendorProfileFindFirstOrThrowArgs} args - Arguments to find a VendorProfile
+     * @example
+     * // Get one VendorProfile
+     * const vendorProfile = await prisma.vendorProfile.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VendorProfileFindFirstOrThrowArgs>(args?: SelectSubset<T, VendorProfileFindFirstOrThrowArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VendorProfiles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VendorProfileFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VendorProfiles
+     * const vendorProfiles = await prisma.vendorProfile.findMany()
+     * 
+     * // Get first 10 VendorProfiles
+     * const vendorProfiles = await prisma.vendorProfile.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const vendorProfileWithIdOnly = await prisma.vendorProfile.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VendorProfileFindManyArgs>(args?: SelectSubset<T, VendorProfileFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VendorProfile.
+     * @param {VendorProfileCreateArgs} args - Arguments to create a VendorProfile.
+     * @example
+     * // Create one VendorProfile
+     * const VendorProfile = await prisma.vendorProfile.create({
+     *   data: {
+     *     // ... data to create a VendorProfile
+     *   }
+     * })
+     * 
+     */
+    create<T extends VendorProfileCreateArgs>(args: SelectSubset<T, VendorProfileCreateArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VendorProfiles.
+     * @param {VendorProfileCreateManyArgs} args - Arguments to create many VendorProfiles.
+     * @example
+     * // Create many VendorProfiles
+     * const vendorProfile = await prisma.vendorProfile.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VendorProfileCreateManyArgs>(args?: SelectSubset<T, VendorProfileCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VendorProfiles and returns the data saved in the database.
+     * @param {VendorProfileCreateManyAndReturnArgs} args - Arguments to create many VendorProfiles.
+     * @example
+     * // Create many VendorProfiles
+     * const vendorProfile = await prisma.vendorProfile.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VendorProfiles and only return the `id`
+     * const vendorProfileWithIdOnly = await prisma.vendorProfile.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VendorProfileCreateManyAndReturnArgs>(args?: SelectSubset<T, VendorProfileCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VendorProfile.
+     * @param {VendorProfileDeleteArgs} args - Arguments to delete one VendorProfile.
+     * @example
+     * // Delete one VendorProfile
+     * const VendorProfile = await prisma.vendorProfile.delete({
+     *   where: {
+     *     // ... filter to delete one VendorProfile
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VendorProfileDeleteArgs>(args: SelectSubset<T, VendorProfileDeleteArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VendorProfile.
+     * @param {VendorProfileUpdateArgs} args - Arguments to update one VendorProfile.
+     * @example
+     * // Update one VendorProfile
+     * const vendorProfile = await prisma.vendorProfile.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VendorProfileUpdateArgs>(args: SelectSubset<T, VendorProfileUpdateArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VendorProfiles.
+     * @param {VendorProfileDeleteManyArgs} args - Arguments to filter VendorProfiles to delete.
+     * @example
+     * // Delete a few VendorProfiles
+     * const { count } = await prisma.vendorProfile.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VendorProfileDeleteManyArgs>(args?: SelectSubset<T, VendorProfileDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VendorProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VendorProfileUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VendorProfiles
+     * const vendorProfile = await prisma.vendorProfile.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VendorProfileUpdateManyArgs>(args: SelectSubset<T, VendorProfileUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VendorProfiles and returns the data updated in the database.
+     * @param {VendorProfileUpdateManyAndReturnArgs} args - Arguments to update many VendorProfiles.
+     * @example
+     * // Update many VendorProfiles
+     * const vendorProfile = await prisma.vendorProfile.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VendorProfiles and only return the `id`
+     * const vendorProfileWithIdOnly = await prisma.vendorProfile.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VendorProfileUpdateManyAndReturnArgs>(args: SelectSubset<T, VendorProfileUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VendorProfile.
+     * @param {VendorProfileUpsertArgs} args - Arguments to update or create a VendorProfile.
+     * @example
+     * // Update or create a VendorProfile
+     * const vendorProfile = await prisma.vendorProfile.upsert({
+     *   create: {
+     *     // ... data to create a VendorProfile
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VendorProfile we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VendorProfileUpsertArgs>(args: SelectSubset<T, VendorProfileUpsertArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VendorProfiles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VendorProfileCountArgs} args - Arguments to filter VendorProfiles to count.
+     * @example
+     * // Count the number of VendorProfiles
+     * const count = await prisma.vendorProfile.count({
+     *   where: {
+     *     // ... the filter for the VendorProfiles we want to count
+     *   }
+     * })
+    **/
+    count<T extends VendorProfileCountArgs>(
+      args?: Subset<T, VendorProfileCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VendorProfileCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VendorProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VendorProfileAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VendorProfileAggregateArgs>(args: Subset<T, VendorProfileAggregateArgs>): Prisma.PrismaPromise<GetVendorProfileAggregateType<T>>
+
+    /**
+     * Group by VendorProfile.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VendorProfileGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VendorProfileGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VendorProfileGroupByArgs['orderBy'] }
+        : { orderBy?: VendorProfileGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VendorProfileGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVendorProfileGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VendorProfile model
+   */
+  readonly fields: VendorProfileFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VendorProfile.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VendorProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    produce<T extends VendorProfile$produceArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfile$produceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VendorProfile model
+   */
+  interface VendorProfileFieldRefs {
+    readonly id: FieldRef<"VendorProfile", 'Int'>
+    readonly userId: FieldRef<"VendorProfile", 'Int'>
+    readonly farmName: FieldRef<"VendorProfile", 'String'>
+    readonly certificationStatus: FieldRef<"VendorProfile", 'String'>
+    readonly farmLocation: FieldRef<"VendorProfile", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VendorProfile findUnique
+   */
+  export type VendorProfileFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which VendorProfile to fetch.
+     */
+    where: VendorProfileWhereUniqueInput
+  }
+
+  /**
+   * VendorProfile findUniqueOrThrow
+   */
+  export type VendorProfileFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which VendorProfile to fetch.
+     */
+    where: VendorProfileWhereUniqueInput
+  }
+
+  /**
+   * VendorProfile findFirst
+   */
+  export type VendorProfileFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which VendorProfile to fetch.
+     */
+    where?: VendorProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VendorProfiles to fetch.
+     */
+    orderBy?: VendorProfileOrderByWithRelationInput | VendorProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VendorProfiles.
+     */
+    cursor?: VendorProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VendorProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VendorProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VendorProfiles.
+     */
+    distinct?: VendorProfileScalarFieldEnum | VendorProfileScalarFieldEnum[]
+  }
+
+  /**
+   * VendorProfile findFirstOrThrow
+   */
+  export type VendorProfileFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which VendorProfile to fetch.
+     */
+    where?: VendorProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VendorProfiles to fetch.
+     */
+    orderBy?: VendorProfileOrderByWithRelationInput | VendorProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VendorProfiles.
+     */
+    cursor?: VendorProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VendorProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VendorProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VendorProfiles.
+     */
+    distinct?: VendorProfileScalarFieldEnum | VendorProfileScalarFieldEnum[]
+  }
+
+  /**
+   * VendorProfile findMany
+   */
+  export type VendorProfileFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * Filter, which VendorProfiles to fetch.
+     */
+    where?: VendorProfileWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VendorProfiles to fetch.
+     */
+    orderBy?: VendorProfileOrderByWithRelationInput | VendorProfileOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VendorProfiles.
+     */
+    cursor?: VendorProfileWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VendorProfiles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VendorProfiles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VendorProfiles.
+     */
+    distinct?: VendorProfileScalarFieldEnum | VendorProfileScalarFieldEnum[]
+  }
+
+  /**
+   * VendorProfile create
+   */
+  export type VendorProfileCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to create a VendorProfile.
+     */
+    data: XOR<VendorProfileCreateInput, VendorProfileUncheckedCreateInput>
+  }
+
+  /**
+   * VendorProfile createMany
+   */
+  export type VendorProfileCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VendorProfiles.
+     */
+    data: VendorProfileCreateManyInput | VendorProfileCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VendorProfile createManyAndReturn
+   */
+  export type VendorProfileCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * The data used to create many VendorProfiles.
+     */
+    data: VendorProfileCreateManyInput | VendorProfileCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * VendorProfile update
+   */
+  export type VendorProfileUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * The data needed to update a VendorProfile.
+     */
+    data: XOR<VendorProfileUpdateInput, VendorProfileUncheckedUpdateInput>
+    /**
+     * Choose, which VendorProfile to update.
+     */
+    where: VendorProfileWhereUniqueInput
+  }
+
+  /**
+   * VendorProfile updateMany
+   */
+  export type VendorProfileUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VendorProfiles.
+     */
+    data: XOR<VendorProfileUpdateManyMutationInput, VendorProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which VendorProfiles to update
+     */
+    where?: VendorProfileWhereInput
+    /**
+     * Limit how many VendorProfiles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VendorProfile updateManyAndReturn
+   */
+  export type VendorProfileUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * The data used to update VendorProfiles.
+     */
+    data: XOR<VendorProfileUpdateManyMutationInput, VendorProfileUncheckedUpdateManyInput>
+    /**
+     * Filter which VendorProfiles to update
+     */
+    where?: VendorProfileWhereInput
+    /**
+     * Limit how many VendorProfiles to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * VendorProfile upsert
+   */
+  export type VendorProfileUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * The filter to search for the VendorProfile to update in case it exists.
+     */
+    where: VendorProfileWhereUniqueInput
+    /**
+     * In case the VendorProfile found by the `where` argument doesn't exist, create a new VendorProfile with this data.
+     */
+    create: XOR<VendorProfileCreateInput, VendorProfileUncheckedCreateInput>
+    /**
+     * In case the VendorProfile was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VendorProfileUpdateInput, VendorProfileUncheckedUpdateInput>
+  }
+
+  /**
+   * VendorProfile delete
+   */
+  export type VendorProfileDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+    /**
+     * Filter which VendorProfile to delete.
+     */
+    where: VendorProfileWhereUniqueInput
+  }
+
+  /**
+   * VendorProfile deleteMany
+   */
+  export type VendorProfileDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VendorProfiles to delete
+     */
+    where?: VendorProfileWhereInput
+    /**
+     * Limit how many VendorProfiles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VendorProfile.produce
+   */
+  export type VendorProfile$produceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    where?: ProduceWhereInput
+    orderBy?: ProduceOrderByWithRelationInput | ProduceOrderByWithRelationInput[]
+    cursor?: ProduceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProduceScalarFieldEnum | ProduceScalarFieldEnum[]
+  }
+
+  /**
+   * VendorProfile without action
+   */
+  export type VendorProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VendorProfile
+     */
+    select?: VendorProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VendorProfile
+     */
+    omit?: VendorProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VendorProfileInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Produce
+   */
+
+  export type AggregateProduce = {
+    _count: ProduceCountAggregateOutputType | null
+    _avg: ProduceAvgAggregateOutputType | null
+    _sum: ProduceSumAggregateOutputType | null
+    _min: ProduceMinAggregateOutputType | null
+    _max: ProduceMaxAggregateOutputType | null
+  }
+
+  export type ProduceAvgAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    price: number | null
+    availableQuantity: number | null
+  }
+
+  export type ProduceSumAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    price: number | null
+    availableQuantity: number | null
+  }
+
+  export type ProduceMinAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    name: string | null
+    description: string | null
+    price: number | null
+    category: string | null
+    certificationStatus: string | null
+    availableQuantity: number | null
+  }
+
+  export type ProduceMaxAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    name: string | null
+    description: string | null
+    price: number | null
+    category: string | null
+    certificationStatus: string | null
+    availableQuantity: number | null
+  }
+
+  export type ProduceCountAggregateOutputType = {
+    id: number
+    vendorId: number
+    name: number
+    description: number
+    price: number
+    category: number
+    certificationStatus: number
+    availableQuantity: number
+    _all: number
+  }
+
+
+  export type ProduceAvgAggregateInputType = {
+    id?: true
+    vendorId?: true
+    price?: true
+    availableQuantity?: true
+  }
+
+  export type ProduceSumAggregateInputType = {
+    id?: true
+    vendorId?: true
+    price?: true
+    availableQuantity?: true
+  }
+
+  export type ProduceMinAggregateInputType = {
+    id?: true
+    vendorId?: true
+    name?: true
+    description?: true
+    price?: true
+    category?: true
+    certificationStatus?: true
+    availableQuantity?: true
+  }
+
+  export type ProduceMaxAggregateInputType = {
+    id?: true
+    vendorId?: true
+    name?: true
+    description?: true
+    price?: true
+    category?: true
+    certificationStatus?: true
+    availableQuantity?: true
+  }
+
+  export type ProduceCountAggregateInputType = {
+    id?: true
+    vendorId?: true
+    name?: true
+    description?: true
+    price?: true
+    category?: true
+    certificationStatus?: true
+    availableQuantity?: true
+    _all?: true
+  }
+
+  export type ProduceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Produce to aggregate.
+     */
+    where?: ProduceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Produces to fetch.
+     */
+    orderBy?: ProduceOrderByWithRelationInput | ProduceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProduceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Produces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Produces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Produces
+    **/
+    _count?: true | ProduceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProduceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProduceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProduceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProduceMaxAggregateInputType
+  }
+
+  export type GetProduceAggregateType<T extends ProduceAggregateArgs> = {
+        [P in keyof T & keyof AggregateProduce]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProduce[P]>
+      : GetScalarType<T[P], AggregateProduce[P]>
+  }
+
+
+
+
+  export type ProduceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProduceWhereInput
+    orderBy?: ProduceOrderByWithAggregationInput | ProduceOrderByWithAggregationInput[]
+    by: ProduceScalarFieldEnum[] | ProduceScalarFieldEnum
+    having?: ProduceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProduceCountAggregateInputType | true
+    _avg?: ProduceAvgAggregateInputType
+    _sum?: ProduceSumAggregateInputType
+    _min?: ProduceMinAggregateInputType
+    _max?: ProduceMaxAggregateInputType
+  }
+
+  export type ProduceGroupByOutputType = {
+    id: number
+    vendorId: number
+    name: string
+    description: string
+    price: number
+    category: string
+    certificationStatus: string
+    availableQuantity: number
+    _count: ProduceCountAggregateOutputType | null
+    _avg: ProduceAvgAggregateOutputType | null
+    _sum: ProduceSumAggregateOutputType | null
+    _min: ProduceMinAggregateOutputType | null
+    _max: ProduceMaxAggregateOutputType | null
+  }
+
+  type GetProduceGroupByPayload<T extends ProduceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProduceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProduceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProduceGroupByOutputType[P]>
+            : GetScalarType<T[P], ProduceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProduceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    name?: boolean
+    description?: boolean
+    price?: boolean
+    category?: boolean
+    certificationStatus?: boolean
+    availableQuantity?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["produce"]>
+
+  export type ProduceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    name?: boolean
+    description?: boolean
+    price?: boolean
+    category?: boolean
+    certificationStatus?: boolean
+    availableQuantity?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["produce"]>
+
+  export type ProduceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    name?: boolean
+    description?: boolean
+    price?: boolean
+    category?: boolean
+    certificationStatus?: boolean
+    availableQuantity?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["produce"]>
+
+  export type ProduceSelectScalar = {
+    id?: boolean
+    vendorId?: boolean
+    name?: boolean
+    description?: boolean
+    price?: boolean
+    category?: boolean
+    certificationStatus?: boolean
+    availableQuantity?: boolean
+  }
+
+  export type ProduceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vendorId" | "name" | "description" | "price" | "category" | "certificationStatus" | "availableQuantity", ExtArgs["result"]["produce"]>
+  export type ProduceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+  export type ProduceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+  export type ProduceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+
+  export type $ProducePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Produce"
+    objects: {
+      vendor: Prisma.$VendorProfilePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      vendorId: number
+      name: string
+      description: string
+      price: number
+      category: string
+      certificationStatus: string
+      availableQuantity: number
+    }, ExtArgs["result"]["produce"]>
+    composites: {}
+  }
+
+  type ProduceGetPayload<S extends boolean | null | undefined | ProduceDefaultArgs> = $Result.GetResult<Prisma.$ProducePayload, S>
+
+  type ProduceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProduceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProduceCountAggregateInputType | true
+    }
+
+  export interface ProduceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Produce'], meta: { name: 'Produce' } }
+    /**
+     * Find zero or one Produce that matches the filter.
+     * @param {ProduceFindUniqueArgs} args - Arguments to find a Produce
+     * @example
+     * // Get one Produce
+     * const produce = await prisma.produce.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProduceFindUniqueArgs>(args: SelectSubset<T, ProduceFindUniqueArgs<ExtArgs>>): Prisma__ProduceClient<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Produce that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProduceFindUniqueOrThrowArgs} args - Arguments to find a Produce
+     * @example
+     * // Get one Produce
+     * const produce = await prisma.produce.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProduceFindUniqueOrThrowArgs>(args: SelectSubset<T, ProduceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProduceClient<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Produce that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProduceFindFirstArgs} args - Arguments to find a Produce
+     * @example
+     * // Get one Produce
+     * const produce = await prisma.produce.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProduceFindFirstArgs>(args?: SelectSubset<T, ProduceFindFirstArgs<ExtArgs>>): Prisma__ProduceClient<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Produce that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProduceFindFirstOrThrowArgs} args - Arguments to find a Produce
+     * @example
+     * // Get one Produce
+     * const produce = await prisma.produce.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProduceFindFirstOrThrowArgs>(args?: SelectSubset<T, ProduceFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProduceClient<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Produces that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProduceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Produces
+     * const produces = await prisma.produce.findMany()
+     * 
+     * // Get first 10 Produces
+     * const produces = await prisma.produce.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const produceWithIdOnly = await prisma.produce.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProduceFindManyArgs>(args?: SelectSubset<T, ProduceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Produce.
+     * @param {ProduceCreateArgs} args - Arguments to create a Produce.
+     * @example
+     * // Create one Produce
+     * const Produce = await prisma.produce.create({
+     *   data: {
+     *     // ... data to create a Produce
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProduceCreateArgs>(args: SelectSubset<T, ProduceCreateArgs<ExtArgs>>): Prisma__ProduceClient<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Produces.
+     * @param {ProduceCreateManyArgs} args - Arguments to create many Produces.
+     * @example
+     * // Create many Produces
+     * const produce = await prisma.produce.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProduceCreateManyArgs>(args?: SelectSubset<T, ProduceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Produces and returns the data saved in the database.
+     * @param {ProduceCreateManyAndReturnArgs} args - Arguments to create many Produces.
+     * @example
+     * // Create many Produces
+     * const produce = await prisma.produce.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Produces and only return the `id`
+     * const produceWithIdOnly = await prisma.produce.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProduceCreateManyAndReturnArgs>(args?: SelectSubset<T, ProduceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Produce.
+     * @param {ProduceDeleteArgs} args - Arguments to delete one Produce.
+     * @example
+     * // Delete one Produce
+     * const Produce = await prisma.produce.delete({
+     *   where: {
+     *     // ... filter to delete one Produce
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProduceDeleteArgs>(args: SelectSubset<T, ProduceDeleteArgs<ExtArgs>>): Prisma__ProduceClient<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Produce.
+     * @param {ProduceUpdateArgs} args - Arguments to update one Produce.
+     * @example
+     * // Update one Produce
+     * const produce = await prisma.produce.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProduceUpdateArgs>(args: SelectSubset<T, ProduceUpdateArgs<ExtArgs>>): Prisma__ProduceClient<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Produces.
+     * @param {ProduceDeleteManyArgs} args - Arguments to filter Produces to delete.
+     * @example
+     * // Delete a few Produces
+     * const { count } = await prisma.produce.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProduceDeleteManyArgs>(args?: SelectSubset<T, ProduceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Produces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProduceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Produces
+     * const produce = await prisma.produce.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProduceUpdateManyArgs>(args: SelectSubset<T, ProduceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Produces and returns the data updated in the database.
+     * @param {ProduceUpdateManyAndReturnArgs} args - Arguments to update many Produces.
+     * @example
+     * // Update many Produces
+     * const produce = await prisma.produce.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Produces and only return the `id`
+     * const produceWithIdOnly = await prisma.produce.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProduceUpdateManyAndReturnArgs>(args: SelectSubset<T, ProduceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Produce.
+     * @param {ProduceUpsertArgs} args - Arguments to update or create a Produce.
+     * @example
+     * // Update or create a Produce
+     * const produce = await prisma.produce.upsert({
+     *   create: {
+     *     // ... data to create a Produce
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Produce we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProduceUpsertArgs>(args: SelectSubset<T, ProduceUpsertArgs<ExtArgs>>): Prisma__ProduceClient<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Produces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProduceCountArgs} args - Arguments to filter Produces to count.
+     * @example
+     * // Count the number of Produces
+     * const count = await prisma.produce.count({
+     *   where: {
+     *     // ... the filter for the Produces we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProduceCountArgs>(
+      args?: Subset<T, ProduceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProduceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Produce.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProduceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProduceAggregateArgs>(args: Subset<T, ProduceAggregateArgs>): Prisma.PrismaPromise<GetProduceAggregateType<T>>
+
+    /**
+     * Group by Produce.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProduceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProduceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProduceGroupByArgs['orderBy'] }
+        : { orderBy?: ProduceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProduceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProduceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Produce model
+   */
+  readonly fields: ProduceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Produce.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProduceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vendor<T extends VendorProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfileDefaultArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Produce model
+   */
+  interface ProduceFieldRefs {
+    readonly id: FieldRef<"Produce", 'Int'>
+    readonly vendorId: FieldRef<"Produce", 'Int'>
+    readonly name: FieldRef<"Produce", 'String'>
+    readonly description: FieldRef<"Produce", 'String'>
+    readonly price: FieldRef<"Produce", 'Float'>
+    readonly category: FieldRef<"Produce", 'String'>
+    readonly certificationStatus: FieldRef<"Produce", 'String'>
+    readonly availableQuantity: FieldRef<"Produce", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Produce findUnique
+   */
+  export type ProduceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * Filter, which Produce to fetch.
+     */
+    where: ProduceWhereUniqueInput
+  }
+
+  /**
+   * Produce findUniqueOrThrow
+   */
+  export type ProduceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * Filter, which Produce to fetch.
+     */
+    where: ProduceWhereUniqueInput
+  }
+
+  /**
+   * Produce findFirst
+   */
+  export type ProduceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * Filter, which Produce to fetch.
+     */
+    where?: ProduceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Produces to fetch.
+     */
+    orderBy?: ProduceOrderByWithRelationInput | ProduceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Produces.
+     */
+    cursor?: ProduceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Produces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Produces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Produces.
+     */
+    distinct?: ProduceScalarFieldEnum | ProduceScalarFieldEnum[]
+  }
+
+  /**
+   * Produce findFirstOrThrow
+   */
+  export type ProduceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * Filter, which Produce to fetch.
+     */
+    where?: ProduceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Produces to fetch.
+     */
+    orderBy?: ProduceOrderByWithRelationInput | ProduceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Produces.
+     */
+    cursor?: ProduceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Produces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Produces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Produces.
+     */
+    distinct?: ProduceScalarFieldEnum | ProduceScalarFieldEnum[]
+  }
+
+  /**
+   * Produce findMany
+   */
+  export type ProduceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * Filter, which Produces to fetch.
+     */
+    where?: ProduceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Produces to fetch.
+     */
+    orderBy?: ProduceOrderByWithRelationInput | ProduceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Produces.
+     */
+    cursor?: ProduceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Produces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Produces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Produces.
+     */
+    distinct?: ProduceScalarFieldEnum | ProduceScalarFieldEnum[]
+  }
+
+  /**
+   * Produce create
+   */
+  export type ProduceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Produce.
+     */
+    data: XOR<ProduceCreateInput, ProduceUncheckedCreateInput>
+  }
+
+  /**
+   * Produce createMany
+   */
+  export type ProduceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Produces.
+     */
+    data: ProduceCreateManyInput | ProduceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Produce createManyAndReturn
+   */
+  export type ProduceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * The data used to create many Produces.
+     */
+    data: ProduceCreateManyInput | ProduceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Produce update
+   */
+  export type ProduceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Produce.
+     */
+    data: XOR<ProduceUpdateInput, ProduceUncheckedUpdateInput>
+    /**
+     * Choose, which Produce to update.
+     */
+    where: ProduceWhereUniqueInput
+  }
+
+  /**
+   * Produce updateMany
+   */
+  export type ProduceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Produces.
+     */
+    data: XOR<ProduceUpdateManyMutationInput, ProduceUncheckedUpdateManyInput>
+    /**
+     * Filter which Produces to update
+     */
+    where?: ProduceWhereInput
+    /**
+     * Limit how many Produces to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Produce updateManyAndReturn
+   */
+  export type ProduceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * The data used to update Produces.
+     */
+    data: XOR<ProduceUpdateManyMutationInput, ProduceUncheckedUpdateManyInput>
+    /**
+     * Filter which Produces to update
+     */
+    where?: ProduceWhereInput
+    /**
+     * Limit how many Produces to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Produce upsert
+   */
+  export type ProduceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Produce to update in case it exists.
+     */
+    where: ProduceWhereUniqueInput
+    /**
+     * In case the Produce found by the `where` argument doesn't exist, create a new Produce with this data.
+     */
+    create: XOR<ProduceCreateInput, ProduceUncheckedCreateInput>
+    /**
+     * In case the Produce was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProduceUpdateInput, ProduceUncheckedUpdateInput>
+  }
+
+  /**
+   * Produce delete
+   */
+  export type ProduceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
+    /**
+     * Filter which Produce to delete.
+     */
+    where: ProduceWhereUniqueInput
+  }
+
+  /**
+   * Produce deleteMany
+   */
+  export type ProduceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Produces to delete
+     */
+    where?: ProduceWhereInput
+    /**
+     * Limit how many Produces to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Produce without action
+   */
+  export type ProduceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Produce
+     */
+    select?: ProduceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Produce
+     */
+    omit?: ProduceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProduceInclude<ExtArgs> | null
   }
 
 
@@ -1969,6 +4528,31 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const VendorProfileScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    farmName: 'farmName',
+    certificationStatus: 'certificationStatus',
+    farmLocation: 'farmLocation'
+  };
+
+  export type VendorProfileScalarFieldEnum = (typeof VendorProfileScalarFieldEnum)[keyof typeof VendorProfileScalarFieldEnum]
+
+
+  export const ProduceScalarFieldEnum: {
+    id: 'id',
+    vendorId: 'vendorId',
+    name: 'name',
+    description: 'description',
+    price: 'price',
+    category: 'category',
+    certificationStatus: 'certificationStatus',
+    availableQuantity: 'availableQuantity'
+  };
+
+  export type ProduceScalarFieldEnum = (typeof ProduceScalarFieldEnum)[keyof typeof ProduceScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -2076,6 +4660,7 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     status?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    vendorProfile?: XOR<VendorProfileNullableScalarRelationFilter, VendorProfileWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -2086,6 +4671,7 @@ export namespace Prisma {
     role?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    vendorProfile?: VendorProfileOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -2099,6 +4685,7 @@ export namespace Prisma {
     role?: EnumRoleFilter<"User"> | $Enums.Role
     status?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    vendorProfile?: XOR<VendorProfileNullableScalarRelationFilter, VendorProfileWhereInput> | null
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -2129,6 +4716,138 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type VendorProfileWhereInput = {
+    AND?: VendorProfileWhereInput | VendorProfileWhereInput[]
+    OR?: VendorProfileWhereInput[]
+    NOT?: VendorProfileWhereInput | VendorProfileWhereInput[]
+    id?: IntFilter<"VendorProfile"> | number
+    userId?: IntFilter<"VendorProfile"> | number
+    farmName?: StringFilter<"VendorProfile"> | string
+    certificationStatus?: StringFilter<"VendorProfile"> | string
+    farmLocation?: StringFilter<"VendorProfile"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    produce?: ProduceListRelationFilter
+  }
+
+  export type VendorProfileOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    farmName?: SortOrder
+    certificationStatus?: SortOrder
+    farmLocation?: SortOrder
+    user?: UserOrderByWithRelationInput
+    produce?: ProduceOrderByRelationAggregateInput
+  }
+
+  export type VendorProfileWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId?: number
+    AND?: VendorProfileWhereInput | VendorProfileWhereInput[]
+    OR?: VendorProfileWhereInput[]
+    NOT?: VendorProfileWhereInput | VendorProfileWhereInput[]
+    farmName?: StringFilter<"VendorProfile"> | string
+    certificationStatus?: StringFilter<"VendorProfile"> | string
+    farmLocation?: StringFilter<"VendorProfile"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    produce?: ProduceListRelationFilter
+  }, "id" | "userId">
+
+  export type VendorProfileOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    farmName?: SortOrder
+    certificationStatus?: SortOrder
+    farmLocation?: SortOrder
+    _count?: VendorProfileCountOrderByAggregateInput
+    _avg?: VendorProfileAvgOrderByAggregateInput
+    _max?: VendorProfileMaxOrderByAggregateInput
+    _min?: VendorProfileMinOrderByAggregateInput
+    _sum?: VendorProfileSumOrderByAggregateInput
+  }
+
+  export type VendorProfileScalarWhereWithAggregatesInput = {
+    AND?: VendorProfileScalarWhereWithAggregatesInput | VendorProfileScalarWhereWithAggregatesInput[]
+    OR?: VendorProfileScalarWhereWithAggregatesInput[]
+    NOT?: VendorProfileScalarWhereWithAggregatesInput | VendorProfileScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"VendorProfile"> | number
+    userId?: IntWithAggregatesFilter<"VendorProfile"> | number
+    farmName?: StringWithAggregatesFilter<"VendorProfile"> | string
+    certificationStatus?: StringWithAggregatesFilter<"VendorProfile"> | string
+    farmLocation?: StringWithAggregatesFilter<"VendorProfile"> | string
+  }
+
+  export type ProduceWhereInput = {
+    AND?: ProduceWhereInput | ProduceWhereInput[]
+    OR?: ProduceWhereInput[]
+    NOT?: ProduceWhereInput | ProduceWhereInput[]
+    id?: IntFilter<"Produce"> | number
+    vendorId?: IntFilter<"Produce"> | number
+    name?: StringFilter<"Produce"> | string
+    description?: StringFilter<"Produce"> | string
+    price?: FloatFilter<"Produce"> | number
+    category?: StringFilter<"Produce"> | string
+    certificationStatus?: StringFilter<"Produce"> | string
+    availableQuantity?: IntFilter<"Produce"> | number
+    vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
+  }
+
+  export type ProduceOrderByWithRelationInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    category?: SortOrder
+    certificationStatus?: SortOrder
+    availableQuantity?: SortOrder
+    vendor?: VendorProfileOrderByWithRelationInput
+  }
+
+  export type ProduceWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ProduceWhereInput | ProduceWhereInput[]
+    OR?: ProduceWhereInput[]
+    NOT?: ProduceWhereInput | ProduceWhereInput[]
+    vendorId?: IntFilter<"Produce"> | number
+    name?: StringFilter<"Produce"> | string
+    description?: StringFilter<"Produce"> | string
+    price?: FloatFilter<"Produce"> | number
+    category?: StringFilter<"Produce"> | string
+    certificationStatus?: StringFilter<"Produce"> | string
+    availableQuantity?: IntFilter<"Produce"> | number
+    vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
+  }, "id">
+
+  export type ProduceOrderByWithAggregationInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    category?: SortOrder
+    certificationStatus?: SortOrder
+    availableQuantity?: SortOrder
+    _count?: ProduceCountOrderByAggregateInput
+    _avg?: ProduceAvgOrderByAggregateInput
+    _max?: ProduceMaxOrderByAggregateInput
+    _min?: ProduceMinOrderByAggregateInput
+    _sum?: ProduceSumOrderByAggregateInput
+  }
+
+  export type ProduceScalarWhereWithAggregatesInput = {
+    AND?: ProduceScalarWhereWithAggregatesInput | ProduceScalarWhereWithAggregatesInput[]
+    OR?: ProduceScalarWhereWithAggregatesInput[]
+    NOT?: ProduceScalarWhereWithAggregatesInput | ProduceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Produce"> | number
+    vendorId?: IntWithAggregatesFilter<"Produce"> | number
+    name?: StringWithAggregatesFilter<"Produce"> | string
+    description?: StringWithAggregatesFilter<"Produce"> | string
+    price?: FloatWithAggregatesFilter<"Produce"> | number
+    category?: StringWithAggregatesFilter<"Produce"> | string
+    certificationStatus?: StringWithAggregatesFilter<"Produce"> | string
+    availableQuantity?: IntWithAggregatesFilter<"Produce"> | number
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -2136,6 +4855,7 @@ export namespace Prisma {
     role: $Enums.Role
     status: string
     createdAt?: Date | string
+    vendorProfile?: VendorProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -2146,6 +4866,7 @@ export namespace Prisma {
     role: $Enums.Role
     status: string
     createdAt?: Date | string
+    vendorProfile?: VendorProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -2155,6 +4876,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendorProfile?: VendorProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2165,6 +4887,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendorProfile?: VendorProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -2194,6 +4917,135 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VendorProfileCreateInput = {
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    user: UserCreateNestedOneWithoutVendorProfileInput
+    produce?: ProduceCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileUncheckedCreateInput = {
+    id?: number
+    userId: number
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileUpdateInput = {
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
+    produce?: ProduceUpdateManyWithoutVendorNestedInput
+  }
+
+  export type VendorProfileUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
+  }
+
+  export type VendorProfileCreateManyInput = {
+    id?: number
+    userId: number
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+  }
+
+  export type VendorProfileUpdateManyMutationInput = {
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type VendorProfileUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProduceCreateInput = {
+    name: string
+    description: string
+    price: number
+    category: string
+    certificationStatus: string
+    availableQuantity: number
+    vendor: VendorProfileCreateNestedOneWithoutProduceInput
+  }
+
+  export type ProduceUncheckedCreateInput = {
+    id?: number
+    vendorId: number
+    name: string
+    description: string
+    price: number
+    category: string
+    certificationStatus: string
+    availableQuantity: number
+  }
+
+  export type ProduceUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    availableQuantity?: IntFieldUpdateOperationsInput | number
+    vendor?: VendorProfileUpdateOneRequiredWithoutProduceNestedInput
+  }
+
+  export type ProduceUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vendorId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    availableQuantity?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProduceCreateManyInput = {
+    id?: number
+    vendorId: number
+    name: string
+    description: string
+    price: number
+    category: string
+    certificationStatus: string
+    availableQuantity: number
+  }
+
+  export type ProduceUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    availableQuantity?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProduceUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vendorId?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    availableQuantity?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2238,6 +5090,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type VendorProfileNullableScalarRelationFilter = {
+    is?: VendorProfileWhereInput | null
+    isNot?: VendorProfileWhereInput | null
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -2336,6 +5193,146 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type ProduceListRelationFilter = {
+    every?: ProduceWhereInput
+    some?: ProduceWhereInput
+    none?: ProduceWhereInput
+  }
+
+  export type ProduceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type VendorProfileCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    farmName?: SortOrder
+    certificationStatus?: SortOrder
+    farmLocation?: SortOrder
+  }
+
+  export type VendorProfileAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type VendorProfileMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    farmName?: SortOrder
+    certificationStatus?: SortOrder
+    farmLocation?: SortOrder
+  }
+
+  export type VendorProfileMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    farmName?: SortOrder
+    certificationStatus?: SortOrder
+    farmLocation?: SortOrder
+  }
+
+  export type VendorProfileSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type VendorProfileScalarRelationFilter = {
+    is?: VendorProfileWhereInput
+    isNot?: VendorProfileWhereInput
+  }
+
+  export type ProduceCountOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    category?: SortOrder
+    certificationStatus?: SortOrder
+    availableQuantity?: SortOrder
+  }
+
+  export type ProduceAvgOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    price?: SortOrder
+    availableQuantity?: SortOrder
+  }
+
+  export type ProduceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    category?: SortOrder
+    certificationStatus?: SortOrder
+    availableQuantity?: SortOrder
+  }
+
+  export type ProduceMinOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    price?: SortOrder
+    category?: SortOrder
+    certificationStatus?: SortOrder
+    availableQuantity?: SortOrder
+  }
+
+  export type ProduceSumOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    price?: SortOrder
+    availableQuantity?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type VendorProfileCreateNestedOneWithoutUserInput = {
+    create?: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutUserInput
+    connect?: VendorProfileWhereUniqueInput
+  }
+
+  export type VendorProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutUserInput
+    connect?: VendorProfileWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2348,12 +5345,110 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type VendorProfileUpdateOneWithoutUserNestedInput = {
+    create?: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutUserInput
+    upsert?: VendorProfileUpsertWithoutUserInput
+    disconnect?: VendorProfileWhereInput | boolean
+    delete?: VendorProfileWhereInput | boolean
+    connect?: VendorProfileWhereUniqueInput
+    update?: XOR<XOR<VendorProfileUpdateToOneWithWhereWithoutUserInput, VendorProfileUpdateWithoutUserInput>, VendorProfileUncheckedUpdateWithoutUserInput>
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type VendorProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutUserInput
+    upsert?: VendorProfileUpsertWithoutUserInput
+    disconnect?: VendorProfileWhereInput | boolean
+    delete?: VendorProfileWhereInput | boolean
+    connect?: VendorProfileWhereUniqueInput
+    update?: XOR<XOR<VendorProfileUpdateToOneWithWhereWithoutUserInput, VendorProfileUpdateWithoutUserInput>, VendorProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserCreateNestedOneWithoutVendorProfileInput = {
+    create?: XOR<UserCreateWithoutVendorProfileInput, UserUncheckedCreateWithoutVendorProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutVendorProfileInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ProduceCreateNestedManyWithoutVendorInput = {
+    create?: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput> | ProduceCreateWithoutVendorInput[] | ProduceUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: ProduceCreateOrConnectWithoutVendorInput | ProduceCreateOrConnectWithoutVendorInput[]
+    createMany?: ProduceCreateManyVendorInputEnvelope
+    connect?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+  }
+
+  export type ProduceUncheckedCreateNestedManyWithoutVendorInput = {
+    create?: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput> | ProduceCreateWithoutVendorInput[] | ProduceUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: ProduceCreateOrConnectWithoutVendorInput | ProduceCreateOrConnectWithoutVendorInput[]
+    createMany?: ProduceCreateManyVendorInputEnvelope
+    connect?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutVendorProfileNestedInput = {
+    create?: XOR<UserCreateWithoutVendorProfileInput, UserUncheckedCreateWithoutVendorProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutVendorProfileInput
+    upsert?: UserUpsertWithoutVendorProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutVendorProfileInput, UserUpdateWithoutVendorProfileInput>, UserUncheckedUpdateWithoutVendorProfileInput>
+  }
+
+  export type ProduceUpdateManyWithoutVendorNestedInput = {
+    create?: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput> | ProduceCreateWithoutVendorInput[] | ProduceUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: ProduceCreateOrConnectWithoutVendorInput | ProduceCreateOrConnectWithoutVendorInput[]
+    upsert?: ProduceUpsertWithWhereUniqueWithoutVendorInput | ProduceUpsertWithWhereUniqueWithoutVendorInput[]
+    createMany?: ProduceCreateManyVendorInputEnvelope
+    set?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+    disconnect?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+    delete?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+    connect?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+    update?: ProduceUpdateWithWhereUniqueWithoutVendorInput | ProduceUpdateWithWhereUniqueWithoutVendorInput[]
+    updateMany?: ProduceUpdateManyWithWhereWithoutVendorInput | ProduceUpdateManyWithWhereWithoutVendorInput[]
+    deleteMany?: ProduceScalarWhereInput | ProduceScalarWhereInput[]
+  }
+
+  export type ProduceUncheckedUpdateManyWithoutVendorNestedInput = {
+    create?: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput> | ProduceCreateWithoutVendorInput[] | ProduceUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: ProduceCreateOrConnectWithoutVendorInput | ProduceCreateOrConnectWithoutVendorInput[]
+    upsert?: ProduceUpsertWithWhereUniqueWithoutVendorInput | ProduceUpsertWithWhereUniqueWithoutVendorInput[]
+    createMany?: ProduceCreateManyVendorInputEnvelope
+    set?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+    disconnect?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+    delete?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+    connect?: ProduceWhereUniqueInput | ProduceWhereUniqueInput[]
+    update?: ProduceUpdateWithWhereUniqueWithoutVendorInput | ProduceUpdateWithWhereUniqueWithoutVendorInput[]
+    updateMany?: ProduceUpdateManyWithWhereWithoutVendorInput | ProduceUpdateManyWithWhereWithoutVendorInput[]
+    deleteMany?: ProduceScalarWhereInput | ProduceScalarWhereInput[]
+  }
+
+  export type VendorProfileCreateNestedOneWithoutProduceInput = {
+    create?: XOR<VendorProfileCreateWithoutProduceInput, VendorProfileUncheckedCreateWithoutProduceInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutProduceInput
+    connect?: VendorProfileWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type VendorProfileUpdateOneRequiredWithoutProduceNestedInput = {
+    create?: XOR<VendorProfileCreateWithoutProduceInput, VendorProfileUncheckedCreateWithoutProduceInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutProduceInput
+    upsert?: VendorProfileUpsertWithoutProduceInput
+    connect?: VendorProfileWhereUniqueInput
+    update?: XOR<XOR<VendorProfileUpdateToOneWithWhereWithoutProduceInput, VendorProfileUpdateWithoutProduceInput>, VendorProfileUncheckedUpdateWithoutProduceInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2465,6 +5560,266 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type VendorProfileCreateWithoutUserInput = {
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    produce?: ProduceCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileUncheckedCreateWithoutUserInput = {
+    id?: number
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileCreateOrConnectWithoutUserInput = {
+    where: VendorProfileWhereUniqueInput
+    create: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
+  }
+
+  export type VendorProfileUpsertWithoutUserInput = {
+    update: XOR<VendorProfileUpdateWithoutUserInput, VendorProfileUncheckedUpdateWithoutUserInput>
+    create: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
+    where?: VendorProfileWhereInput
+  }
+
+  export type VendorProfileUpdateToOneWithWhereWithoutUserInput = {
+    where?: VendorProfileWhereInput
+    data: XOR<VendorProfileUpdateWithoutUserInput, VendorProfileUncheckedUpdateWithoutUserInput>
+  }
+
+  export type VendorProfileUpdateWithoutUserInput = {
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    produce?: ProduceUpdateManyWithoutVendorNestedInput
+  }
+
+  export type VendorProfileUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
+  }
+
+  export type UserCreateWithoutVendorProfileInput = {
+    name: string
+    email: string
+    password: string
+    role: $Enums.Role
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutVendorProfileInput = {
+    id?: number
+    name: string
+    email: string
+    password: string
+    role: $Enums.Role
+    status: string
+    createdAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutVendorProfileInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutVendorProfileInput, UserUncheckedCreateWithoutVendorProfileInput>
+  }
+
+  export type ProduceCreateWithoutVendorInput = {
+    name: string
+    description: string
+    price: number
+    category: string
+    certificationStatus: string
+    availableQuantity: number
+  }
+
+  export type ProduceUncheckedCreateWithoutVendorInput = {
+    id?: number
+    name: string
+    description: string
+    price: number
+    category: string
+    certificationStatus: string
+    availableQuantity: number
+  }
+
+  export type ProduceCreateOrConnectWithoutVendorInput = {
+    where: ProduceWhereUniqueInput
+    create: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput>
+  }
+
+  export type ProduceCreateManyVendorInputEnvelope = {
+    data: ProduceCreateManyVendorInput | ProduceCreateManyVendorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutVendorProfileInput = {
+    update: XOR<UserUpdateWithoutVendorProfileInput, UserUncheckedUpdateWithoutVendorProfileInput>
+    create: XOR<UserCreateWithoutVendorProfileInput, UserUncheckedCreateWithoutVendorProfileInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutVendorProfileInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutVendorProfileInput, UserUncheckedUpdateWithoutVendorProfileInput>
+  }
+
+  export type UserUpdateWithoutVendorProfileInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutVendorProfileInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProduceUpsertWithWhereUniqueWithoutVendorInput = {
+    where: ProduceWhereUniqueInput
+    update: XOR<ProduceUpdateWithoutVendorInput, ProduceUncheckedUpdateWithoutVendorInput>
+    create: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput>
+  }
+
+  export type ProduceUpdateWithWhereUniqueWithoutVendorInput = {
+    where: ProduceWhereUniqueInput
+    data: XOR<ProduceUpdateWithoutVendorInput, ProduceUncheckedUpdateWithoutVendorInput>
+  }
+
+  export type ProduceUpdateManyWithWhereWithoutVendorInput = {
+    where: ProduceScalarWhereInput
+    data: XOR<ProduceUpdateManyMutationInput, ProduceUncheckedUpdateManyWithoutVendorInput>
+  }
+
+  export type ProduceScalarWhereInput = {
+    AND?: ProduceScalarWhereInput | ProduceScalarWhereInput[]
+    OR?: ProduceScalarWhereInput[]
+    NOT?: ProduceScalarWhereInput | ProduceScalarWhereInput[]
+    id?: IntFilter<"Produce"> | number
+    vendorId?: IntFilter<"Produce"> | number
+    name?: StringFilter<"Produce"> | string
+    description?: StringFilter<"Produce"> | string
+    price?: FloatFilter<"Produce"> | number
+    category?: StringFilter<"Produce"> | string
+    certificationStatus?: StringFilter<"Produce"> | string
+    availableQuantity?: IntFilter<"Produce"> | number
+  }
+
+  export type VendorProfileCreateWithoutProduceInput = {
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    user: UserCreateNestedOneWithoutVendorProfileInput
+  }
+
+  export type VendorProfileUncheckedCreateWithoutProduceInput = {
+    id?: number
+    userId: number
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+  }
+
+  export type VendorProfileCreateOrConnectWithoutProduceInput = {
+    where: VendorProfileWhereUniqueInput
+    create: XOR<VendorProfileCreateWithoutProduceInput, VendorProfileUncheckedCreateWithoutProduceInput>
+  }
+
+  export type VendorProfileUpsertWithoutProduceInput = {
+    update: XOR<VendorProfileUpdateWithoutProduceInput, VendorProfileUncheckedUpdateWithoutProduceInput>
+    create: XOR<VendorProfileCreateWithoutProduceInput, VendorProfileUncheckedCreateWithoutProduceInput>
+    where?: VendorProfileWhereInput
+  }
+
+  export type VendorProfileUpdateToOneWithWhereWithoutProduceInput = {
+    where?: VendorProfileWhereInput
+    data: XOR<VendorProfileUpdateWithoutProduceInput, VendorProfileUncheckedUpdateWithoutProduceInput>
+  }
+
+  export type VendorProfileUpdateWithoutProduceInput = {
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
+  }
+
+  export type VendorProfileUncheckedUpdateWithoutProduceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProduceCreateManyVendorInput = {
+    id?: number
+    name: string
+    description: string
+    price: number
+    category: string
+    certificationStatus: string
+    availableQuantity: number
+  }
+
+  export type ProduceUpdateWithoutVendorInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    availableQuantity?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProduceUncheckedUpdateWithoutVendorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    availableQuantity?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProduceUncheckedUpdateManyWithoutVendorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    category?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    availableQuantity?: IntFieldUpdateOperationsInput | number
   }
 
 
