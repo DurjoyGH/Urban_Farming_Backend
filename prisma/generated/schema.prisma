@@ -17,6 +17,7 @@ model User {
   createdAt DateTime @default(now())
 
   vendorProfile VendorProfile?
+  orders        Order[]
 }
 
 model VendorProfile {
@@ -41,6 +42,17 @@ model Produce {
   availableQuantity   Int
 
   vendor VendorProfile @relation(fields: [vendorId], references: [id])
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  produceId Int
+  vendorId  Int
+  status    String
+  orderDate DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
 }
 
 enum Role {

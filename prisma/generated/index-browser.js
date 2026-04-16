@@ -149,6 +149,15 @@ exports.Prisma.ProduceScalarFieldEnum = {
   availableQuantity: 'availableQuantity'
 };
 
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  produceId: 'produceId',
+  vendorId: 'vendorId',
+  status: 'status',
+  orderDate: 'orderDate'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -167,7 +176,8 @@ exports.Role = exports.$Enums.Role = {
 exports.Prisma.ModelName = {
   User: 'User',
   VendorProfile: 'VendorProfile',
-  Produce: 'Produce'
+  Produce: 'Produce',
+  Order: 'Order'
 };
 
 /**
