@@ -8,5 +8,6 @@ router.use("/products", require("../modules/produce/produce.routes"));
 router.use("/orders", require("../modules/order/order.routes"));
 router.use("/rentals", require("../modules/rental/rental.routes"));
 router.use("/posts", require("../modules/community/post.routes"));
+router.use("/certifications", require("../modules/certification/cert.routes"));
 
 module.exports = router;

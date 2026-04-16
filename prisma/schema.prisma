@@ -17,7 +17,7 @@ model User {
   createdAt DateTime @default(now())
 
   vendorProfile VendorProfile?
-  
+
   orders        Order[]
   posts         CommunityPost[] 
 }
@@ -31,9 +31,10 @@ model VendorProfile {
 
   user    User     @relation(fields: [userId], references: [id])
 
-  produce       Produce[]
-  orders        Order[]
-  rentalSpaces  RentalSpace[]
+  produce        Produce[]
+  orders         Order[]
+  rentalSpaces   RentalSpace[]
+  certifications SustainabilityCert[] 
 }
 
 model Produce {
@@ -57,7 +58,7 @@ model Order {
   status    String
   orderDate DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id])
+  user   User @relation(fields: [userId], references: [id])
   vendor VendorProfile  @relation(fields: [vendorId], references: [id])
 }
 
@@ -79,6 +80,15 @@ model CommunityPost {
   postDate    DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id])
+}
+
+model SustainabilityCert {
+  id                Int      @id @default(autoincrement())
+  vendorId          Int
+  certifyingAgency  String
+  certificationDate DateTime
+
+  vendor VendorProfile @relation(fields: [vendorId], references: [id])
 }
 
 enum Role {

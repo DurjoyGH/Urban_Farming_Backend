@@ -174,6 +174,13 @@ exports.Prisma.CommunityPostScalarFieldEnum = {
   postDate: 'postDate'
 };
 
+exports.Prisma.SustainabilityCertScalarFieldEnum = {
+  id: 'id',
+  vendorId: 'vendorId',
+  certifyingAgency: 'certifyingAgency',
+  certificationDate: 'certificationDate'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -195,7 +202,8 @@ exports.Prisma.ModelName = {
   Produce: 'Produce',
   Order: 'Order',
   RentalSpace: 'RentalSpace',
-  CommunityPost: 'CommunityPost'
+  CommunityPost: 'CommunityPost',
+  SustainabilityCert: 'SustainabilityCert'
 };
 
 /**

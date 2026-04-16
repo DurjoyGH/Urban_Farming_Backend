@@ -43,6 +43,11 @@ export type RentalSpace = $Result.DefaultSelection<Prisma.$RentalSpacePayload>
  * 
  */
 export type CommunityPost = $Result.DefaultSelection<Prisma.$CommunityPostPayload>
+/**
+ * Model SustainabilityCert
+ * 
+ */
+export type SustainabilityCert = $Result.DefaultSelection<Prisma.$SustainabilityCertPayload>
 
 /**
  * Enums
@@ -242,6 +247,16 @@ export class PrismaClient<
     * ```
     */
   get communityPost(): Prisma.CommunityPostDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sustainabilityCert`: Exposes CRUD operations for the **SustainabilityCert** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SustainabilityCerts
+    * const sustainabilityCerts = await prisma.sustainabilityCert.findMany()
+    * ```
+    */
+  get sustainabilityCert(): Prisma.SustainabilityCertDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -681,7 +696,8 @@ export namespace Prisma {
     Produce: 'Produce',
     Order: 'Order',
     RentalSpace: 'RentalSpace',
-    CommunityPost: 'CommunityPost'
+    CommunityPost: 'CommunityPost',
+    SustainabilityCert: 'SustainabilityCert'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -697,7 +713,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "vendorProfile" | "produce" | "order" | "rentalSpace" | "communityPost"
+      modelProps: "user" | "vendorProfile" | "produce" | "order" | "rentalSpace" | "communityPost" | "sustainabilityCert"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1145,6 +1161,80 @@ export namespace Prisma {
           }
         }
       }
+      SustainabilityCert: {
+        payload: Prisma.$SustainabilityCertPayload<ExtArgs>
+        fields: Prisma.SustainabilityCertFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SustainabilityCertFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SustainabilityCertFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>
+          }
+          findFirst: {
+            args: Prisma.SustainabilityCertFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SustainabilityCertFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>
+          }
+          findMany: {
+            args: Prisma.SustainabilityCertFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>[]
+          }
+          create: {
+            args: Prisma.SustainabilityCertCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>
+          }
+          createMany: {
+            args: Prisma.SustainabilityCertCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SustainabilityCertCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>[]
+          }
+          delete: {
+            args: Prisma.SustainabilityCertDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>
+          }
+          update: {
+            args: Prisma.SustainabilityCertUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>
+          }
+          deleteMany: {
+            args: Prisma.SustainabilityCertDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SustainabilityCertUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SustainabilityCertUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>[]
+          }
+          upsert: {
+            args: Prisma.SustainabilityCertUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SustainabilityCertPayload>
+          }
+          aggregate: {
+            args: Prisma.SustainabilityCertAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSustainabilityCert>
+          }
+          groupBy: {
+            args: Prisma.SustainabilityCertGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SustainabilityCertGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SustainabilityCertCountArgs<ExtArgs>
+            result: $Utils.Optional<SustainabilityCertCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1259,6 +1349,7 @@ export namespace Prisma {
     order?: OrderOmit
     rentalSpace?: RentalSpaceOmit
     communityPost?: CommunityPostOmit
+    sustainabilityCert?: SustainabilityCertOmit
   }
 
   /* Types for Logging */
@@ -1382,12 +1473,14 @@ export namespace Prisma {
     produce: number
     orders: number
     rentalSpaces: number
+    certifications: number
   }
 
   export type VendorProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     produce?: boolean | VendorProfileCountOutputTypeCountProduceArgs
     orders?: boolean | VendorProfileCountOutputTypeCountOrdersArgs
     rentalSpaces?: boolean | VendorProfileCountOutputTypeCountRentalSpacesArgs
+    certifications?: boolean | VendorProfileCountOutputTypeCountCertificationsArgs
   }
 
   // Custom InputTypes
@@ -1420,6 +1513,13 @@ export namespace Prisma {
    */
   export type VendorProfileCountOutputTypeCountRentalSpacesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RentalSpaceWhereInput
+  }
+
+  /**
+   * VendorProfileCountOutputType without action
+   */
+  export type VendorProfileCountOutputTypeCountCertificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SustainabilityCertWhereInput
   }
 
 
@@ -2819,6 +2919,7 @@ export namespace Prisma {
     produce?: boolean | VendorProfile$produceArgs<ExtArgs>
     orders?: boolean | VendorProfile$ordersArgs<ExtArgs>
     rentalSpaces?: boolean | VendorProfile$rentalSpacesArgs<ExtArgs>
+    certifications?: boolean | VendorProfile$certificationsArgs<ExtArgs>
     _count?: boolean | VendorProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["vendorProfile"]>
 
@@ -2854,6 +2955,7 @@ export namespace Prisma {
     produce?: boolean | VendorProfile$produceArgs<ExtArgs>
     orders?: boolean | VendorProfile$ordersArgs<ExtArgs>
     rentalSpaces?: boolean | VendorProfile$rentalSpacesArgs<ExtArgs>
+    certifications?: boolean | VendorProfile$certificationsArgs<ExtArgs>
     _count?: boolean | VendorProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type VendorProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2870,6 +2972,7 @@ export namespace Prisma {
       produce: Prisma.$ProducePayload<ExtArgs>[]
       orders: Prisma.$OrderPayload<ExtArgs>[]
       rentalSpaces: Prisma.$RentalSpacePayload<ExtArgs>[]
+      certifications: Prisma.$SustainabilityCertPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3275,6 +3378,7 @@ export namespace Prisma {
     produce<T extends VendorProfile$produceArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfile$produceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProducePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     orders<T extends VendorProfile$ordersArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfile$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     rentalSpaces<T extends VendorProfile$rentalSpacesArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfile$rentalSpacesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    certifications<T extends VendorProfile$certificationsArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfile$certificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3779,6 +3883,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: RentalSpaceScalarFieldEnum | RentalSpaceScalarFieldEnum[]
+  }
+
+  /**
+   * VendorProfile.certifications
+   */
+  export type VendorProfile$certificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    where?: SustainabilityCertWhereInput
+    orderBy?: SustainabilityCertOrderByWithRelationInput | SustainabilityCertOrderByWithRelationInput[]
+    cursor?: SustainabilityCertWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SustainabilityCertScalarFieldEnum | SustainabilityCertScalarFieldEnum[]
   }
 
   /**
@@ -8285,6 +8413,1094 @@ export namespace Prisma {
 
 
   /**
+   * Model SustainabilityCert
+   */
+
+  export type AggregateSustainabilityCert = {
+    _count: SustainabilityCertCountAggregateOutputType | null
+    _avg: SustainabilityCertAvgAggregateOutputType | null
+    _sum: SustainabilityCertSumAggregateOutputType | null
+    _min: SustainabilityCertMinAggregateOutputType | null
+    _max: SustainabilityCertMaxAggregateOutputType | null
+  }
+
+  export type SustainabilityCertAvgAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+  }
+
+  export type SustainabilityCertSumAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+  }
+
+  export type SustainabilityCertMinAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    certifyingAgency: string | null
+    certificationDate: Date | null
+  }
+
+  export type SustainabilityCertMaxAggregateOutputType = {
+    id: number | null
+    vendorId: number | null
+    certifyingAgency: string | null
+    certificationDate: Date | null
+  }
+
+  export type SustainabilityCertCountAggregateOutputType = {
+    id: number
+    vendorId: number
+    certifyingAgency: number
+    certificationDate: number
+    _all: number
+  }
+
+
+  export type SustainabilityCertAvgAggregateInputType = {
+    id?: true
+    vendorId?: true
+  }
+
+  export type SustainabilityCertSumAggregateInputType = {
+    id?: true
+    vendorId?: true
+  }
+
+  export type SustainabilityCertMinAggregateInputType = {
+    id?: true
+    vendorId?: true
+    certifyingAgency?: true
+    certificationDate?: true
+  }
+
+  export type SustainabilityCertMaxAggregateInputType = {
+    id?: true
+    vendorId?: true
+    certifyingAgency?: true
+    certificationDate?: true
+  }
+
+  export type SustainabilityCertCountAggregateInputType = {
+    id?: true
+    vendorId?: true
+    certifyingAgency?: true
+    certificationDate?: true
+    _all?: true
+  }
+
+  export type SustainabilityCertAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SustainabilityCert to aggregate.
+     */
+    where?: SustainabilityCertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SustainabilityCerts to fetch.
+     */
+    orderBy?: SustainabilityCertOrderByWithRelationInput | SustainabilityCertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SustainabilityCertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SustainabilityCerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SustainabilityCerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SustainabilityCerts
+    **/
+    _count?: true | SustainabilityCertCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SustainabilityCertAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SustainabilityCertSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SustainabilityCertMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SustainabilityCertMaxAggregateInputType
+  }
+
+  export type GetSustainabilityCertAggregateType<T extends SustainabilityCertAggregateArgs> = {
+        [P in keyof T & keyof AggregateSustainabilityCert]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSustainabilityCert[P]>
+      : GetScalarType<T[P], AggregateSustainabilityCert[P]>
+  }
+
+
+
+
+  export type SustainabilityCertGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SustainabilityCertWhereInput
+    orderBy?: SustainabilityCertOrderByWithAggregationInput | SustainabilityCertOrderByWithAggregationInput[]
+    by: SustainabilityCertScalarFieldEnum[] | SustainabilityCertScalarFieldEnum
+    having?: SustainabilityCertScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SustainabilityCertCountAggregateInputType | true
+    _avg?: SustainabilityCertAvgAggregateInputType
+    _sum?: SustainabilityCertSumAggregateInputType
+    _min?: SustainabilityCertMinAggregateInputType
+    _max?: SustainabilityCertMaxAggregateInputType
+  }
+
+  export type SustainabilityCertGroupByOutputType = {
+    id: number
+    vendorId: number
+    certifyingAgency: string
+    certificationDate: Date
+    _count: SustainabilityCertCountAggregateOutputType | null
+    _avg: SustainabilityCertAvgAggregateOutputType | null
+    _sum: SustainabilityCertSumAggregateOutputType | null
+    _min: SustainabilityCertMinAggregateOutputType | null
+    _max: SustainabilityCertMaxAggregateOutputType | null
+  }
+
+  type GetSustainabilityCertGroupByPayload<T extends SustainabilityCertGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SustainabilityCertGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SustainabilityCertGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SustainabilityCertGroupByOutputType[P]>
+            : GetScalarType<T[P], SustainabilityCertGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SustainabilityCertSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    certifyingAgency?: boolean
+    certificationDate?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sustainabilityCert"]>
+
+  export type SustainabilityCertSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    certifyingAgency?: boolean
+    certificationDate?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sustainabilityCert"]>
+
+  export type SustainabilityCertSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vendorId?: boolean
+    certifyingAgency?: boolean
+    certificationDate?: boolean
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sustainabilityCert"]>
+
+  export type SustainabilityCertSelectScalar = {
+    id?: boolean
+    vendorId?: boolean
+    certifyingAgency?: boolean
+    certificationDate?: boolean
+  }
+
+  export type SustainabilityCertOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vendorId" | "certifyingAgency" | "certificationDate", ExtArgs["result"]["sustainabilityCert"]>
+  export type SustainabilityCertInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+  export type SustainabilityCertIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+  export type SustainabilityCertIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+  }
+
+  export type $SustainabilityCertPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SustainabilityCert"
+    objects: {
+      vendor: Prisma.$VendorProfilePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      vendorId: number
+      certifyingAgency: string
+      certificationDate: Date
+    }, ExtArgs["result"]["sustainabilityCert"]>
+    composites: {}
+  }
+
+  type SustainabilityCertGetPayload<S extends boolean | null | undefined | SustainabilityCertDefaultArgs> = $Result.GetResult<Prisma.$SustainabilityCertPayload, S>
+
+  type SustainabilityCertCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SustainabilityCertFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SustainabilityCertCountAggregateInputType | true
+    }
+
+  export interface SustainabilityCertDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SustainabilityCert'], meta: { name: 'SustainabilityCert' } }
+    /**
+     * Find zero or one SustainabilityCert that matches the filter.
+     * @param {SustainabilityCertFindUniqueArgs} args - Arguments to find a SustainabilityCert
+     * @example
+     * // Get one SustainabilityCert
+     * const sustainabilityCert = await prisma.sustainabilityCert.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SustainabilityCertFindUniqueArgs>(args: SelectSubset<T, SustainabilityCertFindUniqueArgs<ExtArgs>>): Prisma__SustainabilityCertClient<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one SustainabilityCert that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SustainabilityCertFindUniqueOrThrowArgs} args - Arguments to find a SustainabilityCert
+     * @example
+     * // Get one SustainabilityCert
+     * const sustainabilityCert = await prisma.sustainabilityCert.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SustainabilityCertFindUniqueOrThrowArgs>(args: SelectSubset<T, SustainabilityCertFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SustainabilityCertClient<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SustainabilityCert that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SustainabilityCertFindFirstArgs} args - Arguments to find a SustainabilityCert
+     * @example
+     * // Get one SustainabilityCert
+     * const sustainabilityCert = await prisma.sustainabilityCert.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SustainabilityCertFindFirstArgs>(args?: SelectSubset<T, SustainabilityCertFindFirstArgs<ExtArgs>>): Prisma__SustainabilityCertClient<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first SustainabilityCert that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SustainabilityCertFindFirstOrThrowArgs} args - Arguments to find a SustainabilityCert
+     * @example
+     * // Get one SustainabilityCert
+     * const sustainabilityCert = await prisma.sustainabilityCert.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SustainabilityCertFindFirstOrThrowArgs>(args?: SelectSubset<T, SustainabilityCertFindFirstOrThrowArgs<ExtArgs>>): Prisma__SustainabilityCertClient<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more SustainabilityCerts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SustainabilityCertFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SustainabilityCerts
+     * const sustainabilityCerts = await prisma.sustainabilityCert.findMany()
+     * 
+     * // Get first 10 SustainabilityCerts
+     * const sustainabilityCerts = await prisma.sustainabilityCert.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sustainabilityCertWithIdOnly = await prisma.sustainabilityCert.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SustainabilityCertFindManyArgs>(args?: SelectSubset<T, SustainabilityCertFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a SustainabilityCert.
+     * @param {SustainabilityCertCreateArgs} args - Arguments to create a SustainabilityCert.
+     * @example
+     * // Create one SustainabilityCert
+     * const SustainabilityCert = await prisma.sustainabilityCert.create({
+     *   data: {
+     *     // ... data to create a SustainabilityCert
+     *   }
+     * })
+     * 
+     */
+    create<T extends SustainabilityCertCreateArgs>(args: SelectSubset<T, SustainabilityCertCreateArgs<ExtArgs>>): Prisma__SustainabilityCertClient<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many SustainabilityCerts.
+     * @param {SustainabilityCertCreateManyArgs} args - Arguments to create many SustainabilityCerts.
+     * @example
+     * // Create many SustainabilityCerts
+     * const sustainabilityCert = await prisma.sustainabilityCert.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SustainabilityCertCreateManyArgs>(args?: SelectSubset<T, SustainabilityCertCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SustainabilityCerts and returns the data saved in the database.
+     * @param {SustainabilityCertCreateManyAndReturnArgs} args - Arguments to create many SustainabilityCerts.
+     * @example
+     * // Create many SustainabilityCerts
+     * const sustainabilityCert = await prisma.sustainabilityCert.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SustainabilityCerts and only return the `id`
+     * const sustainabilityCertWithIdOnly = await prisma.sustainabilityCert.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SustainabilityCertCreateManyAndReturnArgs>(args?: SelectSubset<T, SustainabilityCertCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a SustainabilityCert.
+     * @param {SustainabilityCertDeleteArgs} args - Arguments to delete one SustainabilityCert.
+     * @example
+     * // Delete one SustainabilityCert
+     * const SustainabilityCert = await prisma.sustainabilityCert.delete({
+     *   where: {
+     *     // ... filter to delete one SustainabilityCert
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SustainabilityCertDeleteArgs>(args: SelectSubset<T, SustainabilityCertDeleteArgs<ExtArgs>>): Prisma__SustainabilityCertClient<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one SustainabilityCert.
+     * @param {SustainabilityCertUpdateArgs} args - Arguments to update one SustainabilityCert.
+     * @example
+     * // Update one SustainabilityCert
+     * const sustainabilityCert = await prisma.sustainabilityCert.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SustainabilityCertUpdateArgs>(args: SelectSubset<T, SustainabilityCertUpdateArgs<ExtArgs>>): Prisma__SustainabilityCertClient<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more SustainabilityCerts.
+     * @param {SustainabilityCertDeleteManyArgs} args - Arguments to filter SustainabilityCerts to delete.
+     * @example
+     * // Delete a few SustainabilityCerts
+     * const { count } = await prisma.sustainabilityCert.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SustainabilityCertDeleteManyArgs>(args?: SelectSubset<T, SustainabilityCertDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SustainabilityCerts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SustainabilityCertUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SustainabilityCerts
+     * const sustainabilityCert = await prisma.sustainabilityCert.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SustainabilityCertUpdateManyArgs>(args: SelectSubset<T, SustainabilityCertUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SustainabilityCerts and returns the data updated in the database.
+     * @param {SustainabilityCertUpdateManyAndReturnArgs} args - Arguments to update many SustainabilityCerts.
+     * @example
+     * // Update many SustainabilityCerts
+     * const sustainabilityCert = await prisma.sustainabilityCert.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SustainabilityCerts and only return the `id`
+     * const sustainabilityCertWithIdOnly = await prisma.sustainabilityCert.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SustainabilityCertUpdateManyAndReturnArgs>(args: SelectSubset<T, SustainabilityCertUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one SustainabilityCert.
+     * @param {SustainabilityCertUpsertArgs} args - Arguments to update or create a SustainabilityCert.
+     * @example
+     * // Update or create a SustainabilityCert
+     * const sustainabilityCert = await prisma.sustainabilityCert.upsert({
+     *   create: {
+     *     // ... data to create a SustainabilityCert
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SustainabilityCert we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SustainabilityCertUpsertArgs>(args: SelectSubset<T, SustainabilityCertUpsertArgs<ExtArgs>>): Prisma__SustainabilityCertClient<$Result.GetResult<Prisma.$SustainabilityCertPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of SustainabilityCerts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SustainabilityCertCountArgs} args - Arguments to filter SustainabilityCerts to count.
+     * @example
+     * // Count the number of SustainabilityCerts
+     * const count = await prisma.sustainabilityCert.count({
+     *   where: {
+     *     // ... the filter for the SustainabilityCerts we want to count
+     *   }
+     * })
+    **/
+    count<T extends SustainabilityCertCountArgs>(
+      args?: Subset<T, SustainabilityCertCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SustainabilityCertCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SustainabilityCert.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SustainabilityCertAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SustainabilityCertAggregateArgs>(args: Subset<T, SustainabilityCertAggregateArgs>): Prisma.PrismaPromise<GetSustainabilityCertAggregateType<T>>
+
+    /**
+     * Group by SustainabilityCert.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SustainabilityCertGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SustainabilityCertGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SustainabilityCertGroupByArgs['orderBy'] }
+        : { orderBy?: SustainabilityCertGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SustainabilityCertGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSustainabilityCertGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SustainabilityCert model
+   */
+  readonly fields: SustainabilityCertFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SustainabilityCert.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SustainabilityCertClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vendor<T extends VendorProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfileDefaultArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SustainabilityCert model
+   */
+  interface SustainabilityCertFieldRefs {
+    readonly id: FieldRef<"SustainabilityCert", 'Int'>
+    readonly vendorId: FieldRef<"SustainabilityCert", 'Int'>
+    readonly certifyingAgency: FieldRef<"SustainabilityCert", 'String'>
+    readonly certificationDate: FieldRef<"SustainabilityCert", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SustainabilityCert findUnique
+   */
+  export type SustainabilityCertFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * Filter, which SustainabilityCert to fetch.
+     */
+    where: SustainabilityCertWhereUniqueInput
+  }
+
+  /**
+   * SustainabilityCert findUniqueOrThrow
+   */
+  export type SustainabilityCertFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * Filter, which SustainabilityCert to fetch.
+     */
+    where: SustainabilityCertWhereUniqueInput
+  }
+
+  /**
+   * SustainabilityCert findFirst
+   */
+  export type SustainabilityCertFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * Filter, which SustainabilityCert to fetch.
+     */
+    where?: SustainabilityCertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SustainabilityCerts to fetch.
+     */
+    orderBy?: SustainabilityCertOrderByWithRelationInput | SustainabilityCertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SustainabilityCerts.
+     */
+    cursor?: SustainabilityCertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SustainabilityCerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SustainabilityCerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SustainabilityCerts.
+     */
+    distinct?: SustainabilityCertScalarFieldEnum | SustainabilityCertScalarFieldEnum[]
+  }
+
+  /**
+   * SustainabilityCert findFirstOrThrow
+   */
+  export type SustainabilityCertFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * Filter, which SustainabilityCert to fetch.
+     */
+    where?: SustainabilityCertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SustainabilityCerts to fetch.
+     */
+    orderBy?: SustainabilityCertOrderByWithRelationInput | SustainabilityCertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SustainabilityCerts.
+     */
+    cursor?: SustainabilityCertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SustainabilityCerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SustainabilityCerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SustainabilityCerts.
+     */
+    distinct?: SustainabilityCertScalarFieldEnum | SustainabilityCertScalarFieldEnum[]
+  }
+
+  /**
+   * SustainabilityCert findMany
+   */
+  export type SustainabilityCertFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * Filter, which SustainabilityCerts to fetch.
+     */
+    where?: SustainabilityCertWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SustainabilityCerts to fetch.
+     */
+    orderBy?: SustainabilityCertOrderByWithRelationInput | SustainabilityCertOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SustainabilityCerts.
+     */
+    cursor?: SustainabilityCertWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SustainabilityCerts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SustainabilityCerts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SustainabilityCerts.
+     */
+    distinct?: SustainabilityCertScalarFieldEnum | SustainabilityCertScalarFieldEnum[]
+  }
+
+  /**
+   * SustainabilityCert create
+   */
+  export type SustainabilityCertCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SustainabilityCert.
+     */
+    data: XOR<SustainabilityCertCreateInput, SustainabilityCertUncheckedCreateInput>
+  }
+
+  /**
+   * SustainabilityCert createMany
+   */
+  export type SustainabilityCertCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SustainabilityCerts.
+     */
+    data: SustainabilityCertCreateManyInput | SustainabilityCertCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SustainabilityCert createManyAndReturn
+   */
+  export type SustainabilityCertCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * The data used to create many SustainabilityCerts.
+     */
+    data: SustainabilityCertCreateManyInput | SustainabilityCertCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SustainabilityCert update
+   */
+  export type SustainabilityCertUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SustainabilityCert.
+     */
+    data: XOR<SustainabilityCertUpdateInput, SustainabilityCertUncheckedUpdateInput>
+    /**
+     * Choose, which SustainabilityCert to update.
+     */
+    where: SustainabilityCertWhereUniqueInput
+  }
+
+  /**
+   * SustainabilityCert updateMany
+   */
+  export type SustainabilityCertUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SustainabilityCerts.
+     */
+    data: XOR<SustainabilityCertUpdateManyMutationInput, SustainabilityCertUncheckedUpdateManyInput>
+    /**
+     * Filter which SustainabilityCerts to update
+     */
+    where?: SustainabilityCertWhereInput
+    /**
+     * Limit how many SustainabilityCerts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * SustainabilityCert updateManyAndReturn
+   */
+  export type SustainabilityCertUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * The data used to update SustainabilityCerts.
+     */
+    data: XOR<SustainabilityCertUpdateManyMutationInput, SustainabilityCertUncheckedUpdateManyInput>
+    /**
+     * Filter which SustainabilityCerts to update
+     */
+    where?: SustainabilityCertWhereInput
+    /**
+     * Limit how many SustainabilityCerts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SustainabilityCert upsert
+   */
+  export type SustainabilityCertUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SustainabilityCert to update in case it exists.
+     */
+    where: SustainabilityCertWhereUniqueInput
+    /**
+     * In case the SustainabilityCert found by the `where` argument doesn't exist, create a new SustainabilityCert with this data.
+     */
+    create: XOR<SustainabilityCertCreateInput, SustainabilityCertUncheckedCreateInput>
+    /**
+     * In case the SustainabilityCert was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SustainabilityCertUpdateInput, SustainabilityCertUncheckedUpdateInput>
+  }
+
+  /**
+   * SustainabilityCert delete
+   */
+  export type SustainabilityCertDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+    /**
+     * Filter which SustainabilityCert to delete.
+     */
+    where: SustainabilityCertWhereUniqueInput
+  }
+
+  /**
+   * SustainabilityCert deleteMany
+   */
+  export type SustainabilityCertDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SustainabilityCerts to delete
+     */
+    where?: SustainabilityCertWhereInput
+    /**
+     * Limit how many SustainabilityCerts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * SustainabilityCert without action
+   */
+  export type SustainabilityCertDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SustainabilityCert
+     */
+    select?: SustainabilityCertSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SustainabilityCert
+     */
+    omit?: SustainabilityCertOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SustainabilityCertInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -8368,6 +9584,16 @@ export namespace Prisma {
   };
 
   export type CommunityPostScalarFieldEnum = (typeof CommunityPostScalarFieldEnum)[keyof typeof CommunityPostScalarFieldEnum]
+
+
+  export const SustainabilityCertScalarFieldEnum: {
+    id: 'id',
+    vendorId: 'vendorId',
+    certifyingAgency: 'certifyingAgency',
+    certificationDate: 'certificationDate'
+  };
+
+  export type SustainabilityCertScalarFieldEnum = (typeof SustainabilityCertScalarFieldEnum)[keyof typeof SustainabilityCertScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8557,6 +9783,7 @@ export namespace Prisma {
     produce?: ProduceListRelationFilter
     orders?: OrderListRelationFilter
     rentalSpaces?: RentalSpaceListRelationFilter
+    certifications?: SustainabilityCertListRelationFilter
   }
 
   export type VendorProfileOrderByWithRelationInput = {
@@ -8569,6 +9796,7 @@ export namespace Prisma {
     produce?: ProduceOrderByRelationAggregateInput
     orders?: OrderOrderByRelationAggregateInput
     rentalSpaces?: RentalSpaceOrderByRelationAggregateInput
+    certifications?: SustainabilityCertOrderByRelationAggregateInput
   }
 
   export type VendorProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -8584,6 +9812,7 @@ export namespace Prisma {
     produce?: ProduceListRelationFilter
     orders?: OrderListRelationFilter
     rentalSpaces?: RentalSpaceListRelationFilter
+    certifications?: SustainabilityCertListRelationFilter
   }, "id" | "userId">
 
   export type VendorProfileOrderByWithAggregationInput = {
@@ -8861,6 +10090,58 @@ export namespace Prisma {
     postDate?: DateTimeWithAggregatesFilter<"CommunityPost"> | Date | string
   }
 
+  export type SustainabilityCertWhereInput = {
+    AND?: SustainabilityCertWhereInput | SustainabilityCertWhereInput[]
+    OR?: SustainabilityCertWhereInput[]
+    NOT?: SustainabilityCertWhereInput | SustainabilityCertWhereInput[]
+    id?: IntFilter<"SustainabilityCert"> | number
+    vendorId?: IntFilter<"SustainabilityCert"> | number
+    certifyingAgency?: StringFilter<"SustainabilityCert"> | string
+    certificationDate?: DateTimeFilter<"SustainabilityCert"> | Date | string
+    vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
+  }
+
+  export type SustainabilityCertOrderByWithRelationInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    certifyingAgency?: SortOrder
+    certificationDate?: SortOrder
+    vendor?: VendorProfileOrderByWithRelationInput
+  }
+
+  export type SustainabilityCertWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: SustainabilityCertWhereInput | SustainabilityCertWhereInput[]
+    OR?: SustainabilityCertWhereInput[]
+    NOT?: SustainabilityCertWhereInput | SustainabilityCertWhereInput[]
+    vendorId?: IntFilter<"SustainabilityCert"> | number
+    certifyingAgency?: StringFilter<"SustainabilityCert"> | string
+    certificationDate?: DateTimeFilter<"SustainabilityCert"> | Date | string
+    vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
+  }, "id">
+
+  export type SustainabilityCertOrderByWithAggregationInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    certifyingAgency?: SortOrder
+    certificationDate?: SortOrder
+    _count?: SustainabilityCertCountOrderByAggregateInput
+    _avg?: SustainabilityCertAvgOrderByAggregateInput
+    _max?: SustainabilityCertMaxOrderByAggregateInput
+    _min?: SustainabilityCertMinOrderByAggregateInput
+    _sum?: SustainabilityCertSumOrderByAggregateInput
+  }
+
+  export type SustainabilityCertScalarWhereWithAggregatesInput = {
+    AND?: SustainabilityCertScalarWhereWithAggregatesInput | SustainabilityCertScalarWhereWithAggregatesInput[]
+    OR?: SustainabilityCertScalarWhereWithAggregatesInput[]
+    NOT?: SustainabilityCertScalarWhereWithAggregatesInput | SustainabilityCertScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"SustainabilityCert"> | number
+    vendorId?: IntWithAggregatesFilter<"SustainabilityCert"> | number
+    certifyingAgency?: StringWithAggregatesFilter<"SustainabilityCert"> | string
+    certificationDate?: DateTimeWithAggregatesFilter<"SustainabilityCert"> | Date | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -8948,6 +10229,7 @@ export namespace Prisma {
     produce?: ProduceCreateNestedManyWithoutVendorInput
     orders?: OrderCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUncheckedCreateInput = {
@@ -8959,6 +10241,7 @@ export namespace Prisma {
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertUncheckedCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUpdateInput = {
@@ -8969,6 +10252,7 @@ export namespace Prisma {
     produce?: ProduceUpdateManyWithoutVendorNestedInput
     orders?: OrderUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileUncheckedUpdateInput = {
@@ -8980,6 +10264,7 @@ export namespace Prisma {
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileCreateManyInput = {
@@ -9239,6 +10524,51 @@ export namespace Prisma {
     postDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SustainabilityCertCreateInput = {
+    certifyingAgency: string
+    certificationDate: Date | string
+    vendor: VendorProfileCreateNestedOneWithoutCertificationsInput
+  }
+
+  export type SustainabilityCertUncheckedCreateInput = {
+    id?: number
+    vendorId: number
+    certifyingAgency: string
+    certificationDate: Date | string
+  }
+
+  export type SustainabilityCertUpdateInput = {
+    certifyingAgency?: StringFieldUpdateOperationsInput | string
+    certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendor?: VendorProfileUpdateOneRequiredWithoutCertificationsNestedInput
+  }
+
+  export type SustainabilityCertUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vendorId?: IntFieldUpdateOperationsInput | number
+    certifyingAgency?: StringFieldUpdateOperationsInput | string
+    certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SustainabilityCertCreateManyInput = {
+    id?: number
+    vendorId: number
+    certifyingAgency: string
+    certificationDate: Date | string
+  }
+
+  export type SustainabilityCertUpdateManyMutationInput = {
+    certifyingAgency?: StringFieldUpdateOperationsInput | string
+    certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SustainabilityCertUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vendorId?: IntFieldUpdateOperationsInput | number
+    certifyingAgency?: StringFieldUpdateOperationsInput | string
+    certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9421,11 +10751,21 @@ export namespace Prisma {
     none?: RentalSpaceWhereInput
   }
 
+  export type SustainabilityCertListRelationFilter = {
+    every?: SustainabilityCertWhereInput
+    some?: SustainabilityCertWhereInput
+    none?: SustainabilityCertWhereInput
+  }
+
   export type ProduceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type RentalSpaceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SustainabilityCertOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9666,6 +11006,37 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type SustainabilityCertCountOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    certifyingAgency?: SortOrder
+    certificationDate?: SortOrder
+  }
+
+  export type SustainabilityCertAvgOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+  }
+
+  export type SustainabilityCertMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    certifyingAgency?: SortOrder
+    certificationDate?: SortOrder
+  }
+
+  export type SustainabilityCertMinOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+    certifyingAgency?: SortOrder
+    certificationDate?: SortOrder
+  }
+
+  export type SustainabilityCertSumOrderByAggregateInput = {
+    id?: SortOrder
+    vendorId?: SortOrder
+  }
+
   export type VendorProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: VendorProfileCreateOrConnectWithoutUserInput
@@ -9829,6 +11200,13 @@ export namespace Prisma {
     connect?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
   }
 
+  export type SustainabilityCertCreateNestedManyWithoutVendorInput = {
+    create?: XOR<SustainabilityCertCreateWithoutVendorInput, SustainabilityCertUncheckedCreateWithoutVendorInput> | SustainabilityCertCreateWithoutVendorInput[] | SustainabilityCertUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: SustainabilityCertCreateOrConnectWithoutVendorInput | SustainabilityCertCreateOrConnectWithoutVendorInput[]
+    createMany?: SustainabilityCertCreateManyVendorInputEnvelope
+    connect?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+  }
+
   export type ProduceUncheckedCreateNestedManyWithoutVendorInput = {
     create?: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput> | ProduceCreateWithoutVendorInput[] | ProduceUncheckedCreateWithoutVendorInput[]
     connectOrCreate?: ProduceCreateOrConnectWithoutVendorInput | ProduceCreateOrConnectWithoutVendorInput[]
@@ -9848,6 +11226,13 @@ export namespace Prisma {
     connectOrCreate?: RentalSpaceCreateOrConnectWithoutVendorInput | RentalSpaceCreateOrConnectWithoutVendorInput[]
     createMany?: RentalSpaceCreateManyVendorInputEnvelope
     connect?: RentalSpaceWhereUniqueInput | RentalSpaceWhereUniqueInput[]
+  }
+
+  export type SustainabilityCertUncheckedCreateNestedManyWithoutVendorInput = {
+    create?: XOR<SustainabilityCertCreateWithoutVendorInput, SustainabilityCertUncheckedCreateWithoutVendorInput> | SustainabilityCertCreateWithoutVendorInput[] | SustainabilityCertUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: SustainabilityCertCreateOrConnectWithoutVendorInput | SustainabilityCertCreateOrConnectWithoutVendorInput[]
+    createMany?: SustainabilityCertCreateManyVendorInputEnvelope
+    connect?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutVendorProfileNestedInput = {
@@ -9900,6 +11285,20 @@ export namespace Prisma {
     deleteMany?: RentalSpaceScalarWhereInput | RentalSpaceScalarWhereInput[]
   }
 
+  export type SustainabilityCertUpdateManyWithoutVendorNestedInput = {
+    create?: XOR<SustainabilityCertCreateWithoutVendorInput, SustainabilityCertUncheckedCreateWithoutVendorInput> | SustainabilityCertCreateWithoutVendorInput[] | SustainabilityCertUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: SustainabilityCertCreateOrConnectWithoutVendorInput | SustainabilityCertCreateOrConnectWithoutVendorInput[]
+    upsert?: SustainabilityCertUpsertWithWhereUniqueWithoutVendorInput | SustainabilityCertUpsertWithWhereUniqueWithoutVendorInput[]
+    createMany?: SustainabilityCertCreateManyVendorInputEnvelope
+    set?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+    disconnect?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+    delete?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+    connect?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+    update?: SustainabilityCertUpdateWithWhereUniqueWithoutVendorInput | SustainabilityCertUpdateWithWhereUniqueWithoutVendorInput[]
+    updateMany?: SustainabilityCertUpdateManyWithWhereWithoutVendorInput | SustainabilityCertUpdateManyWithWhereWithoutVendorInput[]
+    deleteMany?: SustainabilityCertScalarWhereInput | SustainabilityCertScalarWhereInput[]
+  }
+
   export type ProduceUncheckedUpdateManyWithoutVendorNestedInput = {
     create?: XOR<ProduceCreateWithoutVendorInput, ProduceUncheckedCreateWithoutVendorInput> | ProduceCreateWithoutVendorInput[] | ProduceUncheckedCreateWithoutVendorInput[]
     connectOrCreate?: ProduceCreateOrConnectWithoutVendorInput | ProduceCreateOrConnectWithoutVendorInput[]
@@ -9940,6 +11339,20 @@ export namespace Prisma {
     update?: RentalSpaceUpdateWithWhereUniqueWithoutVendorInput | RentalSpaceUpdateWithWhereUniqueWithoutVendorInput[]
     updateMany?: RentalSpaceUpdateManyWithWhereWithoutVendorInput | RentalSpaceUpdateManyWithWhereWithoutVendorInput[]
     deleteMany?: RentalSpaceScalarWhereInput | RentalSpaceScalarWhereInput[]
+  }
+
+  export type SustainabilityCertUncheckedUpdateManyWithoutVendorNestedInput = {
+    create?: XOR<SustainabilityCertCreateWithoutVendorInput, SustainabilityCertUncheckedCreateWithoutVendorInput> | SustainabilityCertCreateWithoutVendorInput[] | SustainabilityCertUncheckedCreateWithoutVendorInput[]
+    connectOrCreate?: SustainabilityCertCreateOrConnectWithoutVendorInput | SustainabilityCertCreateOrConnectWithoutVendorInput[]
+    upsert?: SustainabilityCertUpsertWithWhereUniqueWithoutVendorInput | SustainabilityCertUpsertWithWhereUniqueWithoutVendorInput[]
+    createMany?: SustainabilityCertCreateManyVendorInputEnvelope
+    set?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+    disconnect?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+    delete?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+    connect?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
+    update?: SustainabilityCertUpdateWithWhereUniqueWithoutVendorInput | SustainabilityCertUpdateWithWhereUniqueWithoutVendorInput[]
+    updateMany?: SustainabilityCertUpdateManyWithWhereWithoutVendorInput | SustainabilityCertUpdateManyWithWhereWithoutVendorInput[]
+    deleteMany?: SustainabilityCertScalarWhereInput | SustainabilityCertScalarWhereInput[]
   }
 
   export type VendorProfileCreateNestedOneWithoutProduceInput = {
@@ -10022,6 +11435,20 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutPostsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPostsInput, UserUpdateWithoutPostsInput>, UserUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type VendorProfileCreateNestedOneWithoutCertificationsInput = {
+    create?: XOR<VendorProfileCreateWithoutCertificationsInput, VendorProfileUncheckedCreateWithoutCertificationsInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutCertificationsInput
+    connect?: VendorProfileWhereUniqueInput
+  }
+
+  export type VendorProfileUpdateOneRequiredWithoutCertificationsNestedInput = {
+    create?: XOR<VendorProfileCreateWithoutCertificationsInput, VendorProfileUncheckedCreateWithoutCertificationsInput>
+    connectOrCreate?: VendorProfileCreateOrConnectWithoutCertificationsInput
+    upsert?: VendorProfileUpsertWithoutCertificationsInput
+    connect?: VendorProfileWhereUniqueInput
+    update?: XOR<XOR<VendorProfileUpdateToOneWithWhereWithoutCertificationsInput, VendorProfileUpdateWithoutCertificationsInput>, VendorProfileUncheckedUpdateWithoutCertificationsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -10171,6 +11598,7 @@ export namespace Prisma {
     produce?: ProduceCreateNestedManyWithoutVendorInput
     orders?: OrderCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUncheckedCreateWithoutUserInput = {
@@ -10181,6 +11609,7 @@ export namespace Prisma {
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertUncheckedCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileCreateOrConnectWithoutUserInput = {
@@ -10252,6 +11681,7 @@ export namespace Prisma {
     produce?: ProduceUpdateManyWithoutVendorNestedInput
     orders?: OrderUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileUncheckedUpdateWithoutUserInput = {
@@ -10262,6 +11692,7 @@ export namespace Prisma {
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type OrderUpsertWithWhereUniqueWithoutUserInput = {
@@ -10425,6 +11856,27 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SustainabilityCertCreateWithoutVendorInput = {
+    certifyingAgency: string
+    certificationDate: Date | string
+  }
+
+  export type SustainabilityCertUncheckedCreateWithoutVendorInput = {
+    id?: number
+    certifyingAgency: string
+    certificationDate: Date | string
+  }
+
+  export type SustainabilityCertCreateOrConnectWithoutVendorInput = {
+    where: SustainabilityCertWhereUniqueInput
+    create: XOR<SustainabilityCertCreateWithoutVendorInput, SustainabilityCertUncheckedCreateWithoutVendorInput>
+  }
+
+  export type SustainabilityCertCreateManyVendorInputEnvelope = {
+    data: SustainabilityCertCreateManyVendorInput | SustainabilityCertCreateManyVendorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UserUpsertWithoutVendorProfileInput = {
     update: XOR<UserUpdateWithoutVendorProfileInput, UserUncheckedUpdateWithoutVendorProfileInput>
     create: XOR<UserCreateWithoutVendorProfileInput, UserUncheckedCreateWithoutVendorProfileInput>
@@ -10533,6 +11985,32 @@ export namespace Prisma {
     availability?: BoolFilter<"RentalSpace"> | boolean
   }
 
+  export type SustainabilityCertUpsertWithWhereUniqueWithoutVendorInput = {
+    where: SustainabilityCertWhereUniqueInput
+    update: XOR<SustainabilityCertUpdateWithoutVendorInput, SustainabilityCertUncheckedUpdateWithoutVendorInput>
+    create: XOR<SustainabilityCertCreateWithoutVendorInput, SustainabilityCertUncheckedCreateWithoutVendorInput>
+  }
+
+  export type SustainabilityCertUpdateWithWhereUniqueWithoutVendorInput = {
+    where: SustainabilityCertWhereUniqueInput
+    data: XOR<SustainabilityCertUpdateWithoutVendorInput, SustainabilityCertUncheckedUpdateWithoutVendorInput>
+  }
+
+  export type SustainabilityCertUpdateManyWithWhereWithoutVendorInput = {
+    where: SustainabilityCertScalarWhereInput
+    data: XOR<SustainabilityCertUpdateManyMutationInput, SustainabilityCertUncheckedUpdateManyWithoutVendorInput>
+  }
+
+  export type SustainabilityCertScalarWhereInput = {
+    AND?: SustainabilityCertScalarWhereInput | SustainabilityCertScalarWhereInput[]
+    OR?: SustainabilityCertScalarWhereInput[]
+    NOT?: SustainabilityCertScalarWhereInput | SustainabilityCertScalarWhereInput[]
+    id?: IntFilter<"SustainabilityCert"> | number
+    vendorId?: IntFilter<"SustainabilityCert"> | number
+    certifyingAgency?: StringFilter<"SustainabilityCert"> | string
+    certificationDate?: DateTimeFilter<"SustainabilityCert"> | Date | string
+  }
+
   export type VendorProfileCreateWithoutProduceInput = {
     farmName: string
     certificationStatus: string
@@ -10540,6 +12018,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutVendorProfileInput
     orders?: OrderCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUncheckedCreateWithoutProduceInput = {
@@ -10550,6 +12029,7 @@ export namespace Prisma {
     farmLocation: string
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertUncheckedCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileCreateOrConnectWithoutProduceInput = {
@@ -10575,6 +12055,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     orders?: OrderUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileUncheckedUpdateWithoutProduceInput = {
@@ -10585,6 +12066,7 @@ export namespace Prisma {
     farmLocation?: StringFieldUpdateOperationsInput | string
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -10622,6 +12104,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutVendorProfileInput
     produce?: ProduceCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUncheckedCreateWithoutOrdersInput = {
@@ -10632,6 +12115,7 @@ export namespace Prisma {
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertUncheckedCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileCreateOrConnectWithoutOrdersInput = {
@@ -10691,6 +12175,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     produce?: ProduceUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileUncheckedUpdateWithoutOrdersInput = {
@@ -10701,6 +12186,7 @@ export namespace Prisma {
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileCreateWithoutRentalSpacesInput = {
@@ -10710,6 +12196,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutVendorProfileInput
     produce?: ProduceCreateNestedManyWithoutVendorInput
     orders?: OrderCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileUncheckedCreateWithoutRentalSpacesInput = {
@@ -10720,6 +12207,7 @@ export namespace Prisma {
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
+    certifications?: SustainabilityCertUncheckedCreateNestedManyWithoutVendorInput
   }
 
   export type VendorProfileCreateOrConnectWithoutRentalSpacesInput = {
@@ -10745,6 +12233,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     produce?: ProduceUpdateManyWithoutVendorNestedInput
     orders?: OrderUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUpdateManyWithoutVendorNestedInput
   }
 
   export type VendorProfileUncheckedUpdateWithoutRentalSpacesInput = {
@@ -10755,6 +12244,7 @@ export namespace Prisma {
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
+    certifications?: SustainabilityCertUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type UserCreateWithoutPostsInput = {
@@ -10817,6 +12307,64 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendorProfile?: VendorProfileUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type VendorProfileCreateWithoutCertificationsInput = {
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    user: UserCreateNestedOneWithoutVendorProfileInput
+    produce?: ProduceCreateNestedManyWithoutVendorInput
+    orders?: OrderCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileUncheckedCreateWithoutCertificationsInput = {
+    id?: number
+    userId: number
+    farmName: string
+    certificationStatus: string
+    farmLocation: string
+    produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
+    orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
+    rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
+  }
+
+  export type VendorProfileCreateOrConnectWithoutCertificationsInput = {
+    where: VendorProfileWhereUniqueInput
+    create: XOR<VendorProfileCreateWithoutCertificationsInput, VendorProfileUncheckedCreateWithoutCertificationsInput>
+  }
+
+  export type VendorProfileUpsertWithoutCertificationsInput = {
+    update: XOR<VendorProfileUpdateWithoutCertificationsInput, VendorProfileUncheckedUpdateWithoutCertificationsInput>
+    create: XOR<VendorProfileCreateWithoutCertificationsInput, VendorProfileUncheckedCreateWithoutCertificationsInput>
+    where?: VendorProfileWhereInput
+  }
+
+  export type VendorProfileUpdateToOneWithWhereWithoutCertificationsInput = {
+    where?: VendorProfileWhereInput
+    data: XOR<VendorProfileUpdateWithoutCertificationsInput, VendorProfileUncheckedUpdateWithoutCertificationsInput>
+  }
+
+  export type VendorProfileUpdateWithoutCertificationsInput = {
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
+    produce?: ProduceUpdateManyWithoutVendorNestedInput
+    orders?: OrderUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUpdateManyWithoutVendorNestedInput
+  }
+
+  export type VendorProfileUncheckedUpdateWithoutCertificationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    farmName?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: StringFieldUpdateOperationsInput | string
+    farmLocation?: StringFieldUpdateOperationsInput | string
+    produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
+    rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
   }
 
   export type OrderCreateManyUserInput = {
@@ -10899,6 +12447,12 @@ export namespace Prisma {
     availability: boolean
   }
 
+  export type SustainabilityCertCreateManyVendorInput = {
+    id?: number
+    certifyingAgency: string
+    certificationDate: Date | string
+  }
+
   export type ProduceUpdateWithoutVendorInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -10972,6 +12526,23 @@ export namespace Prisma {
     size?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     availability?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type SustainabilityCertUpdateWithoutVendorInput = {
+    certifyingAgency?: StringFieldUpdateOperationsInput | string
+    certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SustainabilityCertUncheckedUpdateWithoutVendorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    certifyingAgency?: StringFieldUpdateOperationsInput | string
+    certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SustainabilityCertUncheckedUpdateManyWithoutVendorInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    certifyingAgency?: StringFieldUpdateOperationsInput | string
+    certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
