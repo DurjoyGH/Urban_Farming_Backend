@@ -9,5 +9,6 @@ router.use("/orders", require("../modules/order/order.routes"));
 router.use("/rentals", require("../modules/rental/rental.routes"));
 router.use("/posts", require("../modules/community/post.routes"));
 router.use("/certifications", require("../modules/certification/cert.routes"));
+router.use("/users", require("../modules/user/user.routes"));
 
 module.exports = router;
