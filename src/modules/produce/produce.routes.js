@@ -13,17 +13,24 @@ router.post(
 );
 
 router.patch(
+  "/:id",
+  authMiddleware,
+  roleMiddleware("VENDOR", "ADMIN"),
+  controller.updateProduct,
+);
+
+router.delete(
+  "/:id",
+  authMiddleware,
+  roleMiddleware("VENDOR", "ADMIN"),
+  controller.deleteProduct,
+);
+
+router.patch(
   "/approve/:productId",
   authMiddleware,
   roleMiddleware("ADMIN"),
   controller.approveProduct,
-);
-
-router.patch(
-  "/:id",
-  authMiddleware,
-  roleMiddleware("VENDOR", "ADMIN"),
-  controller.updateProduct
 );
 
 router.get("/", optionalAuth, controller.getProducts);

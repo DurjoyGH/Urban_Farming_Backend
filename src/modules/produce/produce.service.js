@@ -68,6 +68,36 @@ const updateProduct = async (userId, productId, payload) => {
   return updated;
 };
 
+const deleteProduct = async (userId, role, productId) => {
+  const product = await prisma.produce.findUnique({
+    where: { id: productId },
+  });
+
+  if (!product) {
+    const error = new Error("Product not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (role !== "ADMIN") {
+    const vendor = await prisma.vendorProfile.findUnique({
+      where: { userId },
+    });
+
+    if (!vendor || product.vendorId !== vendor.id) {
+      const error = new Error("Not authorized to delete this product");
+      error.statusCode = 403;
+      throw error;
+    }
+  }
+
+  await prisma.produce.delete({
+    where: { id: productId },
+  });
+
+  return { message: "Product deleted successfully" };
+};
+
 const approveProduct = async (productId) => {
   const product = await prisma.produce.findUnique({
     where: { id: productId },
@@ -144,8 +174,9 @@ const getMyProducts = async (userId) => {
 
 module.exports = {
   createProduct,
-  approveProduct,
   updateProduct,
+  deleteProduct,
+  approveProduct,
   getProducts,
   getMyProducts,
 };

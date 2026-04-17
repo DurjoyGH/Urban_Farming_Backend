@@ -72,6 +72,36 @@ const updateRental = async (userId, rentalId, payload) => {
   return updated;
 };
 
+const deleteRental = async (userId, role, rentalId) => {
+  const rental = await prisma.rentalSpace.findUnique({
+    where: { id: rentalId },
+  });
+
+  if (!rental) {
+    const error = new Error("Rental not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (role !== "ADMIN") {
+    const vendor = await prisma.vendorProfile.findUnique({
+      where: { userId },
+    });
+
+    if (!vendor || rental.vendorId !== vendor.id) {
+      const error = new Error("Not authorized to delete this rental");
+      error.statusCode = 403;
+      throw error;
+    }
+  }
+
+  await prisma.rentalSpace.delete({
+    where: { id: rentalId },
+  });
+
+  return { message: "Rental deleted successfully" };
+};
+
 const getRentals = async (query) => {
   const { location } = query;
 
@@ -92,5 +122,6 @@ const getRentals = async (query) => {
 module.exports = {
   createRental,
   updateRental,
+  deleteRental,
   getRentals,
 };

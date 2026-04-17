@@ -18,6 +18,13 @@ router.patch(
   controller.updateRental
 );
 
+router.delete(
+  "/:id",
+  authMiddleware,
+  roleMiddleware("VENDOR", "ADMIN"),
+  controller.deleteRental
+);
+
 router.get("/", controller.getRentals);
 
 

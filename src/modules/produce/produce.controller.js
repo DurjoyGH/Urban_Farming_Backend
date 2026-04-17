@@ -14,20 +14,6 @@ const createProduct = async (req, res, next) => {
   }
 };
 
-const approveProduct = async (req, res, next) => {
-  try {
-    const result = await service.approveProduct(parseInt(req.params.productId));
-
-    res.status(200).json({
-      success: true,
-      message: "Product approved",
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 const updateProduct = async (req, res, next) => {
   try {
     const result = await service.updateProduct(
@@ -39,6 +25,37 @@ const updateProduct = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: "Product updated (pending approval)",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteProduct = async (req, res, next) => {
+  try {
+    const result = await service.deleteProduct(
+      req.user.id,
+      req.user.role,
+      parseInt(req.params.id)
+    );
+
+    res.status(200).json({
+      success: true,
+      message: result.message,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const approveProduct = async (req, res, next) => {
+  try {
+    const result = await service.approveProduct(parseInt(req.params.productId));
+
+    res.status(200).json({
+      success: true,
+      message: "Product approved",
       data: result,
     });
   } catch (error) {
@@ -78,8 +95,9 @@ const getMyProducts = async (req, res, next) => {
 
 module.exports = {
   createProduct,
-  approveProduct,
   updateProduct,
+  deleteProduct,
+  approveProduct,
   getProducts,
   getMyProducts,
 };
