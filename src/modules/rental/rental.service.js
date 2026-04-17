@@ -119,9 +119,37 @@ const getRentals = async (query) => {
   return rentals;
 };
 
+const rentSpace = async (userId, rentalId) => {
+  const rental = await prisma.rentalSpace.findUnique({
+    where: { id: rentalId },
+  });
+
+  if (!rental) {
+    const error = new Error("Rental space not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (!rental.availability) {
+    const error = new Error("Rental space already rented");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const updated = await prisma.rentalSpace.update({
+    where: { id: rentalId },
+    data: {
+      availability: false,
+    },
+  });
+
+  return updated;
+};
+
 module.exports = {
   createRental,
   updateRental,
   deleteRental,
   getRentals,
+  rentSpace,
 };

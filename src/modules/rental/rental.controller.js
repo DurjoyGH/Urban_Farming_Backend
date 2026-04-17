@@ -63,9 +63,27 @@ const getRentals = async (req, res, next) => {
   }
 };
 
+const rentSpace = async (req, res, next) => {
+  try {
+    const result = await service.rentSpace(
+      req.user.id,
+      parseInt(req.params.id)
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Rental space booked successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createRental,
   updateRental,
   deleteRental,
   getRentals,
+  rentSpace
 };
