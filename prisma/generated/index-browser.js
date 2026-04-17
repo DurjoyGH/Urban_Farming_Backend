@@ -196,6 +196,12 @@ exports.Role = exports.$Enums.Role = {
   CUSTOMER: 'CUSTOMER'
 };
 
+exports.CertificationStatus = exports.$Enums.CertificationStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   VendorProfile: 'VendorProfile',

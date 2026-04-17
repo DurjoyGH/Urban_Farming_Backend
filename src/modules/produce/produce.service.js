@@ -11,6 +11,12 @@ const createProduct = async (userId, payload) => {
     throw error;
   }
 
+  if (vendor.certificationStatus !== "APPROVED") {
+    const error = new Error("Vendor not approved by admin");
+    error.statusCode = 403;
+    throw error;
+  }
+
   const product = await prisma.produce.create({
     data: {
       ...payload,

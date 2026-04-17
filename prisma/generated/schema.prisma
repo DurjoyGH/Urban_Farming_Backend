@@ -23,10 +23,10 @@ model User {
 }
 
 model VendorProfile {
-  id                  Int    @id @default(autoincrement())
-  userId              Int    @unique
+  id                  Int                 @id @default(autoincrement())
+  userId              Int                 @unique
   farmName            String
-  certificationStatus String
+  certificationStatus CertificationStatus
   farmLocation        String
 
   user User @relation(fields: [userId], references: [id])
@@ -38,13 +38,13 @@ model VendorProfile {
 }
 
 model Produce {
-  id                  Int    @id @default(autoincrement())
+  id                  Int                 @id @default(autoincrement())
   vendorId            Int
   name                String
   description         String
   price               Float
   category            String
-  certificationStatus String
+  certificationStatus CertificationStatus
   availableQuantity   Int
 
   vendor VendorProfile @relation(fields: [vendorId], references: [id])
@@ -95,4 +95,10 @@ enum Role {
   ADMIN
   VENDOR
   CUSTOMER
+}
+
+enum CertificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }

@@ -26,7 +26,7 @@ model VendorProfile {
   id                  Int    @id @default(autoincrement())
   userId              Int    @unique
   farmName            String
-  certificationStatus String
+  certificationStatus CertificationStatus
   farmLocation        String
 
   user    User     @relation(fields: [userId], references: [id])
@@ -44,7 +44,7 @@ model Produce {
   description         String
   price               Float
   category            String
-  certificationStatus String
+  certificationStatus CertificationStatus
   availableQuantity   Int
 
   vendor VendorProfile @relation(fields: [vendorId], references: [id])
@@ -95,4 +95,10 @@ enum Role {
   ADMIN
   VENDOR
   CUSTOMER
+}
+
+enum CertificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }

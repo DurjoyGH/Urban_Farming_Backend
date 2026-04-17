@@ -13,6 +13,12 @@ const createRental = async (userId, payload) => {
     throw error;
   }
 
+  if (vendor.certificationStatus !== "APPROVED") {
+    const error = new Error("Vendor not approved by admin");
+    error.statusCode = 403;
+    throw error;
+  }
+
   const rental = await prisma.rentalSpace.create({
     data: {
       vendorId: vendor.id,

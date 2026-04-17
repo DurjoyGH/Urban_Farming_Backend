@@ -61,11 +61,24 @@ export namespace $Enums {
 
 export type Role = (typeof Role)[keyof typeof Role]
 
+
+export const CertificationStatus: {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+export type CertificationStatus = (typeof CertificationStatus)[keyof typeof CertificationStatus]
+
 }
 
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
+
+export type CertificationStatus = $Enums.CertificationStatus
+
+export const CertificationStatus: typeof $Enums.CertificationStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -2739,7 +2752,7 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     farmName: string | null
-    certificationStatus: string | null
+    certificationStatus: $Enums.CertificationStatus | null
     farmLocation: string | null
   }
 
@@ -2747,7 +2760,7 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     farmName: string | null
-    certificationStatus: string | null
+    certificationStatus: $Enums.CertificationStatus | null
     farmLocation: string | null
   }
 
@@ -2886,7 +2899,7 @@ export namespace Prisma {
     id: number
     userId: number
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     _count: VendorProfileCountAggregateOutputType | null
     _avg: VendorProfileAvgAggregateOutputType | null
@@ -2978,7 +2991,7 @@ export namespace Prisma {
       id: number
       userId: number
       farmName: string
-      certificationStatus: string
+      certificationStatus: $Enums.CertificationStatus
       farmLocation: string
     }, ExtArgs["result"]["vendorProfile"]>
     composites: {}
@@ -3411,7 +3424,7 @@ export namespace Prisma {
     readonly id: FieldRef<"VendorProfile", 'Int'>
     readonly userId: FieldRef<"VendorProfile", 'Int'>
     readonly farmName: FieldRef<"VendorProfile", 'String'>
-    readonly certificationStatus: FieldRef<"VendorProfile", 'String'>
+    readonly certificationStatus: FieldRef<"VendorProfile", 'CertificationStatus'>
     readonly farmLocation: FieldRef<"VendorProfile", 'String'>
   }
     
@@ -3961,7 +3974,7 @@ export namespace Prisma {
     description: string | null
     price: number | null
     category: string | null
-    certificationStatus: string | null
+    certificationStatus: $Enums.CertificationStatus | null
     availableQuantity: number | null
   }
 
@@ -3972,7 +3985,7 @@ export namespace Prisma {
     description: string | null
     price: number | null
     category: string | null
-    certificationStatus: string | null
+    certificationStatus: $Enums.CertificationStatus | null
     availableQuantity: number | null
   }
 
@@ -4130,7 +4143,7 @@ export namespace Prisma {
     description: string
     price: number
     category: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     availableQuantity: number
     _count: ProduceCountAggregateOutputType | null
     _avg: ProduceAvgAggregateOutputType | null
@@ -4223,7 +4236,7 @@ export namespace Prisma {
       description: string
       price: number
       category: string
-      certificationStatus: string
+      certificationStatus: $Enums.CertificationStatus
       availableQuantity: number
     }, ExtArgs["result"]["produce"]>
     composites: {}
@@ -4655,7 +4668,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Produce", 'String'>
     readonly price: FieldRef<"Produce", 'Float'>
     readonly category: FieldRef<"Produce", 'String'>
-    readonly certificationStatus: FieldRef<"Produce", 'String'>
+    readonly certificationStatus: FieldRef<"Produce", 'CertificationStatus'>
     readonly availableQuantity: FieldRef<"Produce", 'Int'>
   }
     
@@ -9674,6 +9687,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'CertificationStatus'
+   */
+  export type EnumCertificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CertificationStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'CertificationStatus[]'
+   */
+  export type ListEnumCertificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CertificationStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -9777,7 +9804,7 @@ export namespace Prisma {
     id?: IntFilter<"VendorProfile"> | number
     userId?: IntFilter<"VendorProfile"> | number
     farmName?: StringFilter<"VendorProfile"> | string
-    certificationStatus?: StringFilter<"VendorProfile"> | string
+    certificationStatus?: EnumCertificationStatusFilter<"VendorProfile"> | $Enums.CertificationStatus
     farmLocation?: StringFilter<"VendorProfile"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     produce?: ProduceListRelationFilter
@@ -9806,7 +9833,7 @@ export namespace Prisma {
     OR?: VendorProfileWhereInput[]
     NOT?: VendorProfileWhereInput | VendorProfileWhereInput[]
     farmName?: StringFilter<"VendorProfile"> | string
-    certificationStatus?: StringFilter<"VendorProfile"> | string
+    certificationStatus?: EnumCertificationStatusFilter<"VendorProfile"> | $Enums.CertificationStatus
     farmLocation?: StringFilter<"VendorProfile"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     produce?: ProduceListRelationFilter
@@ -9835,7 +9862,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"VendorProfile"> | number
     userId?: IntWithAggregatesFilter<"VendorProfile"> | number
     farmName?: StringWithAggregatesFilter<"VendorProfile"> | string
-    certificationStatus?: StringWithAggregatesFilter<"VendorProfile"> | string
+    certificationStatus?: EnumCertificationStatusWithAggregatesFilter<"VendorProfile"> | $Enums.CertificationStatus
     farmLocation?: StringWithAggregatesFilter<"VendorProfile"> | string
   }
 
@@ -9849,7 +9876,7 @@ export namespace Prisma {
     description?: StringFilter<"Produce"> | string
     price?: FloatFilter<"Produce"> | number
     category?: StringFilter<"Produce"> | string
-    certificationStatus?: StringFilter<"Produce"> | string
+    certificationStatus?: EnumCertificationStatusFilter<"Produce"> | $Enums.CertificationStatus
     availableQuantity?: IntFilter<"Produce"> | number
     vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
   }
@@ -9876,7 +9903,7 @@ export namespace Prisma {
     description?: StringFilter<"Produce"> | string
     price?: FloatFilter<"Produce"> | number
     category?: StringFilter<"Produce"> | string
-    certificationStatus?: StringFilter<"Produce"> | string
+    certificationStatus?: EnumCertificationStatusFilter<"Produce"> | $Enums.CertificationStatus
     availableQuantity?: IntFilter<"Produce"> | number
     vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
   }, "id">
@@ -9907,7 +9934,7 @@ export namespace Prisma {
     description?: StringWithAggregatesFilter<"Produce"> | string
     price?: FloatWithAggregatesFilter<"Produce"> | number
     category?: StringWithAggregatesFilter<"Produce"> | string
-    certificationStatus?: StringWithAggregatesFilter<"Produce"> | string
+    certificationStatus?: EnumCertificationStatusWithAggregatesFilter<"Produce"> | $Enums.CertificationStatus
     availableQuantity?: IntWithAggregatesFilter<"Produce"> | number
   }
 
@@ -10223,7 +10250,7 @@ export namespace Prisma {
 
   export type VendorProfileCreateInput = {
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     user: UserCreateNestedOneWithoutVendorProfileInput
     produce?: ProduceCreateNestedManyWithoutVendorInput
@@ -10236,7 +10263,7 @@ export namespace Prisma {
     id?: number
     userId: number
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
@@ -10246,7 +10273,7 @@ export namespace Prisma {
 
   export type VendorProfileUpdateInput = {
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     produce?: ProduceUpdateManyWithoutVendorNestedInput
@@ -10259,7 +10286,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
@@ -10271,13 +10298,13 @@ export namespace Prisma {
     id?: number
     userId: number
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
   }
 
   export type VendorProfileUpdateManyMutationInput = {
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10285,7 +10312,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10294,7 +10321,7 @@ export namespace Prisma {
     description: string
     price: number
     category: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     availableQuantity: number
     vendor: VendorProfileCreateNestedOneWithoutProduceInput
   }
@@ -10306,7 +10333,7 @@ export namespace Prisma {
     description: string
     price: number
     category: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     availableQuantity: number
   }
 
@@ -10315,7 +10342,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     availableQuantity?: IntFieldUpdateOperationsInput | number
     vendor?: VendorProfileUpdateOneRequiredWithoutProduceNestedInput
   }
@@ -10327,7 +10354,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     availableQuantity?: IntFieldUpdateOperationsInput | number
   }
 
@@ -10338,7 +10365,7 @@ export namespace Prisma {
     description: string
     price: number
     category: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     availableQuantity: number
   }
 
@@ -10347,7 +10374,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     availableQuantity?: IntFieldUpdateOperationsInput | number
   }
 
@@ -10358,7 +10385,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     availableQuantity?: IntFieldUpdateOperationsInput | number
   }
 
@@ -10734,6 +10761,13 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type EnumCertificationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCertificationStatusFilter<$PrismaModel> | $Enums.CertificationStatus
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -10801,6 +10835,16 @@ export namespace Prisma {
   export type VendorProfileSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+  }
+
+  export type EnumCertificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCertificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.CertificationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCertificationStatusFilter<$PrismaModel>
+    _max?: NestedEnumCertificationStatusFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -11235,6 +11279,10 @@ export namespace Prisma {
     connect?: SustainabilityCertWhereUniqueInput | SustainabilityCertWhereUniqueInput[]
   }
 
+  export type EnumCertificationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.CertificationStatus
+  }
+
   export type UserUpdateOneRequiredWithoutVendorProfileNestedInput = {
     create?: XOR<UserCreateWithoutVendorProfileInput, UserUncheckedCreateWithoutVendorProfileInput>
     connectOrCreate?: UserCreateOrConnectWithoutVendorProfileInput
@@ -11562,6 +11610,23 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumCertificationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCertificationStatusFilter<$PrismaModel> | $Enums.CertificationStatus
+  }
+
+  export type NestedEnumCertificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCertificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.CertificationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCertificationStatusFilter<$PrismaModel>
+    _max?: NestedEnumCertificationStatusFilter<$PrismaModel>
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -11593,7 +11658,7 @@ export namespace Prisma {
 
   export type VendorProfileCreateWithoutUserInput = {
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     produce?: ProduceCreateNestedManyWithoutVendorInput
     orders?: OrderCreateNestedManyWithoutVendorInput
@@ -11604,7 +11669,7 @@ export namespace Prisma {
   export type VendorProfileUncheckedCreateWithoutUserInput = {
     id?: number
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
@@ -11676,7 +11741,7 @@ export namespace Prisma {
 
   export type VendorProfileUpdateWithoutUserInput = {
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUpdateManyWithoutVendorNestedInput
     orders?: OrderUpdateManyWithoutVendorNestedInput
@@ -11687,7 +11752,7 @@ export namespace Prisma {
   export type VendorProfileUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
@@ -11782,7 +11847,7 @@ export namespace Prisma {
     description: string
     price: number
     category: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     availableQuantity: number
   }
 
@@ -11792,7 +11857,7 @@ export namespace Prisma {
     description: string
     price: number
     category: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     availableQuantity: number
   }
 
@@ -11937,7 +12002,7 @@ export namespace Prisma {
     description?: StringFilter<"Produce"> | string
     price?: FloatFilter<"Produce"> | number
     category?: StringFilter<"Produce"> | string
-    certificationStatus?: StringFilter<"Produce"> | string
+    certificationStatus?: EnumCertificationStatusFilter<"Produce"> | $Enums.CertificationStatus
     availableQuantity?: IntFilter<"Produce"> | number
   }
 
@@ -12013,7 +12078,7 @@ export namespace Prisma {
 
   export type VendorProfileCreateWithoutProduceInput = {
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     user: UserCreateNestedOneWithoutVendorProfileInput
     orders?: OrderCreateNestedManyWithoutVendorInput
@@ -12025,7 +12090,7 @@ export namespace Prisma {
     id?: number
     userId: number
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
@@ -12050,7 +12115,7 @@ export namespace Prisma {
 
   export type VendorProfileUpdateWithoutProduceInput = {
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     orders?: OrderUpdateManyWithoutVendorNestedInput
@@ -12062,7 +12127,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
@@ -12099,7 +12164,7 @@ export namespace Prisma {
 
   export type VendorProfileCreateWithoutOrdersInput = {
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     user: UserCreateNestedOneWithoutVendorProfileInput
     produce?: ProduceCreateNestedManyWithoutVendorInput
@@ -12111,7 +12176,7 @@ export namespace Prisma {
     id?: number
     userId: number
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     rentalSpaces?: RentalSpaceUncheckedCreateNestedManyWithoutVendorInput
@@ -12170,7 +12235,7 @@ export namespace Prisma {
 
   export type VendorProfileUpdateWithoutOrdersInput = {
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     produce?: ProduceUpdateManyWithoutVendorNestedInput
@@ -12182,7 +12247,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
@@ -12191,7 +12256,7 @@ export namespace Prisma {
 
   export type VendorProfileCreateWithoutRentalSpacesInput = {
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     user: UserCreateNestedOneWithoutVendorProfileInput
     produce?: ProduceCreateNestedManyWithoutVendorInput
@@ -12203,7 +12268,7 @@ export namespace Prisma {
     id?: number
     userId: number
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
@@ -12228,7 +12293,7 @@ export namespace Prisma {
 
   export type VendorProfileUpdateWithoutRentalSpacesInput = {
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     produce?: ProduceUpdateManyWithoutVendorNestedInput
@@ -12240,7 +12305,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
@@ -12311,7 +12376,7 @@ export namespace Prisma {
 
   export type VendorProfileCreateWithoutCertificationsInput = {
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     user: UserCreateNestedOneWithoutVendorProfileInput
     produce?: ProduceCreateNestedManyWithoutVendorInput
@@ -12323,7 +12388,7 @@ export namespace Prisma {
     id?: number
     userId: number
     farmName: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     farmLocation: string
     produce?: ProduceUncheckedCreateNestedManyWithoutVendorInput
     orders?: OrderUncheckedCreateNestedManyWithoutVendorInput
@@ -12348,7 +12413,7 @@ export namespace Prisma {
 
   export type VendorProfileUpdateWithoutCertificationsInput = {
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutVendorProfileNestedInput
     produce?: ProduceUpdateManyWithoutVendorNestedInput
@@ -12360,7 +12425,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     farmName?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     farmLocation?: StringFieldUpdateOperationsInput | string
     produce?: ProduceUncheckedUpdateManyWithoutVendorNestedInput
     orders?: OrderUncheckedUpdateManyWithoutVendorNestedInput
@@ -12427,7 +12492,7 @@ export namespace Prisma {
     description: string
     price: number
     category: string
-    certificationStatus: string
+    certificationStatus: $Enums.CertificationStatus
     availableQuantity: number
   }
 
@@ -12458,7 +12523,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     availableQuantity?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12468,7 +12533,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     availableQuantity?: IntFieldUpdateOperationsInput | number
   }
 
@@ -12478,7 +12543,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     category?: StringFieldUpdateOperationsInput | string
-    certificationStatus?: StringFieldUpdateOperationsInput | string
+    certificationStatus?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
     availableQuantity?: IntFieldUpdateOperationsInput | number
   }
 

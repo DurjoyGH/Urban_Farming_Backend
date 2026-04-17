@@ -3,7 +3,7 @@ const { hashPassword, comparePassword } = require("../../utils/hash");
 const { generateToken } = require("../../utils/jwt");
 
 const registerUser = async (payload) => {
-  const { name, email, password, role } = payload;
+  const { name, email, password} = payload;
 
   const emailLower = email.toLowerCase();
 
@@ -24,7 +24,7 @@ const registerUser = async (payload) => {
       name,
       email: emailLower,
       password: hashedPassword,
-      role,
+      role: "CUSTOMER",
       status: "ACTIVE",
     },
   });
