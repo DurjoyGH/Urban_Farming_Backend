@@ -73,8 +73,38 @@ const getProducts = async (query, user) => {
   };
 };
 
+const getMyProducts = async (userId) => {
+  const vendor = await prisma.vendorProfile.findUnique({
+    where: { userId },
+  });
+
+  if (!vendor) {
+    const error = new Error("Vendor profile not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (vendor.certificationStatus !== "APPROVED") {
+    const error = new Error("Vendor not approved by admin");
+    error.statusCode = 403;
+    throw error;
+  }
+
+  const products = await prisma.produce.findMany({
+    where: {
+      vendorId: vendor.id,
+    },
+    orderBy: {
+      id: "desc",
+    },
+  });
+
+  return products;
+};
+
 module.exports = {
   createProduct,
   approveProduct,
   getProducts,
+  getMyProducts,
 };

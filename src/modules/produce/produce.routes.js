@@ -5,7 +5,6 @@ const authMiddleware = require("../../middleware/auth.middleware");
 const roleMiddleware = require("../../middleware/role.middleware");
 const optionalAuth = require("../../middleware/optionalAuth.middleware");
 
-
 router.post(
   "/",
   authMiddleware,
@@ -21,5 +20,12 @@ router.patch(
 );
 
 router.get("/", optionalAuth, controller.getProducts);
+
+router.get(
+  "/my",
+  authMiddleware,
+  roleMiddleware("VENDOR", "ADMIN"),
+  controller.getMyProducts,
+);
 
 module.exports = router;
