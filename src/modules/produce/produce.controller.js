@@ -28,6 +28,24 @@ const approveProduct = async (req, res, next) => {
   }
 };
 
+const updateProduct = async (req, res, next) => {
+  try {
+    const result = await service.updateProduct(
+      req.user.id,
+      parseInt(req.params.id),
+      req.body,
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Product updated (pending approval)",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getProducts = async (req, res, next) => {
   try {
     const user = req.user || null;
@@ -61,6 +79,7 @@ const getMyProducts = async (req, res, next) => {
 module.exports = {
   createProduct,
   approveProduct,
+  updateProduct,
   getProducts,
   getMyProducts,
 };

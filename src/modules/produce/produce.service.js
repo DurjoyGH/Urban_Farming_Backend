@@ -28,6 +28,46 @@ const createProduct = async (userId, payload) => {
   return product;
 };
 
+const updateProduct = async (userId, productId, payload) => {
+  const vendor = await prisma.vendorProfile.findUnique({
+    where: { userId },
+  });
+
+  if (!vendor) {
+    throw new Error("Vendor profile not found");
+  }
+
+  const product = await prisma.produce.findUnique({
+    where: { id: productId },
+  });
+
+  if (!product) {
+    const error = new Error("Product not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (product.vendorId !== vendor.id) {
+    const error = new Error("Not authorized to update this product");
+    error.statusCode = 403;
+    throw error;
+  }
+
+  const updated = await prisma.produce.update({
+    where: { id: productId },
+    data: {
+      name: payload.name,
+      description: payload.description,
+      price: payload.price,
+      category: payload.category,
+      availableQuantity: payload.availableQuantity,
+      certificationStatus: "PENDING",
+    },
+  });
+
+  return updated;
+};
+
 const approveProduct = async (productId) => {
   const product = await prisma.produce.findUnique({
     where: { id: productId },
@@ -105,6 +145,7 @@ const getMyProducts = async (userId) => {
 module.exports = {
   createProduct,
   approveProduct,
+  updateProduct,
   getProducts,
   getMyProducts,
 };

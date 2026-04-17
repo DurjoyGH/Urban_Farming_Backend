@@ -19,6 +19,13 @@ router.patch(
   controller.approveProduct,
 );
 
+router.patch(
+  "/:id",
+  authMiddleware,
+  roleMiddleware("VENDOR", "ADMIN"),
+  controller.updateProduct
+);
+
 router.get("/", optionalAuth, controller.getProducts);
 
 router.get(

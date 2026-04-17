@@ -11,13 +11,14 @@ router.post(
   controller.createRental,
 );
 
-router.get("/", controller.getRentals);
-
 router.patch(
   "/:id",
   authMiddleware,
   roleMiddleware("VENDOR", "ADMIN"),
-  controller.updateAvailability,
+  controller.updateRental
 );
+
+router.get("/", controller.getRentals);
+
 
 module.exports = router;

@@ -32,6 +32,46 @@ const createRental = async (userId, payload) => {
   return rental;
 };
 
+const updateRental = async (userId, rentalId, payload) => {
+  const vendor = await prisma.vendorProfile.findUnique({
+    where: { userId },
+  });
+
+  if (!vendor) {
+    const error = new Error("Vendor profile not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const rental = await prisma.rentalSpace.findUnique({
+    where: { id: rentalId },
+  });
+
+  if (!rental) {
+    const error = new Error("Rental not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (rental.vendorId !== vendor.id) {
+    const error = new Error("Not authorized to update this rental");
+    error.statusCode = 403;
+    throw error;
+  }
+
+  const updated = await prisma.rentalSpace.update({
+    where: { id: rentalId },
+    data: {
+      location: payload.location,
+      size: payload.size,
+      price: payload.price,
+      availability: payload.availability,
+    },
+  });
+
+  return updated;
+};
+
 const getRentals = async (query) => {
   const { location } = query;
 
@@ -49,17 +89,8 @@ const getRentals = async (query) => {
   return rentals;
 };
 
-const updateAvailability = async (rentalId, availability) => {
-  const rental = await prisma.rentalSpace.update({
-    where: { id: rentalId },
-    data: { availability },
-  });
-
-  return rental;
-};
-
 module.exports = {
   createRental,
+  updateRental,
   getRentals,
-  updateAvailability,
 };

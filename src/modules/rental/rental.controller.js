@@ -14,6 +14,24 @@ const createRental = async (req, res, next) => {
   }
 };
 
+const updateRental = async (req, res, next) => {
+  try {
+    const result = await service.updateRental(
+      req.user.id,
+      parseInt(req.params.id),
+      req.body,
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Rental updated",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const getRentals = async (req, res, next) => {
   try {
     const result = await service.getRentals(req.query);
@@ -28,25 +46,8 @@ const getRentals = async (req, res, next) => {
   }
 };
 
-const updateAvailability = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const { availability } = req.body;
-
-    const result = await service.updateAvailability(parseInt(id), availability);
-
-    res.status(200).json({
-      success: true,
-      message: "Availability updated",
-      data: result,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 module.exports = {
   createRental,
+  updateRental,
   getRentals,
-  updateAvailability,
 };
