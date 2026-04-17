@@ -4,7 +4,6 @@ const authController = require("./auth.controller");
 const { authLimiter } = require("../../middleware/rateLimit.middleware");
 const validate = require("./auth.validation");
 
-// Register
 router.post(
   "/register",
   authLimiter,
@@ -12,7 +11,6 @@ router.post(
   authController.register,
 );
 
-// Login
 router.post("/login", 
     authLimiter, 
     validate.login,

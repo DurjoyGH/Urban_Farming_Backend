@@ -181,6 +181,17 @@ exports.Prisma.SustainabilityCertScalarFieldEnum = {
   certificationDate: 'certificationDate'
 };
 
+exports.Prisma.PlantTrackingScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  rentalId: 'rentalId',
+  plantName: 'plantName',
+  growthStage: 'growthStage',
+  health: 'health',
+  notes: 'notes',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -189,6 +200,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN',
@@ -209,7 +225,8 @@ exports.Prisma.ModelName = {
   Order: 'Order',
   RentalSpace: 'RentalSpace',
   CommunityPost: 'CommunityPost',
-  SustainabilityCert: 'SustainabilityCert'
+  SustainabilityCert: 'SustainabilityCert',
+  PlantTracking: 'PlantTracking'
 };
 
 /**

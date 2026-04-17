@@ -48,6 +48,11 @@ export type CommunityPost = $Result.DefaultSelection<Prisma.$CommunityPostPayloa
  * 
  */
 export type SustainabilityCert = $Result.DefaultSelection<Prisma.$SustainabilityCertPayload>
+/**
+ * Model PlantTracking
+ * 
+ */
+export type PlantTracking = $Result.DefaultSelection<Prisma.$PlantTrackingPayload>
 
 /**
  * Enums
@@ -270,6 +275,16 @@ export class PrismaClient<
     * ```
     */
   get sustainabilityCert(): Prisma.SustainabilityCertDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.plantTracking`: Exposes CRUD operations for the **PlantTracking** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PlantTrackings
+    * const plantTrackings = await prisma.plantTracking.findMany()
+    * ```
+    */
+  get plantTracking(): Prisma.PlantTrackingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -710,7 +725,8 @@ export namespace Prisma {
     Order: 'Order',
     RentalSpace: 'RentalSpace',
     CommunityPost: 'CommunityPost',
-    SustainabilityCert: 'SustainabilityCert'
+    SustainabilityCert: 'SustainabilityCert',
+    PlantTracking: 'PlantTracking'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -726,7 +742,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "vendorProfile" | "produce" | "order" | "rentalSpace" | "communityPost" | "sustainabilityCert"
+      modelProps: "user" | "vendorProfile" | "produce" | "order" | "rentalSpace" | "communityPost" | "sustainabilityCert" | "plantTracking"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1248,6 +1264,80 @@ export namespace Prisma {
           }
         }
       }
+      PlantTracking: {
+        payload: Prisma.$PlantTrackingPayload<ExtArgs>
+        fields: Prisma.PlantTrackingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PlantTrackingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PlantTrackingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>
+          }
+          findFirst: {
+            args: Prisma.PlantTrackingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PlantTrackingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>
+          }
+          findMany: {
+            args: Prisma.PlantTrackingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>[]
+          }
+          create: {
+            args: Prisma.PlantTrackingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>
+          }
+          createMany: {
+            args: Prisma.PlantTrackingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PlantTrackingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>[]
+          }
+          delete: {
+            args: Prisma.PlantTrackingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>
+          }
+          update: {
+            args: Prisma.PlantTrackingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>
+          }
+          deleteMany: {
+            args: Prisma.PlantTrackingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PlantTrackingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PlantTrackingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>[]
+          }
+          upsert: {
+            args: Prisma.PlantTrackingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PlantTrackingPayload>
+          }
+          aggregate: {
+            args: Prisma.PlantTrackingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePlantTracking>
+          }
+          groupBy: {
+            args: Prisma.PlantTrackingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PlantTrackingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PlantTrackingCountArgs<ExtArgs>
+            result: $Utils.Optional<PlantTrackingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1363,6 +1453,7 @@ export namespace Prisma {
     rentalSpace?: RentalSpaceOmit
     communityPost?: CommunityPostOmit
     sustainabilityCert?: SustainabilityCertOmit
+    plantTracking?: PlantTrackingOmit
   }
 
   /* Types for Logging */
@@ -1445,11 +1536,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     orders: number
     posts: number
+    plantTrackings: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     orders?: boolean | UserCountOutputTypeCountOrdersArgs
     posts?: boolean | UserCountOutputTypeCountPostsArgs
+    plantTrackings?: boolean | UserCountOutputTypeCountPlantTrackingsArgs
   }
 
   // Custom InputTypes
@@ -1475,6 +1568,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommunityPostWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountPlantTrackingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlantTrackingWhereInput
   }
 
 
@@ -1533,6 +1633,37 @@ export namespace Prisma {
    */
   export type VendorProfileCountOutputTypeCountCertificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SustainabilityCertWhereInput
+  }
+
+
+  /**
+   * Count Type RentalSpaceCountOutputType
+   */
+
+  export type RentalSpaceCountOutputType = {
+    plantTrackings: number
+  }
+
+  export type RentalSpaceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    plantTrackings?: boolean | RentalSpaceCountOutputTypeCountPlantTrackingsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * RentalSpaceCountOutputType without action
+   */
+  export type RentalSpaceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RentalSpaceCountOutputType
+     */
+    select?: RentalSpaceCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * RentalSpaceCountOutputType without action
+   */
+  export type RentalSpaceCountOutputTypeCountPlantTrackingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlantTrackingWhereInput
   }
 
 
@@ -1757,6 +1888,7 @@ export namespace Prisma {
     vendorProfile?: boolean | User$vendorProfileArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
+    plantTrackings?: boolean | User$plantTrackingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1795,6 +1927,7 @@ export namespace Prisma {
     vendorProfile?: boolean | User$vendorProfileArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
+    plantTrackings?: boolean | User$plantTrackingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1806,6 +1939,7 @@ export namespace Prisma {
       vendorProfile: Prisma.$VendorProfilePayload<ExtArgs> | null
       orders: Prisma.$OrderPayload<ExtArgs>[]
       posts: Prisma.$CommunityPostPayload<ExtArgs>[]
+      plantTrackings: Prisma.$PlantTrackingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2212,6 +2346,7 @@ export namespace Prisma {
     vendorProfile<T extends User$vendorProfileArgs<ExtArgs> = {}>(args?: Subset<T, User$vendorProfileArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     orders<T extends User$ordersArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommunityPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    plantTrackings<T extends User$plantTrackingsArgs<ExtArgs> = {}>(args?: Subset<T, User$plantTrackingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2705,6 +2840,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommunityPostScalarFieldEnum | CommunityPostScalarFieldEnum[]
+  }
+
+  /**
+   * User.plantTrackings
+   */
+  export type User$plantTrackingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    where?: PlantTrackingWhereInput
+    orderBy?: PlantTrackingOrderByWithRelationInput | PlantTrackingOrderByWithRelationInput[]
+    cursor?: PlantTrackingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PlantTrackingScalarFieldEnum | PlantTrackingScalarFieldEnum[]
   }
 
   /**
@@ -6434,6 +6593,8 @@ export namespace Prisma {
     price?: boolean
     availability?: boolean
     vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+    plantTrackings?: boolean | RentalSpace$plantTrackingsArgs<ExtArgs>
+    _count?: boolean | RentalSpaceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["rentalSpace"]>
 
   export type RentalSpaceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6468,6 +6629,8 @@ export namespace Prisma {
   export type RentalSpaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vendorId" | "location" | "size" | "price" | "availability", ExtArgs["result"]["rentalSpace"]>
   export type RentalSpaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
+    plantTrackings?: boolean | RentalSpace$plantTrackingsArgs<ExtArgs>
+    _count?: boolean | RentalSpaceCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RentalSpaceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vendor?: boolean | VendorProfileDefaultArgs<ExtArgs>
@@ -6480,6 +6643,7 @@ export namespace Prisma {
     name: "RentalSpace"
     objects: {
       vendor: Prisma.$VendorProfilePayload<ExtArgs>
+      plantTrackings: Prisma.$PlantTrackingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6883,6 +7047,7 @@ export namespace Prisma {
   export interface Prisma__RentalSpaceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     vendor<T extends VendorProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VendorProfileDefaultArgs<ExtArgs>>): Prisma__VendorProfileClient<$Result.GetResult<Prisma.$VendorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    plantTrackings<T extends RentalSpace$plantTrackingsArgs<ExtArgs> = {}>(args?: Subset<T, RentalSpace$plantTrackingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7316,6 +7481,30 @@ export namespace Prisma {
      * Limit how many RentalSpaces to delete.
      */
     limit?: number
+  }
+
+  /**
+   * RentalSpace.plantTrackings
+   */
+  export type RentalSpace$plantTrackingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    where?: PlantTrackingWhereInput
+    orderBy?: PlantTrackingOrderByWithRelationInput | PlantTrackingOrderByWithRelationInput[]
+    cursor?: PlantTrackingWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PlantTrackingScalarFieldEnum | PlantTrackingScalarFieldEnum[]
   }
 
   /**
@@ -9514,6 +9703,1158 @@ export namespace Prisma {
 
 
   /**
+   * Model PlantTracking
+   */
+
+  export type AggregatePlantTracking = {
+    _count: PlantTrackingCountAggregateOutputType | null
+    _avg: PlantTrackingAvgAggregateOutputType | null
+    _sum: PlantTrackingSumAggregateOutputType | null
+    _min: PlantTrackingMinAggregateOutputType | null
+    _max: PlantTrackingMaxAggregateOutputType | null
+  }
+
+  export type PlantTrackingAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    rentalId: number | null
+  }
+
+  export type PlantTrackingSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    rentalId: number | null
+  }
+
+  export type PlantTrackingMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    rentalId: number | null
+    plantName: string | null
+    growthStage: string | null
+    health: string | null
+    notes: string | null
+    updatedAt: Date | null
+  }
+
+  export type PlantTrackingMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    rentalId: number | null
+    plantName: string | null
+    growthStage: string | null
+    health: string | null
+    notes: string | null
+    updatedAt: Date | null
+  }
+
+  export type PlantTrackingCountAggregateOutputType = {
+    id: number
+    userId: number
+    rentalId: number
+    plantName: number
+    growthStage: number
+    health: number
+    notes: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PlantTrackingAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    rentalId?: true
+  }
+
+  export type PlantTrackingSumAggregateInputType = {
+    id?: true
+    userId?: true
+    rentalId?: true
+  }
+
+  export type PlantTrackingMinAggregateInputType = {
+    id?: true
+    userId?: true
+    rentalId?: true
+    plantName?: true
+    growthStage?: true
+    health?: true
+    notes?: true
+    updatedAt?: true
+  }
+
+  export type PlantTrackingMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    rentalId?: true
+    plantName?: true
+    growthStage?: true
+    health?: true
+    notes?: true
+    updatedAt?: true
+  }
+
+  export type PlantTrackingCountAggregateInputType = {
+    id?: true
+    userId?: true
+    rentalId?: true
+    plantName?: true
+    growthStage?: true
+    health?: true
+    notes?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PlantTrackingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlantTracking to aggregate.
+     */
+    where?: PlantTrackingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantTrackings to fetch.
+     */
+    orderBy?: PlantTrackingOrderByWithRelationInput | PlantTrackingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PlantTrackingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantTrackings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantTrackings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PlantTrackings
+    **/
+    _count?: true | PlantTrackingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PlantTrackingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PlantTrackingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PlantTrackingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PlantTrackingMaxAggregateInputType
+  }
+
+  export type GetPlantTrackingAggregateType<T extends PlantTrackingAggregateArgs> = {
+        [P in keyof T & keyof AggregatePlantTracking]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePlantTracking[P]>
+      : GetScalarType<T[P], AggregatePlantTracking[P]>
+  }
+
+
+
+
+  export type PlantTrackingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PlantTrackingWhereInput
+    orderBy?: PlantTrackingOrderByWithAggregationInput | PlantTrackingOrderByWithAggregationInput[]
+    by: PlantTrackingScalarFieldEnum[] | PlantTrackingScalarFieldEnum
+    having?: PlantTrackingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PlantTrackingCountAggregateInputType | true
+    _avg?: PlantTrackingAvgAggregateInputType
+    _sum?: PlantTrackingSumAggregateInputType
+    _min?: PlantTrackingMinAggregateInputType
+    _max?: PlantTrackingMaxAggregateInputType
+  }
+
+  export type PlantTrackingGroupByOutputType = {
+    id: number
+    userId: number
+    rentalId: number
+    plantName: string
+    growthStage: string
+    health: string
+    notes: string | null
+    updatedAt: Date
+    _count: PlantTrackingCountAggregateOutputType | null
+    _avg: PlantTrackingAvgAggregateOutputType | null
+    _sum: PlantTrackingSumAggregateOutputType | null
+    _min: PlantTrackingMinAggregateOutputType | null
+    _max: PlantTrackingMaxAggregateOutputType | null
+  }
+
+  type GetPlantTrackingGroupByPayload<T extends PlantTrackingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PlantTrackingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PlantTrackingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PlantTrackingGroupByOutputType[P]>
+            : GetScalarType<T[P], PlantTrackingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PlantTrackingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    rentalId?: boolean
+    plantName?: boolean
+    growthStage?: boolean
+    health?: boolean
+    notes?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    rental?: boolean | RentalSpaceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plantTracking"]>
+
+  export type PlantTrackingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    rentalId?: boolean
+    plantName?: boolean
+    growthStage?: boolean
+    health?: boolean
+    notes?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    rental?: boolean | RentalSpaceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plantTracking"]>
+
+  export type PlantTrackingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    rentalId?: boolean
+    plantName?: boolean
+    growthStage?: boolean
+    health?: boolean
+    notes?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    rental?: boolean | RentalSpaceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["plantTracking"]>
+
+  export type PlantTrackingSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    rentalId?: boolean
+    plantName?: boolean
+    growthStage?: boolean
+    health?: boolean
+    notes?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PlantTrackingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "rentalId" | "plantName" | "growthStage" | "health" | "notes" | "updatedAt", ExtArgs["result"]["plantTracking"]>
+  export type PlantTrackingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    rental?: boolean | RentalSpaceDefaultArgs<ExtArgs>
+  }
+  export type PlantTrackingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    rental?: boolean | RentalSpaceDefaultArgs<ExtArgs>
+  }
+  export type PlantTrackingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    rental?: boolean | RentalSpaceDefaultArgs<ExtArgs>
+  }
+
+  export type $PlantTrackingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PlantTracking"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      rental: Prisma.$RentalSpacePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      rentalId: number
+      plantName: string
+      growthStage: string
+      health: string
+      notes: string | null
+      updatedAt: Date
+    }, ExtArgs["result"]["plantTracking"]>
+    composites: {}
+  }
+
+  type PlantTrackingGetPayload<S extends boolean | null | undefined | PlantTrackingDefaultArgs> = $Result.GetResult<Prisma.$PlantTrackingPayload, S>
+
+  type PlantTrackingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PlantTrackingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PlantTrackingCountAggregateInputType | true
+    }
+
+  export interface PlantTrackingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PlantTracking'], meta: { name: 'PlantTracking' } }
+    /**
+     * Find zero or one PlantTracking that matches the filter.
+     * @param {PlantTrackingFindUniqueArgs} args - Arguments to find a PlantTracking
+     * @example
+     * // Get one PlantTracking
+     * const plantTracking = await prisma.plantTracking.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PlantTrackingFindUniqueArgs>(args: SelectSubset<T, PlantTrackingFindUniqueArgs<ExtArgs>>): Prisma__PlantTrackingClient<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PlantTracking that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PlantTrackingFindUniqueOrThrowArgs} args - Arguments to find a PlantTracking
+     * @example
+     * // Get one PlantTracking
+     * const plantTracking = await prisma.plantTracking.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PlantTrackingFindUniqueOrThrowArgs>(args: SelectSubset<T, PlantTrackingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PlantTrackingClient<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlantTracking that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantTrackingFindFirstArgs} args - Arguments to find a PlantTracking
+     * @example
+     * // Get one PlantTracking
+     * const plantTracking = await prisma.plantTracking.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PlantTrackingFindFirstArgs>(args?: SelectSubset<T, PlantTrackingFindFirstArgs<ExtArgs>>): Prisma__PlantTrackingClient<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PlantTracking that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantTrackingFindFirstOrThrowArgs} args - Arguments to find a PlantTracking
+     * @example
+     * // Get one PlantTracking
+     * const plantTracking = await prisma.plantTracking.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PlantTrackingFindFirstOrThrowArgs>(args?: SelectSubset<T, PlantTrackingFindFirstOrThrowArgs<ExtArgs>>): Prisma__PlantTrackingClient<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PlantTrackings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantTrackingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PlantTrackings
+     * const plantTrackings = await prisma.plantTracking.findMany()
+     * 
+     * // Get first 10 PlantTrackings
+     * const plantTrackings = await prisma.plantTracking.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const plantTrackingWithIdOnly = await prisma.plantTracking.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PlantTrackingFindManyArgs>(args?: SelectSubset<T, PlantTrackingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PlantTracking.
+     * @param {PlantTrackingCreateArgs} args - Arguments to create a PlantTracking.
+     * @example
+     * // Create one PlantTracking
+     * const PlantTracking = await prisma.plantTracking.create({
+     *   data: {
+     *     // ... data to create a PlantTracking
+     *   }
+     * })
+     * 
+     */
+    create<T extends PlantTrackingCreateArgs>(args: SelectSubset<T, PlantTrackingCreateArgs<ExtArgs>>): Prisma__PlantTrackingClient<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PlantTrackings.
+     * @param {PlantTrackingCreateManyArgs} args - Arguments to create many PlantTrackings.
+     * @example
+     * // Create many PlantTrackings
+     * const plantTracking = await prisma.plantTracking.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PlantTrackingCreateManyArgs>(args?: SelectSubset<T, PlantTrackingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PlantTrackings and returns the data saved in the database.
+     * @param {PlantTrackingCreateManyAndReturnArgs} args - Arguments to create many PlantTrackings.
+     * @example
+     * // Create many PlantTrackings
+     * const plantTracking = await prisma.plantTracking.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PlantTrackings and only return the `id`
+     * const plantTrackingWithIdOnly = await prisma.plantTracking.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PlantTrackingCreateManyAndReturnArgs>(args?: SelectSubset<T, PlantTrackingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PlantTracking.
+     * @param {PlantTrackingDeleteArgs} args - Arguments to delete one PlantTracking.
+     * @example
+     * // Delete one PlantTracking
+     * const PlantTracking = await prisma.plantTracking.delete({
+     *   where: {
+     *     // ... filter to delete one PlantTracking
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PlantTrackingDeleteArgs>(args: SelectSubset<T, PlantTrackingDeleteArgs<ExtArgs>>): Prisma__PlantTrackingClient<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PlantTracking.
+     * @param {PlantTrackingUpdateArgs} args - Arguments to update one PlantTracking.
+     * @example
+     * // Update one PlantTracking
+     * const plantTracking = await prisma.plantTracking.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PlantTrackingUpdateArgs>(args: SelectSubset<T, PlantTrackingUpdateArgs<ExtArgs>>): Prisma__PlantTrackingClient<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PlantTrackings.
+     * @param {PlantTrackingDeleteManyArgs} args - Arguments to filter PlantTrackings to delete.
+     * @example
+     * // Delete a few PlantTrackings
+     * const { count } = await prisma.plantTracking.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PlantTrackingDeleteManyArgs>(args?: SelectSubset<T, PlantTrackingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlantTrackings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantTrackingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PlantTrackings
+     * const plantTracking = await prisma.plantTracking.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PlantTrackingUpdateManyArgs>(args: SelectSubset<T, PlantTrackingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PlantTrackings and returns the data updated in the database.
+     * @param {PlantTrackingUpdateManyAndReturnArgs} args - Arguments to update many PlantTrackings.
+     * @example
+     * // Update many PlantTrackings
+     * const plantTracking = await prisma.plantTracking.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PlantTrackings and only return the `id`
+     * const plantTrackingWithIdOnly = await prisma.plantTracking.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PlantTrackingUpdateManyAndReturnArgs>(args: SelectSubset<T, PlantTrackingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PlantTracking.
+     * @param {PlantTrackingUpsertArgs} args - Arguments to update or create a PlantTracking.
+     * @example
+     * // Update or create a PlantTracking
+     * const plantTracking = await prisma.plantTracking.upsert({
+     *   create: {
+     *     // ... data to create a PlantTracking
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PlantTracking we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PlantTrackingUpsertArgs>(args: SelectSubset<T, PlantTrackingUpsertArgs<ExtArgs>>): Prisma__PlantTrackingClient<$Result.GetResult<Prisma.$PlantTrackingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PlantTrackings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantTrackingCountArgs} args - Arguments to filter PlantTrackings to count.
+     * @example
+     * // Count the number of PlantTrackings
+     * const count = await prisma.plantTracking.count({
+     *   where: {
+     *     // ... the filter for the PlantTrackings we want to count
+     *   }
+     * })
+    **/
+    count<T extends PlantTrackingCountArgs>(
+      args?: Subset<T, PlantTrackingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PlantTrackingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PlantTracking.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantTrackingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PlantTrackingAggregateArgs>(args: Subset<T, PlantTrackingAggregateArgs>): Prisma.PrismaPromise<GetPlantTrackingAggregateType<T>>
+
+    /**
+     * Group by PlantTracking.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PlantTrackingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PlantTrackingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PlantTrackingGroupByArgs['orderBy'] }
+        : { orderBy?: PlantTrackingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PlantTrackingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPlantTrackingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PlantTracking model
+   */
+  readonly fields: PlantTrackingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PlantTracking.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PlantTrackingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    rental<T extends RentalSpaceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RentalSpaceDefaultArgs<ExtArgs>>): Prisma__RentalSpaceClient<$Result.GetResult<Prisma.$RentalSpacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PlantTracking model
+   */
+  interface PlantTrackingFieldRefs {
+    readonly id: FieldRef<"PlantTracking", 'Int'>
+    readonly userId: FieldRef<"PlantTracking", 'Int'>
+    readonly rentalId: FieldRef<"PlantTracking", 'Int'>
+    readonly plantName: FieldRef<"PlantTracking", 'String'>
+    readonly growthStage: FieldRef<"PlantTracking", 'String'>
+    readonly health: FieldRef<"PlantTracking", 'String'>
+    readonly notes: FieldRef<"PlantTracking", 'String'>
+    readonly updatedAt: FieldRef<"PlantTracking", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PlantTracking findUnique
+   */
+  export type PlantTrackingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantTracking to fetch.
+     */
+    where: PlantTrackingWhereUniqueInput
+  }
+
+  /**
+   * PlantTracking findUniqueOrThrow
+   */
+  export type PlantTrackingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantTracking to fetch.
+     */
+    where: PlantTrackingWhereUniqueInput
+  }
+
+  /**
+   * PlantTracking findFirst
+   */
+  export type PlantTrackingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantTracking to fetch.
+     */
+    where?: PlantTrackingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantTrackings to fetch.
+     */
+    orderBy?: PlantTrackingOrderByWithRelationInput | PlantTrackingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlantTrackings.
+     */
+    cursor?: PlantTrackingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantTrackings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantTrackings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlantTrackings.
+     */
+    distinct?: PlantTrackingScalarFieldEnum | PlantTrackingScalarFieldEnum[]
+  }
+
+  /**
+   * PlantTracking findFirstOrThrow
+   */
+  export type PlantTrackingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantTracking to fetch.
+     */
+    where?: PlantTrackingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantTrackings to fetch.
+     */
+    orderBy?: PlantTrackingOrderByWithRelationInput | PlantTrackingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PlantTrackings.
+     */
+    cursor?: PlantTrackingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantTrackings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantTrackings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlantTrackings.
+     */
+    distinct?: PlantTrackingScalarFieldEnum | PlantTrackingScalarFieldEnum[]
+  }
+
+  /**
+   * PlantTracking findMany
+   */
+  export type PlantTrackingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * Filter, which PlantTrackings to fetch.
+     */
+    where?: PlantTrackingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PlantTrackings to fetch.
+     */
+    orderBy?: PlantTrackingOrderByWithRelationInput | PlantTrackingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PlantTrackings.
+     */
+    cursor?: PlantTrackingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PlantTrackings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PlantTrackings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PlantTrackings.
+     */
+    distinct?: PlantTrackingScalarFieldEnum | PlantTrackingScalarFieldEnum[]
+  }
+
+  /**
+   * PlantTracking create
+   */
+  export type PlantTrackingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PlantTracking.
+     */
+    data: XOR<PlantTrackingCreateInput, PlantTrackingUncheckedCreateInput>
+  }
+
+  /**
+   * PlantTracking createMany
+   */
+  export type PlantTrackingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PlantTrackings.
+     */
+    data: PlantTrackingCreateManyInput | PlantTrackingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PlantTracking createManyAndReturn
+   */
+  export type PlantTrackingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * The data used to create many PlantTrackings.
+     */
+    data: PlantTrackingCreateManyInput | PlantTrackingCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PlantTracking update
+   */
+  export type PlantTrackingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PlantTracking.
+     */
+    data: XOR<PlantTrackingUpdateInput, PlantTrackingUncheckedUpdateInput>
+    /**
+     * Choose, which PlantTracking to update.
+     */
+    where: PlantTrackingWhereUniqueInput
+  }
+
+  /**
+   * PlantTracking updateMany
+   */
+  export type PlantTrackingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PlantTrackings.
+     */
+    data: XOR<PlantTrackingUpdateManyMutationInput, PlantTrackingUncheckedUpdateManyInput>
+    /**
+     * Filter which PlantTrackings to update
+     */
+    where?: PlantTrackingWhereInput
+    /**
+     * Limit how many PlantTrackings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlantTracking updateManyAndReturn
+   */
+  export type PlantTrackingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * The data used to update PlantTrackings.
+     */
+    data: XOR<PlantTrackingUpdateManyMutationInput, PlantTrackingUncheckedUpdateManyInput>
+    /**
+     * Filter which PlantTrackings to update
+     */
+    where?: PlantTrackingWhereInput
+    /**
+     * Limit how many PlantTrackings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PlantTracking upsert
+   */
+  export type PlantTrackingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PlantTracking to update in case it exists.
+     */
+    where: PlantTrackingWhereUniqueInput
+    /**
+     * In case the PlantTracking found by the `where` argument doesn't exist, create a new PlantTracking with this data.
+     */
+    create: XOR<PlantTrackingCreateInput, PlantTrackingUncheckedCreateInput>
+    /**
+     * In case the PlantTracking was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PlantTrackingUpdateInput, PlantTrackingUncheckedUpdateInput>
+  }
+
+  /**
+   * PlantTracking delete
+   */
+  export type PlantTrackingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+    /**
+     * Filter which PlantTracking to delete.
+     */
+    where: PlantTrackingWhereUniqueInput
+  }
+
+  /**
+   * PlantTracking deleteMany
+   */
+  export type PlantTrackingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PlantTrackings to delete
+     */
+    where?: PlantTrackingWhereInput
+    /**
+     * Limit how many PlantTrackings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PlantTracking without action
+   */
+  export type PlantTrackingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PlantTracking
+     */
+    select?: PlantTrackingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PlantTracking
+     */
+    omit?: PlantTrackingOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PlantTrackingInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9609,6 +10950,20 @@ export namespace Prisma {
   export type SustainabilityCertScalarFieldEnum = (typeof SustainabilityCertScalarFieldEnum)[keyof typeof SustainabilityCertScalarFieldEnum]
 
 
+  export const PlantTrackingScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    rentalId: 'rentalId',
+    plantName: 'plantName',
+    growthStage: 'growthStage',
+    health: 'health',
+    notes: 'notes',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PlantTrackingScalarFieldEnum = (typeof PlantTrackingScalarFieldEnum)[keyof typeof PlantTrackingScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -9623,6 +10978,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -9738,6 +11101,7 @@ export namespace Prisma {
     vendorProfile?: XOR<VendorProfileNullableScalarRelationFilter, VendorProfileWhereInput> | null
     orders?: OrderListRelationFilter
     posts?: CommunityPostListRelationFilter
+    plantTrackings?: PlantTrackingListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -9751,6 +11115,7 @@ export namespace Prisma {
     vendorProfile?: VendorProfileOrderByWithRelationInput
     orders?: OrderOrderByRelationAggregateInput
     posts?: CommunityPostOrderByRelationAggregateInput
+    plantTrackings?: PlantTrackingOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -9767,6 +11132,7 @@ export namespace Prisma {
     vendorProfile?: XOR<VendorProfileNullableScalarRelationFilter, VendorProfileWhereInput> | null
     orders?: OrderListRelationFilter
     posts?: CommunityPostListRelationFilter
+    plantTrackings?: PlantTrackingListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -10014,6 +11380,7 @@ export namespace Prisma {
     price?: FloatFilter<"RentalSpace"> | number
     availability?: BoolFilter<"RentalSpace"> | boolean
     vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
+    plantTrackings?: PlantTrackingListRelationFilter
   }
 
   export type RentalSpaceOrderByWithRelationInput = {
@@ -10024,6 +11391,7 @@ export namespace Prisma {
     price?: SortOrder
     availability?: SortOrder
     vendor?: VendorProfileOrderByWithRelationInput
+    plantTrackings?: PlantTrackingOrderByRelationAggregateInput
   }
 
   export type RentalSpaceWhereUniqueInput = Prisma.AtLeast<{
@@ -10037,6 +11405,7 @@ export namespace Prisma {
     price?: FloatFilter<"RentalSpace"> | number
     availability?: BoolFilter<"RentalSpace"> | boolean
     vendor?: XOR<VendorProfileScalarRelationFilter, VendorProfileWhereInput>
+    plantTrackings?: PlantTrackingListRelationFilter
   }, "id">
 
   export type RentalSpaceOrderByWithAggregationInput = {
@@ -10169,6 +11538,81 @@ export namespace Prisma {
     certificationDate?: DateTimeWithAggregatesFilter<"SustainabilityCert"> | Date | string
   }
 
+  export type PlantTrackingWhereInput = {
+    AND?: PlantTrackingWhereInput | PlantTrackingWhereInput[]
+    OR?: PlantTrackingWhereInput[]
+    NOT?: PlantTrackingWhereInput | PlantTrackingWhereInput[]
+    id?: IntFilter<"PlantTracking"> | number
+    userId?: IntFilter<"PlantTracking"> | number
+    rentalId?: IntFilter<"PlantTracking"> | number
+    plantName?: StringFilter<"PlantTracking"> | string
+    growthStage?: StringFilter<"PlantTracking"> | string
+    health?: StringFilter<"PlantTracking"> | string
+    notes?: StringNullableFilter<"PlantTracking"> | string | null
+    updatedAt?: DateTimeFilter<"PlantTracking"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    rental?: XOR<RentalSpaceScalarRelationFilter, RentalSpaceWhereInput>
+  }
+
+  export type PlantTrackingOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    rentalId?: SortOrder
+    plantName?: SortOrder
+    growthStage?: SortOrder
+    health?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    rental?: RentalSpaceOrderByWithRelationInput
+  }
+
+  export type PlantTrackingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PlantTrackingWhereInput | PlantTrackingWhereInput[]
+    OR?: PlantTrackingWhereInput[]
+    NOT?: PlantTrackingWhereInput | PlantTrackingWhereInput[]
+    userId?: IntFilter<"PlantTracking"> | number
+    rentalId?: IntFilter<"PlantTracking"> | number
+    plantName?: StringFilter<"PlantTracking"> | string
+    growthStage?: StringFilter<"PlantTracking"> | string
+    health?: StringFilter<"PlantTracking"> | string
+    notes?: StringNullableFilter<"PlantTracking"> | string | null
+    updatedAt?: DateTimeFilter<"PlantTracking"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    rental?: XOR<RentalSpaceScalarRelationFilter, RentalSpaceWhereInput>
+  }, "id">
+
+  export type PlantTrackingOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    rentalId?: SortOrder
+    plantName?: SortOrder
+    growthStage?: SortOrder
+    health?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    _count?: PlantTrackingCountOrderByAggregateInput
+    _avg?: PlantTrackingAvgOrderByAggregateInput
+    _max?: PlantTrackingMaxOrderByAggregateInput
+    _min?: PlantTrackingMinOrderByAggregateInput
+    _sum?: PlantTrackingSumOrderByAggregateInput
+  }
+
+  export type PlantTrackingScalarWhereWithAggregatesInput = {
+    AND?: PlantTrackingScalarWhereWithAggregatesInput | PlantTrackingScalarWhereWithAggregatesInput[]
+    OR?: PlantTrackingScalarWhereWithAggregatesInput[]
+    NOT?: PlantTrackingScalarWhereWithAggregatesInput | PlantTrackingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PlantTracking"> | number
+    userId?: IntWithAggregatesFilter<"PlantTracking"> | number
+    rentalId?: IntWithAggregatesFilter<"PlantTracking"> | number
+    plantName?: StringWithAggregatesFilter<"PlantTracking"> | string
+    growthStage?: StringWithAggregatesFilter<"PlantTracking"> | string
+    health?: StringWithAggregatesFilter<"PlantTracking"> | string
+    notes?: StringNullableWithAggregatesFilter<"PlantTracking"> | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"PlantTracking"> | Date | string
+  }
+
   export type UserCreateInput = {
     name: string
     email: string
@@ -10179,6 +11623,7 @@ export namespace Prisma {
     vendorProfile?: VendorProfileCreateNestedOneWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     posts?: CommunityPostCreateNestedManyWithoutUserInput
+    plantTrackings?: PlantTrackingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -10192,6 +11637,7 @@ export namespace Prisma {
     vendorProfile?: VendorProfileUncheckedCreateNestedOneWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     posts?: CommunityPostUncheckedCreateNestedManyWithoutUserInput
+    plantTrackings?: PlantTrackingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -10204,6 +11650,7 @@ export namespace Prisma {
     vendorProfile?: VendorProfileUpdateOneWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     posts?: CommunityPostUpdateManyWithoutUserNestedInput
+    plantTrackings?: PlantTrackingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -10217,6 +11664,7 @@ export namespace Prisma {
     vendorProfile?: VendorProfileUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     posts?: CommunityPostUncheckedUpdateManyWithoutUserNestedInput
+    plantTrackings?: PlantTrackingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -10453,6 +11901,7 @@ export namespace Prisma {
     price: number
     availability: boolean
     vendor: VendorProfileCreateNestedOneWithoutRentalSpacesInput
+    plantTrackings?: PlantTrackingCreateNestedManyWithoutRentalInput
   }
 
   export type RentalSpaceUncheckedCreateInput = {
@@ -10462,6 +11911,7 @@ export namespace Prisma {
     size: string
     price: number
     availability: boolean
+    plantTrackings?: PlantTrackingUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type RentalSpaceUpdateInput = {
@@ -10470,6 +11920,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     availability?: BoolFieldUpdateOperationsInput | boolean
     vendor?: VendorProfileUpdateOneRequiredWithoutRentalSpacesNestedInput
+    plantTrackings?: PlantTrackingUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalSpaceUncheckedUpdateInput = {
@@ -10479,6 +11930,7 @@ export namespace Prisma {
     size?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     availability?: BoolFieldUpdateOperationsInput | boolean
+    plantTrackings?: PlantTrackingUncheckedUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalSpaceCreateManyInput = {
@@ -10596,6 +12048,78 @@ export namespace Prisma {
     certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PlantTrackingCreateInput = {
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutPlantTrackingsInput
+    rental: RentalSpaceCreateNestedOneWithoutPlantTrackingsInput
+  }
+
+  export type PlantTrackingUncheckedCreateInput = {
+    id?: number
+    userId: number
+    rentalId: number
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type PlantTrackingUpdateInput = {
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutPlantTrackingsNestedInput
+    rental?: RentalSpaceUpdateOneRequiredWithoutPlantTrackingsNestedInput
+  }
+
+  export type PlantTrackingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    rentalId?: IntFieldUpdateOperationsInput | number
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantTrackingCreateManyInput = {
+    id?: number
+    userId: number
+    rentalId: number
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type PlantTrackingUpdateManyMutationInput = {
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantTrackingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    rentalId?: IntFieldUpdateOperationsInput | number
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -10657,11 +12181,21 @@ export namespace Prisma {
     none?: CommunityPostWhereInput
   }
 
+  export type PlantTrackingListRelationFilter = {
+    every?: PlantTrackingWhereInput
+    some?: PlantTrackingWhereInput
+    none?: PlantTrackingWhereInput
+  }
+
   export type OrderOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type CommunityPostOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PlantTrackingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -11081,6 +12615,94 @@ export namespace Prisma {
     vendorId?: SortOrder
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type RentalSpaceScalarRelationFilter = {
+    is?: RentalSpaceWhereInput
+    isNot?: RentalSpaceWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type PlantTrackingCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    rentalId?: SortOrder
+    plantName?: SortOrder
+    growthStage?: SortOrder
+    health?: SortOrder
+    notes?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantTrackingAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    rentalId?: SortOrder
+  }
+
+  export type PlantTrackingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    rentalId?: SortOrder
+    plantName?: SortOrder
+    growthStage?: SortOrder
+    health?: SortOrder
+    notes?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantTrackingMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    rentalId?: SortOrder
+    plantName?: SortOrder
+    growthStage?: SortOrder
+    health?: SortOrder
+    notes?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PlantTrackingSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    rentalId?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type VendorProfileCreateNestedOneWithoutUserInput = {
     create?: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: VendorProfileCreateOrConnectWithoutUserInput
@@ -11101,6 +12723,13 @@ export namespace Prisma {
     connect?: CommunityPostWhereUniqueInput | CommunityPostWhereUniqueInput[]
   }
 
+  export type PlantTrackingCreateNestedManyWithoutUserInput = {
+    create?: XOR<PlantTrackingCreateWithoutUserInput, PlantTrackingUncheckedCreateWithoutUserInput> | PlantTrackingCreateWithoutUserInput[] | PlantTrackingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PlantTrackingCreateOrConnectWithoutUserInput | PlantTrackingCreateOrConnectWithoutUserInput[]
+    createMany?: PlantTrackingCreateManyUserInputEnvelope
+    connect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+  }
+
   export type VendorProfileUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<VendorProfileCreateWithoutUserInput, VendorProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: VendorProfileCreateOrConnectWithoutUserInput
@@ -11119,6 +12748,13 @@ export namespace Prisma {
     connectOrCreate?: CommunityPostCreateOrConnectWithoutUserInput | CommunityPostCreateOrConnectWithoutUserInput[]
     createMany?: CommunityPostCreateManyUserInputEnvelope
     connect?: CommunityPostWhereUniqueInput | CommunityPostWhereUniqueInput[]
+  }
+
+  export type PlantTrackingUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<PlantTrackingCreateWithoutUserInput, PlantTrackingUncheckedCreateWithoutUserInput> | PlantTrackingCreateWithoutUserInput[] | PlantTrackingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PlantTrackingCreateOrConnectWithoutUserInput | PlantTrackingCreateOrConnectWithoutUserInput[]
+    createMany?: PlantTrackingCreateManyUserInputEnvelope
+    connect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -11171,6 +12807,20 @@ export namespace Prisma {
     deleteMany?: CommunityPostScalarWhereInput | CommunityPostScalarWhereInput[]
   }
 
+  export type PlantTrackingUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PlantTrackingCreateWithoutUserInput, PlantTrackingUncheckedCreateWithoutUserInput> | PlantTrackingCreateWithoutUserInput[] | PlantTrackingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PlantTrackingCreateOrConnectWithoutUserInput | PlantTrackingCreateOrConnectWithoutUserInput[]
+    upsert?: PlantTrackingUpsertWithWhereUniqueWithoutUserInput | PlantTrackingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PlantTrackingCreateManyUserInputEnvelope
+    set?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    disconnect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    delete?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    connect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    update?: PlantTrackingUpdateWithWhereUniqueWithoutUserInput | PlantTrackingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PlantTrackingUpdateManyWithWhereWithoutUserInput | PlantTrackingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PlantTrackingScalarWhereInput | PlantTrackingScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -11215,6 +12865,20 @@ export namespace Prisma {
     update?: CommunityPostUpdateWithWhereUniqueWithoutUserInput | CommunityPostUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: CommunityPostUpdateManyWithWhereWithoutUserInput | CommunityPostUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: CommunityPostScalarWhereInput | CommunityPostScalarWhereInput[]
+  }
+
+  export type PlantTrackingUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<PlantTrackingCreateWithoutUserInput, PlantTrackingUncheckedCreateWithoutUserInput> | PlantTrackingCreateWithoutUserInput[] | PlantTrackingUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: PlantTrackingCreateOrConnectWithoutUserInput | PlantTrackingCreateOrConnectWithoutUserInput[]
+    upsert?: PlantTrackingUpsertWithWhereUniqueWithoutUserInput | PlantTrackingUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: PlantTrackingCreateManyUserInputEnvelope
+    set?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    disconnect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    delete?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    connect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    update?: PlantTrackingUpdateWithWhereUniqueWithoutUserInput | PlantTrackingUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: PlantTrackingUpdateManyWithWhereWithoutUserInput | PlantTrackingUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: PlantTrackingScalarWhereInput | PlantTrackingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutVendorProfileInput = {
@@ -11459,6 +13123,20 @@ export namespace Prisma {
     connect?: VendorProfileWhereUniqueInput
   }
 
+  export type PlantTrackingCreateNestedManyWithoutRentalInput = {
+    create?: XOR<PlantTrackingCreateWithoutRentalInput, PlantTrackingUncheckedCreateWithoutRentalInput> | PlantTrackingCreateWithoutRentalInput[] | PlantTrackingUncheckedCreateWithoutRentalInput[]
+    connectOrCreate?: PlantTrackingCreateOrConnectWithoutRentalInput | PlantTrackingCreateOrConnectWithoutRentalInput[]
+    createMany?: PlantTrackingCreateManyRentalInputEnvelope
+    connect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+  }
+
+  export type PlantTrackingUncheckedCreateNestedManyWithoutRentalInput = {
+    create?: XOR<PlantTrackingCreateWithoutRentalInput, PlantTrackingUncheckedCreateWithoutRentalInput> | PlantTrackingCreateWithoutRentalInput[] | PlantTrackingUncheckedCreateWithoutRentalInput[]
+    connectOrCreate?: PlantTrackingCreateOrConnectWithoutRentalInput | PlantTrackingCreateOrConnectWithoutRentalInput[]
+    createMany?: PlantTrackingCreateManyRentalInputEnvelope
+    connect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
   }
@@ -11469,6 +13147,34 @@ export namespace Prisma {
     upsert?: VendorProfileUpsertWithoutRentalSpacesInput
     connect?: VendorProfileWhereUniqueInput
     update?: XOR<XOR<VendorProfileUpdateToOneWithWhereWithoutRentalSpacesInput, VendorProfileUpdateWithoutRentalSpacesInput>, VendorProfileUncheckedUpdateWithoutRentalSpacesInput>
+  }
+
+  export type PlantTrackingUpdateManyWithoutRentalNestedInput = {
+    create?: XOR<PlantTrackingCreateWithoutRentalInput, PlantTrackingUncheckedCreateWithoutRentalInput> | PlantTrackingCreateWithoutRentalInput[] | PlantTrackingUncheckedCreateWithoutRentalInput[]
+    connectOrCreate?: PlantTrackingCreateOrConnectWithoutRentalInput | PlantTrackingCreateOrConnectWithoutRentalInput[]
+    upsert?: PlantTrackingUpsertWithWhereUniqueWithoutRentalInput | PlantTrackingUpsertWithWhereUniqueWithoutRentalInput[]
+    createMany?: PlantTrackingCreateManyRentalInputEnvelope
+    set?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    disconnect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    delete?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    connect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    update?: PlantTrackingUpdateWithWhereUniqueWithoutRentalInput | PlantTrackingUpdateWithWhereUniqueWithoutRentalInput[]
+    updateMany?: PlantTrackingUpdateManyWithWhereWithoutRentalInput | PlantTrackingUpdateManyWithWhereWithoutRentalInput[]
+    deleteMany?: PlantTrackingScalarWhereInput | PlantTrackingScalarWhereInput[]
+  }
+
+  export type PlantTrackingUncheckedUpdateManyWithoutRentalNestedInput = {
+    create?: XOR<PlantTrackingCreateWithoutRentalInput, PlantTrackingUncheckedCreateWithoutRentalInput> | PlantTrackingCreateWithoutRentalInput[] | PlantTrackingUncheckedCreateWithoutRentalInput[]
+    connectOrCreate?: PlantTrackingCreateOrConnectWithoutRentalInput | PlantTrackingCreateOrConnectWithoutRentalInput[]
+    upsert?: PlantTrackingUpsertWithWhereUniqueWithoutRentalInput | PlantTrackingUpsertWithWhereUniqueWithoutRentalInput[]
+    createMany?: PlantTrackingCreateManyRentalInputEnvelope
+    set?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    disconnect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    delete?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    connect?: PlantTrackingWhereUniqueInput | PlantTrackingWhereUniqueInput[]
+    update?: PlantTrackingUpdateWithWhereUniqueWithoutRentalInput | PlantTrackingUpdateWithWhereUniqueWithoutRentalInput[]
+    updateMany?: PlantTrackingUpdateManyWithWhereWithoutRentalInput | PlantTrackingUpdateManyWithWhereWithoutRentalInput[]
+    deleteMany?: PlantTrackingScalarWhereInput | PlantTrackingScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPostsInput = {
@@ -11497,6 +13203,38 @@ export namespace Prisma {
     upsert?: VendorProfileUpsertWithoutCertificationsInput
     connect?: VendorProfileWhereUniqueInput
     update?: XOR<XOR<VendorProfileUpdateToOneWithWhereWithoutCertificationsInput, VendorProfileUpdateWithoutCertificationsInput>, VendorProfileUncheckedUpdateWithoutCertificationsInput>
+  }
+
+  export type UserCreateNestedOneWithoutPlantTrackingsInput = {
+    create?: XOR<UserCreateWithoutPlantTrackingsInput, UserUncheckedCreateWithoutPlantTrackingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlantTrackingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type RentalSpaceCreateNestedOneWithoutPlantTrackingsInput = {
+    create?: XOR<RentalSpaceCreateWithoutPlantTrackingsInput, RentalSpaceUncheckedCreateWithoutPlantTrackingsInput>
+    connectOrCreate?: RentalSpaceCreateOrConnectWithoutPlantTrackingsInput
+    connect?: RentalSpaceWhereUniqueInput
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type UserUpdateOneRequiredWithoutPlantTrackingsNestedInput = {
+    create?: XOR<UserCreateWithoutPlantTrackingsInput, UserUncheckedCreateWithoutPlantTrackingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutPlantTrackingsInput
+    upsert?: UserUpsertWithoutPlantTrackingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutPlantTrackingsInput, UserUpdateWithoutPlantTrackingsInput>, UserUncheckedUpdateWithoutPlantTrackingsInput>
+  }
+
+  export type RentalSpaceUpdateOneRequiredWithoutPlantTrackingsNestedInput = {
+    create?: XOR<RentalSpaceCreateWithoutPlantTrackingsInput, RentalSpaceUncheckedCreateWithoutPlantTrackingsInput>
+    connectOrCreate?: RentalSpaceCreateOrConnectWithoutPlantTrackingsInput
+    upsert?: RentalSpaceUpsertWithoutPlantTrackingsInput
+    connect?: RentalSpaceWhereUniqueInput
+    update?: XOR<XOR<RentalSpaceUpdateToOneWithWhereWithoutPlantTrackingsInput, RentalSpaceUpdateWithoutPlantTrackingsInput>, RentalSpaceUncheckedUpdateWithoutPlantTrackingsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -11656,6 +13394,48 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type VendorProfileCreateWithoutUserInput = {
     farmName: string
     certificationStatus: $Enums.CertificationStatus
@@ -11725,6 +13505,35 @@ export namespace Prisma {
 
   export type CommunityPostCreateManyUserInputEnvelope = {
     data: CommunityPostCreateManyUserInput | CommunityPostCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PlantTrackingCreateWithoutUserInput = {
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
+    rental: RentalSpaceCreateNestedOneWithoutPlantTrackingsInput
+  }
+
+  export type PlantTrackingUncheckedCreateWithoutUserInput = {
+    id?: number
+    rentalId: number
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type PlantTrackingCreateOrConnectWithoutUserInput = {
+    where: PlantTrackingWhereUniqueInput
+    create: XOR<PlantTrackingCreateWithoutUserInput, PlantTrackingUncheckedCreateWithoutUserInput>
+  }
+
+  export type PlantTrackingCreateManyUserInputEnvelope = {
+    data: PlantTrackingCreateManyUserInput | PlantTrackingCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -11814,6 +13623,36 @@ export namespace Prisma {
     postDate?: DateTimeFilter<"CommunityPost"> | Date | string
   }
 
+  export type PlantTrackingUpsertWithWhereUniqueWithoutUserInput = {
+    where: PlantTrackingWhereUniqueInput
+    update: XOR<PlantTrackingUpdateWithoutUserInput, PlantTrackingUncheckedUpdateWithoutUserInput>
+    create: XOR<PlantTrackingCreateWithoutUserInput, PlantTrackingUncheckedCreateWithoutUserInput>
+  }
+
+  export type PlantTrackingUpdateWithWhereUniqueWithoutUserInput = {
+    where: PlantTrackingWhereUniqueInput
+    data: XOR<PlantTrackingUpdateWithoutUserInput, PlantTrackingUncheckedUpdateWithoutUserInput>
+  }
+
+  export type PlantTrackingUpdateManyWithWhereWithoutUserInput = {
+    where: PlantTrackingScalarWhereInput
+    data: XOR<PlantTrackingUpdateManyMutationInput, PlantTrackingUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type PlantTrackingScalarWhereInput = {
+    AND?: PlantTrackingScalarWhereInput | PlantTrackingScalarWhereInput[]
+    OR?: PlantTrackingScalarWhereInput[]
+    NOT?: PlantTrackingScalarWhereInput | PlantTrackingScalarWhereInput[]
+    id?: IntFilter<"PlantTracking"> | number
+    userId?: IntFilter<"PlantTracking"> | number
+    rentalId?: IntFilter<"PlantTracking"> | number
+    plantName?: StringFilter<"PlantTracking"> | string
+    growthStage?: StringFilter<"PlantTracking"> | string
+    health?: StringFilter<"PlantTracking"> | string
+    notes?: StringNullableFilter<"PlantTracking"> | string | null
+    updatedAt?: DateTimeFilter<"PlantTracking"> | Date | string
+  }
+
   export type UserCreateWithoutVendorProfileInput = {
     name: string
     email: string
@@ -11823,6 +13662,7 @@ export namespace Prisma {
     createdAt?: Date | string
     orders?: OrderCreateNestedManyWithoutUserInput
     posts?: CommunityPostCreateNestedManyWithoutUserInput
+    plantTrackings?: PlantTrackingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutVendorProfileInput = {
@@ -11835,6 +13675,7 @@ export namespace Prisma {
     createdAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     posts?: CommunityPostUncheckedCreateNestedManyWithoutUserInput
+    plantTrackings?: PlantTrackingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutVendorProfileInput = {
@@ -11901,6 +13742,7 @@ export namespace Prisma {
     size: string
     price: number
     availability: boolean
+    plantTrackings?: PlantTrackingCreateNestedManyWithoutRentalInput
   }
 
   export type RentalSpaceUncheckedCreateWithoutVendorInput = {
@@ -11909,6 +13751,7 @@ export namespace Prisma {
     size: string
     price: number
     availability: boolean
+    plantTrackings?: PlantTrackingUncheckedCreateNestedManyWithoutRentalInput
   }
 
   export type RentalSpaceCreateOrConnectWithoutVendorInput = {
@@ -11962,6 +13805,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutUserNestedInput
     posts?: CommunityPostUpdateManyWithoutUserNestedInput
+    plantTrackings?: PlantTrackingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutVendorProfileInput = {
@@ -11974,6 +13818,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     posts?: CommunityPostUncheckedUpdateManyWithoutUserNestedInput
+    plantTrackings?: PlantTrackingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProduceUpsertWithWhereUniqueWithoutVendorInput = {
@@ -12143,6 +13988,7 @@ export namespace Prisma {
     createdAt?: Date | string
     vendorProfile?: VendorProfileCreateNestedOneWithoutUserInput
     posts?: CommunityPostCreateNestedManyWithoutUserInput
+    plantTrackings?: PlantTrackingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -12155,6 +14001,7 @@ export namespace Prisma {
     createdAt?: Date | string
     vendorProfile?: VendorProfileUncheckedCreateNestedOneWithoutUserInput
     posts?: CommunityPostUncheckedCreateNestedManyWithoutUserInput
+    plantTrackings?: PlantTrackingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -12208,6 +14055,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendorProfile?: VendorProfileUpdateOneWithoutUserNestedInput
     posts?: CommunityPostUpdateManyWithoutUserNestedInput
+    plantTrackings?: PlantTrackingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -12220,6 +14068,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendorProfile?: VendorProfileUncheckedUpdateOneWithoutUserNestedInput
     posts?: CommunityPostUncheckedUpdateManyWithoutUserNestedInput
+    plantTrackings?: PlantTrackingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type VendorProfileUpsertWithoutOrdersInput = {
@@ -12280,6 +14129,35 @@ export namespace Prisma {
     create: XOR<VendorProfileCreateWithoutRentalSpacesInput, VendorProfileUncheckedCreateWithoutRentalSpacesInput>
   }
 
+  export type PlantTrackingCreateWithoutRentalInput = {
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutPlantTrackingsInput
+  }
+
+  export type PlantTrackingUncheckedCreateWithoutRentalInput = {
+    id?: number
+    userId: number
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type PlantTrackingCreateOrConnectWithoutRentalInput = {
+    where: PlantTrackingWhereUniqueInput
+    create: XOR<PlantTrackingCreateWithoutRentalInput, PlantTrackingUncheckedCreateWithoutRentalInput>
+  }
+
+  export type PlantTrackingCreateManyRentalInputEnvelope = {
+    data: PlantTrackingCreateManyRentalInput | PlantTrackingCreateManyRentalInput[]
+    skipDuplicates?: boolean
+  }
+
   export type VendorProfileUpsertWithoutRentalSpacesInput = {
     update: XOR<VendorProfileUpdateWithoutRentalSpacesInput, VendorProfileUncheckedUpdateWithoutRentalSpacesInput>
     create: XOR<VendorProfileCreateWithoutRentalSpacesInput, VendorProfileUncheckedCreateWithoutRentalSpacesInput>
@@ -12312,6 +14190,22 @@ export namespace Prisma {
     certifications?: SustainabilityCertUncheckedUpdateManyWithoutVendorNestedInput
   }
 
+  export type PlantTrackingUpsertWithWhereUniqueWithoutRentalInput = {
+    where: PlantTrackingWhereUniqueInput
+    update: XOR<PlantTrackingUpdateWithoutRentalInput, PlantTrackingUncheckedUpdateWithoutRentalInput>
+    create: XOR<PlantTrackingCreateWithoutRentalInput, PlantTrackingUncheckedCreateWithoutRentalInput>
+  }
+
+  export type PlantTrackingUpdateWithWhereUniqueWithoutRentalInput = {
+    where: PlantTrackingWhereUniqueInput
+    data: XOR<PlantTrackingUpdateWithoutRentalInput, PlantTrackingUncheckedUpdateWithoutRentalInput>
+  }
+
+  export type PlantTrackingUpdateManyWithWhereWithoutRentalInput = {
+    where: PlantTrackingScalarWhereInput
+    data: XOR<PlantTrackingUpdateManyMutationInput, PlantTrackingUncheckedUpdateManyWithoutRentalInput>
+  }
+
   export type UserCreateWithoutPostsInput = {
     name: string
     email: string
@@ -12321,6 +14215,7 @@ export namespace Prisma {
     createdAt?: Date | string
     vendorProfile?: VendorProfileCreateNestedOneWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
+    plantTrackings?: PlantTrackingCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPostsInput = {
@@ -12333,6 +14228,7 @@ export namespace Prisma {
     createdAt?: Date | string
     vendorProfile?: VendorProfileUncheckedCreateNestedOneWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    plantTrackings?: PlantTrackingUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPostsInput = {
@@ -12360,6 +14256,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendorProfile?: VendorProfileUpdateOneWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
+    plantTrackings?: PlantTrackingUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPostsInput = {
@@ -12372,6 +14269,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vendorProfile?: VendorProfileUncheckedUpdateOneWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    plantTrackings?: PlantTrackingUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type VendorProfileCreateWithoutCertificationsInput = {
@@ -12432,6 +14330,122 @@ export namespace Prisma {
     rentalSpaces?: RentalSpaceUncheckedUpdateManyWithoutVendorNestedInput
   }
 
+  export type UserCreateWithoutPlantTrackingsInput = {
+    name: string
+    email: string
+    password: string
+    role: $Enums.Role
+    status: string
+    createdAt?: Date | string
+    vendorProfile?: VendorProfileCreateNestedOneWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    posts?: CommunityPostCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutPlantTrackingsInput = {
+    id?: number
+    name: string
+    email: string
+    password: string
+    role: $Enums.Role
+    status: string
+    createdAt?: Date | string
+    vendorProfile?: VendorProfileUncheckedCreateNestedOneWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    posts?: CommunityPostUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutPlantTrackingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutPlantTrackingsInput, UserUncheckedCreateWithoutPlantTrackingsInput>
+  }
+
+  export type RentalSpaceCreateWithoutPlantTrackingsInput = {
+    location: string
+    size: string
+    price: number
+    availability: boolean
+    vendor: VendorProfileCreateNestedOneWithoutRentalSpacesInput
+  }
+
+  export type RentalSpaceUncheckedCreateWithoutPlantTrackingsInput = {
+    id?: number
+    vendorId: number
+    location: string
+    size: string
+    price: number
+    availability: boolean
+  }
+
+  export type RentalSpaceCreateOrConnectWithoutPlantTrackingsInput = {
+    where: RentalSpaceWhereUniqueInput
+    create: XOR<RentalSpaceCreateWithoutPlantTrackingsInput, RentalSpaceUncheckedCreateWithoutPlantTrackingsInput>
+  }
+
+  export type UserUpsertWithoutPlantTrackingsInput = {
+    update: XOR<UserUpdateWithoutPlantTrackingsInput, UserUncheckedUpdateWithoutPlantTrackingsInput>
+    create: XOR<UserCreateWithoutPlantTrackingsInput, UserUncheckedCreateWithoutPlantTrackingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutPlantTrackingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutPlantTrackingsInput, UserUncheckedUpdateWithoutPlantTrackingsInput>
+  }
+
+  export type UserUpdateWithoutPlantTrackingsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendorProfile?: VendorProfileUpdateOneWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    posts?: CommunityPostUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutPlantTrackingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vendorProfile?: VendorProfileUncheckedUpdateOneWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    posts?: CommunityPostUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type RentalSpaceUpsertWithoutPlantTrackingsInput = {
+    update: XOR<RentalSpaceUpdateWithoutPlantTrackingsInput, RentalSpaceUncheckedUpdateWithoutPlantTrackingsInput>
+    create: XOR<RentalSpaceCreateWithoutPlantTrackingsInput, RentalSpaceUncheckedCreateWithoutPlantTrackingsInput>
+    where?: RentalSpaceWhereInput
+  }
+
+  export type RentalSpaceUpdateToOneWithWhereWithoutPlantTrackingsInput = {
+    where?: RentalSpaceWhereInput
+    data: XOR<RentalSpaceUpdateWithoutPlantTrackingsInput, RentalSpaceUncheckedUpdateWithoutPlantTrackingsInput>
+  }
+
+  export type RentalSpaceUpdateWithoutPlantTrackingsInput = {
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
+    vendor?: VendorProfileUpdateOneRequiredWithoutRentalSpacesNestedInput
+  }
+
+  export type RentalSpaceUncheckedUpdateWithoutPlantTrackingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vendorId?: IntFieldUpdateOperationsInput | number
+    location?: StringFieldUpdateOperationsInput | string
+    size?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    availability?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type OrderCreateManyUserInput = {
     id?: number
     produceId: number
@@ -12444,6 +14458,16 @@ export namespace Prisma {
     id?: number
     postContent: string
     postDate?: Date | string
+  }
+
+  export type PlantTrackingCreateManyUserInput = {
+    id?: number
+    rentalId: number
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
   }
 
   export type OrderUpdateWithoutUserInput = {
@@ -12484,6 +14508,35 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     postContent?: StringFieldUpdateOperationsInput | string
     postDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantTrackingUpdateWithoutUserInput = {
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    rental?: RentalSpaceUpdateOneRequiredWithoutPlantTrackingsNestedInput
+  }
+
+  export type PlantTrackingUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    rentalId?: IntFieldUpdateOperationsInput | number
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantTrackingUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    rentalId?: IntFieldUpdateOperationsInput | number
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProduceCreateManyVendorInput = {
@@ -12575,6 +14628,7 @@ export namespace Prisma {
     size?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     availability?: BoolFieldUpdateOperationsInput | boolean
+    plantTrackings?: PlantTrackingUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalSpaceUncheckedUpdateWithoutVendorInput = {
@@ -12583,6 +14637,7 @@ export namespace Prisma {
     size?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     availability?: BoolFieldUpdateOperationsInput | boolean
+    plantTrackings?: PlantTrackingUncheckedUpdateManyWithoutRentalNestedInput
   }
 
   export type RentalSpaceUncheckedUpdateManyWithoutVendorInput = {
@@ -12608,6 +14663,45 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     certifyingAgency?: StringFieldUpdateOperationsInput | string
     certificationDate?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantTrackingCreateManyRentalInput = {
+    id?: number
+    userId: number
+    plantName: string
+    growthStage: string
+    health: string
+    notes?: string | null
+    updatedAt?: Date | string
+  }
+
+  export type PlantTrackingUpdateWithoutRentalInput = {
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutPlantTrackingsNestedInput
+  }
+
+  export type PlantTrackingUncheckedUpdateWithoutRentalInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PlantTrackingUncheckedUpdateManyWithoutRentalInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    plantName?: StringFieldUpdateOperationsInput | string
+    growthStage?: StringFieldUpdateOperationsInput | string
+    health?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

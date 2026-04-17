@@ -18,8 +18,9 @@ model User {
 
   vendorProfile VendorProfile?
 
-  orders        Order[]
-  posts         CommunityPost[] 
+  orders         Order[]
+  posts          CommunityPost[]
+  plantTrackings PlantTracking[] 
 }
 
 model VendorProfile {
@@ -71,6 +72,8 @@ model RentalSpace {
   availability Boolean
 
   vendor VendorProfile @relation(fields: [vendorId], references: [id])
+
+  plantTrackings  PlantTracking[]   
 }
 
 model CommunityPost {
@@ -90,6 +93,21 @@ model SustainabilityCert {
 
   vendor VendorProfile @relation(fields: [vendorId], references: [id])
 }
+
+model PlantTracking {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  rentalId    Int
+  plantName   String
+  growthStage String   // e.g. Seed, Growing, Harvested
+  health      String   // e.g. Good, Average, Poor
+  notes       String?
+  updatedAt   DateTime @updatedAt
+
+  user   User        @relation(fields: [userId], references: [id])
+  rental RentalSpace @relation(fields: [rentalId], references: [id])
+}
+
 
 enum Role {
   ADMIN
