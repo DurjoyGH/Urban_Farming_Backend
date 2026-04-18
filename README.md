@@ -77,8 +77,8 @@ src/
 ## ⚙️ Installation & Setup
 
 ```bash
-git clone <your-repo-link>
-cd project
+git clone https://github.com/DurjoyGH/Urban_Farming_Backend
+cd Urban_Farming_Backend
 npm install
 ```
 
@@ -90,7 +90,10 @@ Create a `.env` file:
 DATABASE_URL=your_database_url
 JWT_SECRET=your_secret
 JWT_EXPIRES=7d
+PORT=5000
 ```
+
+You can change `PORT` to your preferred port.
 
 ## 🗄️ Database Setup
 
@@ -113,7 +116,8 @@ npx prisma db seed
 ## ▶️ Run Server
 
 ```bash
-npm run dev
+cd src
+node server.js
 ```
 
 ## 📬 API Documentation
@@ -197,7 +201,7 @@ Applied on:
 
 ## 👨‍💻 Author
 
-Durjoy Ghosh  
+Tarin Prosad Ghosh  
 CSE, Jashore University of Science and Technology
 
 ## 📌 Conclusion
