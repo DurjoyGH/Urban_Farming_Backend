@@ -56,7 +56,7 @@ model Order {
   userId    Int
   produceId Int
   vendorId  Int
-  status    String
+  status    OrderStatus
   orderDate DateTime @default(now())
 
   user   User @relation(fields: [userId], references: [id])
@@ -119,4 +119,11 @@ enum CertificationStatus {
   PENDING
   APPROVED
   REJECTED
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  CANCELLED
 }

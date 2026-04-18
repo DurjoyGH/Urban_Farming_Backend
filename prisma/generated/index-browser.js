@@ -218,6 +218,13 @@ exports.CertificationStatus = exports.$Enums.CertificationStatus = {
   REJECTED: 'REJECTED'
 };
 
+exports.OrderStatus = exports.$Enums.OrderStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   VendorProfile: 'VendorProfile',
