@@ -123,7 +123,7 @@ node server.js
 ## 📬 API Documentation
 
 Postman Collection included:
-- `postman_collection.json`
+- `urban-farming-postman-collection.json`
 
 Includes:
 - Auth (Register/Login)
@@ -133,6 +133,9 @@ Includes:
 - Rentals
 - Plant tracking
 - Community posts
+
+Detailed API response and performance strategy doc:
+- [docs/api-response-performance-strategy.md](docs/api-response-performance-strategy.md)
 
 ## 📦 API Response Structure
 
