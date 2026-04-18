@@ -16,12 +16,12 @@ const createOrder = async (req, res, next) => {
 
 const getMyOrders = async (req, res, next) => {
   try {
-    const result = await service.getMyOrders(req.user.id);
+    const result = await service.getMyOrders(req.user.id, req.query);
 
     res.status(200).json({
       success: true,
       message: "Orders fetched",
-      data: result,
+      ...result,
     });
   } catch (error) {
     next(error);
@@ -30,12 +30,12 @@ const getMyOrders = async (req, res, next) => {
 
 const getAllOrders = async (req, res, next) => {
   try {
-    const result = await service.getAllOrders();
+    const result = await service.getAllOrders(req.query);
 
     res.status(200).json({
       success: true,
       message: "All orders fetched",
-      data: result,
+      ...result,
     });
   } catch (error) {
     next(error);

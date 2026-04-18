@@ -46,19 +46,43 @@ const createOrder = async (userId, payload) => {
   return order;
 };
 
-const getMyOrders = async (userId) => {
+const getMyOrders = async (userId, query) => {
+  const page = parseInt(query.page) || 1;
+  const limit = parseInt(query.limit) || 10;
+
+  const filter = { userId };
+
   const orders = await prisma.order.findMany({
-    where: { userId },
+    where: filter,
     orderBy: { orderDate: "desc" },
+    skip: (page - 1) * limit,
+    take: limit,
   });
 
-  return orders;
+  const total = await prisma.order.count({ where: filter });
+
+  return {
+    data: orders,
+    meta: { page, limit, total },
+  };
 };
 
-const getAllOrders = async () => {
-  return await prisma.order.findMany({
+const getAllOrders = async (query) => {
+  const page = parseInt(query.page) || 1;
+  const limit = parseInt(query.limit) || 10;
+
+  const orders = await prisma.order.findMany({
     orderBy: { orderDate: "desc" },
+    skip: (page - 1) * limit,
+    take: limit,
   });
+
+  const total = await prisma.order.count();
+
+  return {
+    data: orders,
+    meta: { page, limit, total },
+  };
 };
 
 const updateOrderStatus = async (orderId, status) => {
