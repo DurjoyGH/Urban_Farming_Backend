@@ -3,6 +3,10 @@ const prisma = require("../../config/prisma");
 const createPost = async (userId, payload) => {
   const { postContent } = payload;
 
+  if (!postContent) {
+    throw new Error("Post content is required");
+  }
+
   const post = await prisma.communityPost.create({
     data: {
       userId,
@@ -25,6 +29,37 @@ const getPosts = async () => {
       },
     },
   });
+};
+
+const updatePost = async (userId, role, postId, payload) => {
+  const post = await prisma.communityPost.findUnique({
+    where: { id: postId },
+  });
+
+  if (!post) {
+    const error = new Error("Post not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  if (!payload.postContent) {
+    throw new Error("Post content is required");
+  }
+
+  if (post.userId !== userId && role !== "ADMIN") {
+    const error = new Error("Not authorized to update this post");
+    error.statusCode = 403;
+    throw error;
+  }
+
+  const updated = await prisma.communityPost.update({
+    where: { id: postId },
+    data: {
+      postContent: payload.postContent,
+    },
+  });
+
+  return updated;
 };
 
 const deletePost = async (userId, role, postId) => {
@@ -54,5 +89,6 @@ const deletePost = async (userId, role, postId) => {
 module.exports = {
   createPost,
   getPosts,
+  updatePost,
   deletePost,
 };

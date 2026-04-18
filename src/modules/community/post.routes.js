@@ -7,6 +7,8 @@ router.post("/", authMiddleware, controller.createPost);
 
 router.get("/", controller.getPosts);
 
+router.patch("/:id", authMiddleware, controller.updatePost);
+
 router.delete("/:id", authMiddleware, controller.deletePost);
 
 module.exports = router;

@@ -28,6 +28,25 @@ const getPosts = async (req, res, next) => {
   }
 };
 
+const updatePost = async (req, res, next) => {
+  try {
+    const result = await service.updatePost(
+      req.user.id,
+      req.user.role,
+      parseInt(req.params.id),
+      req.body,
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Post updated successfully",
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const deletePost = async (req, res, next) => {
   try {
     const result = await service.deletePost(
@@ -48,5 +67,6 @@ const deletePost = async (req, res, next) => {
 module.exports = {
   createPost,
   getPosts,
+  updatePost,
   deletePost,
 };
