@@ -3,10 +3,12 @@ const router = require("express").Router();
 const controller = require("./order.controller");
 const authMiddleware = require("../../middleware/auth.middleware");
 const roleMiddleware = require("../../middleware/role.middleware");
+const { generalLimiter } = require("../../middleware/rateLimit.middleware");
 
 router.post(
   "/",
   authMiddleware,
+  generalLimiter,
   roleMiddleware("CUSTOMER", "ADMIN"),
   controller.createOrder,
 );
@@ -23,6 +25,7 @@ router.get(
 router.patch(
   "/:id/status",
   authMiddleware,
+  generalLimiter,
   roleMiddleware("ADMIN"),
   controller.updateOrderStatus,
 );
